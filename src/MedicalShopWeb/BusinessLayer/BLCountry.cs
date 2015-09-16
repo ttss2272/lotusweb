@@ -10,10 +10,18 @@ namespace BusinessLayer
 {
     public class BLCountry
     {
-        public string SaveCountry()
+        DLCountry objCountry = new DLCountry();
+        public string SaveCountry(int CountryID, string CountryName, int UpdatedByUserID, int IsActive)
         {
             string Result = null;
+            Result = objCountry.SaveCountry(CountryID, CountryName, UpdatedByUserID, IsActive);
             return Result;
+        }
+
+        public DataSet GetCountry(int CountryID, int IsActive)
+        {
+            DataSet dsCountry = objCountry.GetCountry(CountryID, IsActive);
+            return dsCountry;
         }
     }
 }
