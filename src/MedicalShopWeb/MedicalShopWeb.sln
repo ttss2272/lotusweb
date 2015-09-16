@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalShopWeb", "MedicalShopWeb\MedicalShopWeb.csproj", "{84CB3E1F-7AB5-4182-92CA-14D0D2607D15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{0F4941FC-7DEC-4534-A779-461F7B11E63F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{84651EDF-BD45-4F4F-A159-3E3BD8AB7974}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84CB3E1F-7AB5-4182-92CA-14D0D2607D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84CB3E1F-7AB5-4182-92CA-14D0D2607D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84CB3E1F-7AB5-4182-92CA-14D0D2607D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84CB3E1F-7AB5-4182-92CA-14D0D2607D15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F4941FC-7DEC-4534-A779-461F7B11E63F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F4941FC-7DEC-4534-A779-461F7B11E63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F4941FC-7DEC-4534-A779-461F7B11E63F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F4941FC-7DEC-4534-A779-461F7B11E63F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84651EDF-BD45-4F4F-A159-3E3BD8AB7974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84651EDF-BD45-4F4F-A159-3E3BD8AB7974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84651EDF-BD45-4F4F-A159-3E3BD8AB7974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84651EDF-BD45-4F4F-A159-3E3BD8AB7974}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
