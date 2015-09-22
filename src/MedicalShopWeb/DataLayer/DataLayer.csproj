@@ -43,7 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBConnection.cs" />
+    <Compile Include="DLCity.cs" />
     <Compile Include="DLCountry.cs" />
+    <Compile Include="DLMedicalShop.cs" />
+    <Compile Include="DLState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
