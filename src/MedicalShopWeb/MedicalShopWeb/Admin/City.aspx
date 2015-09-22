@@ -37,7 +37,7 @@
             <asp:RequiredFieldValidator ID="ReqCountry" runat="server" ErrorMessage="*" 
              ControlToValidate="ddlCountry" Display="Dynamic" Font-Bold="True" 
              ForeColor="Red" InitialValue="-1" SetFocusOnError="True" 
-             ToolTip="Please Select Country" ValidationGroup="SaveState"></asp:RequiredFieldValidator>
+             ToolTip="Please Select Country" ValidationGroup="SaveCity"></asp:RequiredFieldValidator>
             </asp:Label></div>
          
         <div class="col-sm-8">
