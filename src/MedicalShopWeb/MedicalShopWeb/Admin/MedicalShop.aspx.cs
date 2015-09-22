@@ -13,9 +13,9 @@ namespace MedicalShopWeb.Admin
     public partial class MedicalShop : System.Web.UI.Page
     {
         #region-----------------------------------variables---------------------------
-        int ShopTypeID,UpdatedByUserID,IsActive,cityID;
+        int MedicalShopID, UpdatedByUserID, IsActive, CityID, ShopTypeID;
         string ShopName, OwnerName, ContactNo, Area, Address;
-        double OpeningBalance;
+        decimal OpeningBalance;
         BLMedicalShop objMedicalShop = new BLMedicalShop();
         BLCountry objCountry = new BLCountry();
         BLState objState = new BLState();
@@ -65,11 +65,17 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
-
+                SetParameters();
+                SaveMedicalShop();
             }
             catch (Exception ex)
             {
                 lblMessage.Text = ex.Message.ToString();
+            }
+            finally
+            {
+                ClearFields();
+
             }
         }
         #endregion
@@ -202,10 +208,27 @@ namespace MedicalShopWeb.Admin
         #region----------------------------SaveMedicalShop()---------------------------
         private void SaveMedicalShop()
         {
+            string Result = objMedicalShop.SaveMedicalShop(MedicalShopID, OwnerName, ContactNo, CityID, Area, ShopName, ShopTypeID, OpeningBalance, UpdatedByUserID, IsActive);
+            lblMessage.Text = Result;
  
         }
         #endregion
 
+        #region-------------------------------SetParameters()------------------------------
+        private void SetParameters()
+        {
+            MedicalShopID = 0;
+            OwnerName = txtOwnerName.Text;
+            ContactNo = txtContactNo.Text;
+            CityID = Convert.ToInt32(ddlCity.SelectedValue);
+            Area = txtArea.Text;
+            ShopName = txtShopName.Text;
+            ShopTypeID = Convert.ToInt32(ddlShopType.SelectedValue);
+            OpeningBalance = Convert.ToDecimal(txtOopenningBalance.Text);
+            UpdatedByUserID = 1;
+            IsActive = 1;
+        }
+        #endregion
 
     }
 }

@@ -196,7 +196,7 @@
         <div class="col-sm-4">
 
     <asp:Label ID="AreaRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-            <asp:Label ID="lblArea" runat="server" Text="Contact No" class="control-label">
+            <asp:Label ID="lblArea" runat="server" Text="Area" class="control-label">
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*"   
              ValidationExpression="[a-zA-Z ]*$" ControlToValidate="txtArea" 
              Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
