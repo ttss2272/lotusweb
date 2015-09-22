@@ -81,14 +81,18 @@
             <asp:Label ID="lblDOB" runat="server" Text="DOB" class="control-label">
              <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                 ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
-                ControlToValidate="ddlDOB" InitialValue="-1" SetFocusOnError="True" 
+                ControlToValidate="txtDOB" InitialValue="-1" SetFocusOnError="True" 
                 ToolTip="Please Select Date of Birth" ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
             </asp:Label>
             
             </div>
         <div class="col-sm-8">
-            <asp:DropDownList ID="ddlDOB" runat="server" class="form-control">
-            </asp:DropDownList>
+        <asp:TextBox ID="txtDOB" runat="server" class="form-control" />
+            <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDOB" Format="dd/MM/yyyy">
+            </asp:CalendarExtender>
+
+            <%--<asp:DropDownList ID="" runat="server" >
+            </asp:DropDownList>--%>
      </div> 
      </div>
      </div>
