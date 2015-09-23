@@ -62,9 +62,9 @@ namespace DataLayer
             
             con.Open();
 
-            SqlDataAdapter daGetCountryData = new SqlDataAdapter(cmd);
+            SqlDataAdapter daGetCityData = new SqlDataAdapter(cmd);
             dsCity = new DataSet();
-            daGetCountryData.Fill(dsCity);
+            daGetCityData.Fill(dsCity);
             con.Close();
             return dsCity;
  

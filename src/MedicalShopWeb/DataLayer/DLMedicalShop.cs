@@ -35,7 +35,7 @@ namespace DataLayer
             string Result =null;
 
             con = conn.GetConnection();
-            SqlCommand cmd = new SqlCommand("SaveCounty_USP", con);
+            SqlCommand cmd = new SqlCommand("SaveMedicalShop_USP", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@MedicalShopID", MedicalShopID);
