@@ -248,7 +248,7 @@
             
             </div>
         <div class="col-sm-8">
-            <asp:TextBox ID="txtOopenningBalance" runat="server" class="form-control" placeholder="Contact Number" required></asp:TextBox></div>
+            <asp:TextBox ID="txtOopenningBalance" runat="server" class="form-control" placeholder="Opening Balance" required></asp:TextBox></div>
      </div>
       </div>
       <!--End of Second Column-->

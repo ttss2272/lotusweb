@@ -125,7 +125,7 @@ namespace MedicalShopWeb.Admin
             private void BindState()
             {
                 DataSet dsState = objState.BindState(Convert.ToInt32(ddlCountry.SelectedValue));
-
+                ddlState.Items.Clear();
                 if (dsState.Tables.Count != 0)
                 {
                     if (dsState.Tables[0].Rows.Count != 0)
@@ -139,6 +139,7 @@ namespace MedicalShopWeb.Admin
                     {
                         ddlState.DataSource = null;
                         ddlState.DataBind();
+                        
 
                     }
                     ddlState.Items.Insert(0, new ListItem("Select State", "-1"));

@@ -113,7 +113,7 @@ namespace MedicalShopWeb.Admin
         private void BindState()
         {
             DataSet dsState = objState.BindState(Convert.ToInt32(ddlCountry.SelectedValue));
-
+            ddlState.Items.Clear();
             if (dsState.Tables.Count >0)
             {
                 if (dsState.Tables[0].Rows.Count >0)
@@ -139,7 +139,7 @@ namespace MedicalShopWeb.Admin
         private void BindCity()
         {
             DataSet dsCity = objCity.BindCity(Convert.ToInt32(ddlState.SelectedValue));
-
+            ddlCity.Items.Clear();
             if (dsCity.Tables.Count != 0)
             {
                 if (dsCity.Tables[0].Rows.Count != 0)
