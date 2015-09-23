@@ -87,12 +87,11 @@
             
             </div>
         <div class="col-sm-8">
-        <asp:TextBox ID="txtDOB" runat="server" class="form-control" />
-            <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDOB" Format="dd/MM/yyyy">
+        <asp:TextBox ID="txtDOB" runat="server" class="form-control" placeholder="Select Date of Birth" required />
+            <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDOB" Format="dd/MM/yyyy" >
             </asp:CalendarExtender>
 
-            <%--<asp:DropDownList ID="" runat="server" >
-            </asp:DropDownList>--%>
+           
      </div> 
      </div>
      </div>
@@ -138,7 +137,8 @@
             </div>
         <div class="col-sm-8">
             <asp:DropDownList ID="ddlCountry" runat="server" class="form-control" 
-                AutoPostBack="True">
+                AutoPostBack="True" 
+                onselectedindexchanged="ddlCountry_SelectedIndexChanged">
             </asp:DropDownList>
      </div>
       </div>
@@ -160,7 +160,7 @@
             </div>
         <div class="col-sm-8">
             <asp:DropDownList ID="ddlState" runat="server" class="form-control" 
-                AutoPostBack="True">
+                AutoPostBack="True" onselectedindexchanged="ddlState_SelectedIndexChanged">
             </asp:DropDownList>
      </div>
       </div>
@@ -242,6 +242,30 @@
       <div class="row form-group">
         <div class="col-sm-4">
 
+    <asp:Label ID="OprningBalanceReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
+            <asp:Label ID="lblOpenBal" runat="server" Text="Opening Balance" class="control-label">
+            <asp:RequiredFieldValidator ID="ReqValiOpeningVal" runat="server" 
+                ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
+                ControlToValidate="txtOpeningBalance" InitialValue="-1" SetFocusOnError="True" 
+                ToolTip="Please Enter Opening Balanace" ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
+            </asp:Label>
+            
+            </div>
+        <div class="col-sm-8">
+            <asp:TextBox ID="txtOpeningBalance" runat="server" class="form-control" placeholder="Opening Balance" requied ></asp:TextBox></div>
+     </div>
+      </div>
+      <!--End of Second Column-->
+     </div>
+    <!--End of Fifth Row-->
+       <!--Start of Six Row-->
+    <div class="row">
+    <!--Start First Column-->
+         <div class="col-sm-6">
+    
+     <div class="row form-group">
+        <div class="col-sm-4">
+
     <asp:Label ID="AddressReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
             <asp:Label ID="lblAddreq" runat="server" Text="Address" class="control-label">
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*"   
@@ -253,40 +277,43 @@
             </div>
         <div class="col-sm-8">
             <asp:TextBox ID="txtAddress" runat="server" class="form-control" placeholder="Address" requied TextMode="MultiLine"></asp:TextBox></div>
+     </div> 
+     
      </div>
-      </div>
-      <!--End of Second Column-->
+     <!--End Of First Column-->
      </div>
-    <!--End of Fifth Row-->
-     <!--Start sixth Row-->
+     <!--Start Seven Row-->
      <div class="row form-group">
         <div class="col-md-12">
             <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-primary" 
                  ValidationGroup="SaveDoctorDetails"/>
+                 
+                 <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-primary" 
+                 ValidationGroup="SaveDoctorDetails"/>
 
         </div>
      </div>
-     <!--End of sixth Row-->
+     <!--End of Seven Row-->
      <!--Start Grid View-->
 
      <div class="row">
-        <%--<%--<asp:GridView ID="grvCountry" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
+        <asp:GridView ID="grvDoctorDetails" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
          HeaderStyle-ForeColor="White"  BorderColor="White"  HeaderStyle-BorderColor="#4596f1" AllowPaging="true" ><%--onpageindexchanging="grvCountry_PageIndexChanging"--%>
-<%--
+
          <Columns>
             <asp:TemplateField HeaderText="Sr.No" HeaderStyle-HorizontalAlign="Center">
                 <ItemTemplate><%#Container.DataItemIndex+1 %></ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Country Name" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("Country Name")%></ItemTemplate>
-            </asp:TemplateField>--%>
+            <asp:TemplateField HeaderText="Doctor Name" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("Doctor Name")%></ItemTemplate>
+            </asp:TemplateField>
 
-            <%--<asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
+            <asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
                     <ItemTemplate >
-                             <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit" NavigateUrl='<%#String.Format("../Admin/Country.aspx?CountryId={0}", DataBinder.Eval(Container.DataItem,"CountryID") )%>'>
+                             <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit" NavigateUrl='<%#String.Format("../Admin/DoctorDetails.aspx?DoctorID={0}", DataBinder.Eval(Container.DataItem,"DoctorID") )%>'>
                               </asp:HyperLink>
                     </ItemTemplate>
-             </asp:TemplateField>--%>
+             </asp:TemplateField>
          </Columns>
         </asp:GridView>
      </div>
