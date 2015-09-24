@@ -1,6 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterPage.Master" AutoEventWireup="true" CodeBehind="DoctorDetails.aspx.cs" Inherits="MedicalShopWeb.DoctorDetails"%>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script type="text/javascript">
+    function setYearRange() {
+       $find("calBehavior").set_selectedDate(new Date(1990, 1, 1));
+       
+    }
+   
+  </script>
     
   </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CntPlcLeft" runat="server">
@@ -32,7 +41,7 @@
 
     <asp:Label ID="lblRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
             <asp:Label ID="lblDoctorName" runat="server" Text="Doctor Name" class="control-label">
-            <asp:RegularExpressionValidator ID="RegCountry" runat="server" ErrorMessage="*"   
+             <asp:RegularExpressionValidator ID="RegCountry" runat="server" ErrorMessage="*"   
              ValidationExpression="[a-zA-Z ]*$" ControlToValidate="txtDoctorName" 
              Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
              ToolTip="Enter Only Characters" ValidationGroup="SaveDoctorDetails"></asp:RegularExpressionValidator>
@@ -40,7 +49,11 @@
             
             </div>
         <div class="col-sm-8">
-            <asp:TextBox ID="txtDoctorName" runat="server" class="form-control" placeholder="Doctor Name" required></asp:TextBox></div>
+            <asp:TextBox ID="txtDoctorName" runat="server" class="form-control" placeholder="Doctor Name" required>
+           
+            </asp:TextBox>
+            
+            </div>
      </div> 
          </div>
           <!--End First Column-->
@@ -48,10 +61,9 @@
          <div class="col-sm-6">
       <div class="row form-group">
         <div class="col-sm-4">
-
-    <asp:Label ID="SpecializationRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
+          <asp:Label ID="SpecializationRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
             <asp:Label ID="lblSpecialization" runat="server" Text="Specialization" class="control-label">
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+            <asp:RequiredFieldValidator ID="ReqSpllizalition" runat="server" 
                 ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
                 ControlToValidate="txtspecialz" InitialValue="-1" SetFocusOnError="True" 
                 ToolTip="Please Enter Splecialization" ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
@@ -87,8 +99,8 @@
             
             </div>
         <div class="col-sm-8">
-        <asp:TextBox ID="txtDOB" runat="server" class="form-control" placeholder="Select Date of Birth" required />
-            <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDOB" Format="dd/MM/yyyy" >
+            <asp:TextBox ID="txtDOB" runat="server" class="form-control" placeholder="Select Date of Birth" required></asp:TextBox>
+            <asp:CalendarExtender ID="CalendarExtender1" BehaviorID="calBehavior" runat="server" TargetControlID="txtDOB" Format="dd/MM/yyyy" >
             </asp:CalendarExtender>
 
            
@@ -100,15 +112,22 @@
          <div class="col-sm-6">
       <div class="row form-group">
         <div class="col-sm-4">
-
-    
-            <asp:Label ID="lblProductlist" runat="server" Text="Product List" class="control-label">
-            
+        <asp:Label ID="CountryRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
+            <asp:Label ID="lblCountry" runat="server" Text="Country" class="control-label">
+            <asp:RequiredFieldValidator ID="ReqCountry" runat="server" 
+                ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
+                ControlToValidate="ddlCountry" InitialValue="-1" SetFocusOnError="True" 
+                ToolTip="Please Select Country" ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
             </asp:Label>
-            
-            </div>
+    
+             </div>
         <div class="col-sm-8">
-            <asp:TextBox ID="txtProductlist" runat="server" class="form-control" TextMode="MultiLine" placeholder="Product List" Enabled="false"></asp:TextBox></div>
+        <asp:DropDownList ID="ddlCountry" runat="server" class="form-control" 
+                AutoPostBack="True" 
+                onselectedindexchanged="ddlCountry_SelectedIndexChanged">
+            </asp:DropDownList>
+            </div>
+            
      </div>
       </div>
       <!--End of Second Column-->
@@ -125,21 +144,22 @@
          <div class="col-sm-6">
       <div class="row form-group">
         <div class="col-sm-4">
-
-    <asp:Label ID="CountryRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-            <asp:Label ID="lblCountry" runat="server" Text="Country" class="control-label">
-            <asp:RequiredFieldValidator ID="ReqCountry" runat="server" 
+        <asp:Label ID="StateRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
+            <asp:Label ID="lblState" runat="server" Text="State" class="control-label">
+            <asp:RequiredFieldValidator ID="ReqState" runat="server" 
                 ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
-                ControlToValidate="ddlCountry" InitialValue="-1" SetFocusOnError="True" 
-                ToolTip="Please Select Country" ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
+                ControlToValidate="ddlState" InitialValue="-1" SetFocusOnError="True" 
+                ToolTip="Please Select State" ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
             </asp:Label>
+    
             
             </div>
         <div class="col-sm-8">
-            <asp:DropDownList ID="ddlCountry" runat="server" class="form-control" 
-                AutoPostBack="True" 
-                onselectedindexchanged="ddlCountry_SelectedIndexChanged">
+            
+            <asp:DropDownList ID="ddlState" runat="server" class="form-control" 
+                AutoPostBack="True" onselectedindexchanged="ddlState_SelectedIndexChanged">
             </asp:DropDownList>
+
      </div>
       </div>
      </div>
@@ -148,20 +168,19 @@
          <div class="col-sm-6">
       <div class="row form-group">
         <div class="col-sm-4">
-
-    <asp:Label ID="StateRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-            <asp:Label ID="lblState" runat="server" Text="State" class="control-label">
-            <asp:RequiredFieldValidator ID="ReqState" runat="server" 
-                ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
-                ControlToValidate="ddlState" InitialValue="-1" SetFocusOnError="True" 
-                ToolTip="Please Select State" ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
+        <asp:Label ID="MobileNoRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
+            <asp:Label ID="lblArea" runat="server" Text="Mobile No" class="control-label">
+            
+             <asp:RegularExpressionValidator ID="RegOpeningBal" runat="server" ErrorMessage="*"   
+             ValidationExpression="[0-9]*$" ControlToValidate="txtmobno" 
+             Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
+             ToolTip="Enter Only Numbers" ValidationGroup="SaveDoctorDetails"></asp:RegularExpressionValidator>
             </asp:Label>
             
             </div>
         <div class="col-sm-8">
-            <asp:DropDownList ID="ddlState" runat="server" class="form-control" 
-                AutoPostBack="True" onselectedindexchanged="ddlState_SelectedIndexChanged">
-            </asp:DropDownList>
+            <asp:TextBox ID="txtmobno" runat="server" class="form-control" placeholder="Mobile Number" MaxLength="10" required></asp:TextBox>
+    
      </div>
       </div>
      </div>
@@ -197,19 +216,18 @@
           <div class="col-sm-6">
       <div class="row form-group">
         <div class="col-sm-4">
-
-    <asp:Label ID="MobileNoRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-            <asp:Label ID="lblArea" runat="server" Text="Mobile No" class="control-label">
-            
-             <asp:RegularExpressionValidator ID="RegOpeningBal" runat="server" ErrorMessage="*"   
-             ValidationExpression="[0-9]*$" ControlToValidate="txtmobno" 
-             Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
-             ToolTip="Enter Only Numbers" ValidationGroup="SaveDoctorDetails"></asp:RegularExpressionValidator>
+        <asp:Label ID="OprningBalanceReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
+            <asp:Label ID="lblOpenBal" runat="server" Text="Opening Balance" class="control-label">
+            <asp:RequiredFieldValidator ID="ReqValiOpeningVal" runat="server" 
+                ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
+                ControlToValidate="txtOpeningBalance" InitialValue="-1" SetFocusOnError="True" CssClass="Validators" 
+                ToolTip="Please Enter Opening Balanace" ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
             </asp:Label>
             
             </div>
         <div class="col-sm-8">
-            <asp:TextBox ID="txtmobno" runat="server" class="form-control" placeholder="Mobile Number" required></asp:TextBox></div>
+            <asp:TextBox ID="txtOpeningBalance" runat="server" class="form-control" placeholder="Opening Balance" requied ></asp:TextBox>
+    </div>
      </div>
       </div>
      <!--End of Second Column-->
@@ -226,7 +244,7 @@
         <div class="col-sm-4">
 
     <asp:Label ID="AreaRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-            <asp:Label ID="lblAddress" runat="server" Text="Area" class="control-label">
+            <asp:Label ID="lblArea1" runat="server" Text="Area" class="control-label">
             
             </asp:Label>
             
@@ -241,32 +259,7 @@
          <div class="col-sm-6">
       <div class="row form-group">
         <div class="col-sm-4">
-
-    <asp:Label ID="OprningBalanceReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-            <asp:Label ID="lblOpenBal" runat="server" Text="Opening Balance" class="control-label">
-            <asp:RequiredFieldValidator ID="ReqValiOpeningVal" runat="server" 
-                ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
-                ControlToValidate="txtOpeningBalance" InitialValue="-1" SetFocusOnError="True" 
-                ToolTip="Please Enter Opening Balanace" ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
-            </asp:Label>
-            
-            </div>
-        <div class="col-sm-8">
-            <asp:TextBox ID="txtOpeningBalance" runat="server" class="form-control" placeholder="Opening Balance" requied ></asp:TextBox></div>
-     </div>
-      </div>
-      <!--End of Second Column-->
-     </div>
-    <!--End of Fifth Row-->
-       <!--Start of Six Row-->
-    <div class="row">
-    <!--Start First Column-->
-         <div class="col-sm-6">
-    
-     <div class="row form-group">
-        <div class="col-sm-4">
-
-    <asp:Label ID="AddressReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
+        <asp:Label ID="AddressReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
             <asp:Label ID="lblAddreq" runat="server" Text="Address" class="control-label">
             <asp:RequiredFieldValidator ID="ReqValidatorAdd" runat="server" 
                 ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
@@ -276,12 +269,14 @@
             
             </div>
         <div class="col-sm-8">
-            <asp:TextBox ID="txtAddress" runat="server" class="form-control" placeholder="Address" requied TextMode="MultiLine"></asp:TextBox></div>
-     </div> 
-     
+            <asp:TextBox ID="txtAddress" runat="server" class="form-control" placeholder="Address" requied TextMode="MultiLine"></asp:TextBox>
+      </div>
      </div>
-     <!--End Of First Column-->
+      </div>
+      <!--End of Second Column-->
      </div>
+    <!--End of Fifth Row-->
+   
      <!--Start Seven Row-->
      <div class="row form-group">
         <div class="col-md-12">
@@ -290,12 +285,12 @@
                  
                  <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-primary" 
                  ValidationGroup="SaveDoctorDetails"/>
-
+                  <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" id="validationSummary" />
         </div>
      </div>
      <!--End of Seven Row-->
      <!--Start Grid View-->
-
+     </div>
      <div class="row">
         <asp:GridView ID="grvDoctorDetails" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
          HeaderStyle-ForeColor="White"  BorderColor="White"  HeaderStyle-BorderColor="#4596f1" AllowPaging="true" ><%--onpageindexchanging="grvCountry_PageIndexChanging"--%>

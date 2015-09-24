@@ -32,8 +32,11 @@ namespace MedicalShopWeb
             {
                 if (!IsPostBack)
                 {
-                    BindCountry();
                     
+                    BindCountry();
+                    #region--------DOBValidation--------------
+                    txtDOB.Attributes.Add("onClick", "javascript:setYearRange();");
+                    #endregion
                     //BindGridView();
                 }
             }
@@ -166,12 +169,11 @@ namespace MedicalShopWeb
             txtmobno.Text="";
             txtAddress.Text = "";
             txtArea.Text = "";
-            txtProductlist.Text = "";
             txtOpeningBalance.Text="";
         }
         #endregion
 
-        #region---------------------------SaveCountry()--------------------------
+        #region---------------------------SaveDoctor()--------------------------
         private void SaveDoctor()
         {
             string Result = obj_Doctor.SaveDoctor(DoctorID,DrName, Specialization, DOB, CityId, Area, Address, Mobileno,OpeningBalance,IsActive,UpdatedByUserID);
@@ -228,7 +230,7 @@ namespace MedicalShopWeb
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message.ToString();
-                //Response.Write("<script type=\"text/javascript\">alert("+ex.Message.ToString()+");</script>");
+                
             }
             finally
             {
