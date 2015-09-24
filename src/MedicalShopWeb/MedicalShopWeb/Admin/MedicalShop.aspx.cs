@@ -12,6 +12,11 @@ namespace MedicalShopWeb.Admin
 {
     public partial class MedicalShop : System.Web.UI.Page
     {
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :- Declare Variables 
+         */
         #region-----------------------------------variables---------------------------
         int MedicalShopID, UpdatedByUserID, IsActive, CityID, ShopTypeID;
         string ShopName, OwnerName, ContactNo, Area, Address;
@@ -22,6 +27,11 @@ namespace MedicalShopWeb.Admin
         BLCity objCity = new BLCity();
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  Page_Load
+         */
 
         #region-------------------------------Page_Load------------------------------
         protected void Page_Load(object sender, EventArgs e)
@@ -36,11 +46,17 @@ namespace MedicalShopWeb.Admin
             }
             catch (Exception ex)
             {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message.ToString();
             }
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  Bind ShopType to Dropdown
+         */
         #region--------------------------------BindShopType()---------------------------
         private void BindShopType()
         {
@@ -60,6 +76,12 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  BtnSave_Click
+         */
+
         #region---------------------------------------btnSave_Click------------------------
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -70,16 +92,22 @@ namespace MedicalShopWeb.Admin
             }
             catch (Exception ex)
             {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message.ToString();
             }
             finally
             {
                 ClearFields();
-
+                Response.AppendHeader("Refresh", "2;url=MedicalShop.aspx");
             }
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  Bind Countr to Dropdown
+         */
         #region------------------------------------BindCountry()--------------------------------
         private void BindCountry()
         {
@@ -109,6 +137,12 @@ namespace MedicalShopWeb.Admin
         #endregion
 
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  Bind State
+         */
+
         #region---------------------------------BindState()--------------------------------------
         private void BindState()
         {
@@ -134,6 +168,12 @@ namespace MedicalShopWeb.Admin
             }
         }
         #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  Bind City
+         */
 
         #region--------------------------------------BindCity()-----------------------------
         private void BindCity()
@@ -161,6 +201,11 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  Country Selected Index Changed
+         */
         #region------------------------ddlCountry_SelectedIndexChanged---------------------------
         protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -170,11 +215,17 @@ namespace MedicalShopWeb.Admin
             }
             catch (Exception ex)
             {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message.ToString();
             }
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  State Selected Index Changed
+         */
         #region--------------------------ddlState_SelectedIndexChanged----------------------
         protected void ddlState_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -184,11 +235,17 @@ namespace MedicalShopWeb.Admin
             }
             catch (Exception ex)
             {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message.ToString();
             }
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  Clear All Fields
+         */
         #region-----------------------------------ClearFields()-------------------------------
         private void ClearFields()
         {
@@ -205,6 +262,11 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  Save Medical Shop
+         */
         #region----------------------------SaveMedicalShop()---------------------------
         private void SaveMedicalShop()
         {
@@ -214,6 +276,11 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  Set Parameters
+         */
         #region-------------------------------SetParameters()------------------------------
         private void SetParameters()
         {

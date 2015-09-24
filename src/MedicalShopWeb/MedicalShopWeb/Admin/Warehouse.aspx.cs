@@ -12,12 +12,22 @@ namespace MedicalShopWeb.Admin
 {
     public partial class Warehouse : System.Web.UI.Page
     {
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 23 Sept 2015
+         * Purpose :-  Declare Variables
+         */
         #region---------------------------------Declare variables-------------------------------
         int WarehouseID=0, UpdatedByUserID, IsActive;
         string WarehouseName, Location;
         BLWarehouse objWarehouse = new BLWarehouse();
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 23 Sept 2015
+         * Purpose :-  Page _Load
+         */
         #region----------------------------------------PageLoad-------------------------------
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,6 +48,11 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 23 Sept 2015
+         * Purpose :-  button Save
+         */
         #region---------------------------btnSave_Click-------------------------------------
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -59,6 +74,11 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 23 Sept 2015
+         * Purpose :-  Set Parametrs
+         */
         #region----------------------------SetParameters()------------------------------------
         private void SetParameters()
         {
@@ -70,6 +90,11 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 23 Sept 2015
+         * Purpose :-  Clear Fields
+         */
         #region-------------------------ClearFiealds----------------------------------------
         private void ClearFields()
         {
@@ -78,6 +103,11 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 23 Sept 2015
+         * Purpose :-  BindGridview
+         */
         #region----------------------------BindGridView------------------------------------
         private void BindGridview()
         {
@@ -103,6 +133,11 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 23 Sept 2015
+         * Purpose :-  Save ()
+         */
         #region-----------------------SaveWarehouse()---------------------------------
         private void SaveWarehouse()
         {
