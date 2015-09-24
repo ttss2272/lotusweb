@@ -23,5 +23,45 @@ namespace BusinessLayer
             return Result;
 
         }
+
+        
+        /*
+         * get All Data of Medicalshop for Bind gridview and Form
+         */
+        public DataSet GetMedicalShop(int MedicalShopID)
+        {
+            DataSet dsMedicalShop = objMedicalShop.GetMedicalShop(MedicalShopID);
+            return dsMedicalShop;
+
+        }
+
+
+        /*
+         * get  Medicalshop for Bind Dropdown and Form
+         */
+
+        public DataSet BindMedicalShop(int MedicalShopID)
+        {
+            DataSet dsMedicalShop = objMedicalShop.BindMedicalShop(MedicalShopID);
+            return dsMedicalShop;
+        }
+
+        /*
+         * get All Medicalshop for Bind Dropdown on ShopType
+         */
+        public DataSet BindMedicalShopOnShopType(int ShopTypeID)
+        {
+            DataSet dsMedicalShop = objMedicalShop.BindMedicalShopOnShopType(ShopTypeID);
+            return dsMedicalShop;
+        }
+
+        /*
+        * get All Data of Medicalshop for Bind gridview
+        */
+        public DataSet GetMedicalShopOnShopType(int MedicalShopID,int ShopTypeID)
+        {
+            DataSet dsMedicalShop = objMedicalShop.GetMedicalShopOnShopType(MedicalShopID, ShopTypeID);
+            return dsMedicalShop;
+        }
     }
 }
