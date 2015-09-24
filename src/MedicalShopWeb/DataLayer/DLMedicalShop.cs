@@ -55,5 +55,95 @@ namespace DataLayer
             return Result;
             
         }
+
+        /*
+         * get All Data of Medicalshop for Bind Form
+         */
+        public DataSet GetMedicalShop(int MedicalShopID)
+        {
+            DataSet dsMedicalShop = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetMedicalShop_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@MedicalShopID", MedicalShopID);
+            con.Open();
+
+            SqlDataAdapter daGetMedicalShopData = new SqlDataAdapter(cmd);
+            dsMedicalShop = new DataSet();
+            daGetMedicalShopData.Fill(dsMedicalShop);
+            con.Close();
+            return dsMedicalShop;
+ 
+        }
+
+        /*
+         * get All Medicalshop for Bind Dropdown 
+         */
+
+        public DataSet BindMedicalShop(int MedicalShopID)
+        {
+            DataSet dsMedicalShop = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("BindMedicalShop_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@MedicalShopID", MedicalShopID);
+            con.Open();
+
+            SqlDataAdapter daGetMedicalShopData = new SqlDataAdapter(cmd);
+            dsMedicalShop = new DataSet();
+            daGetMedicalShopData.Fill(dsMedicalShop);
+            con.Close();
+            return dsMedicalShop;
+
+        }
+
+        /*
+         * get All Medicalshop for Bind Dropdown on ShopType
+         */
+        public DataSet BindMedicalShopOnShopType(int ShopTypeID)
+        {
+            DataSet dsMedicalShop = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("BindMedicalShopOnShopType_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@ShopTypeID", ShopTypeID);
+            con.Open();
+
+            SqlDataAdapter daGetMedicalShopData = new SqlDataAdapter(cmd);
+            dsMedicalShop = new DataSet();
+            daGetMedicalShopData.Fill(dsMedicalShop);
+            con.Close();
+            return dsMedicalShop;
+ 
+        }
+
+        /*
+        * get All Data of Medicalshop for Bind gridview
+        */
+        public DataSet GetMedicalShopOnShopType(int MedicalShopID,int ShopTypeID)
+        {
+            DataSet dsMedicalShop = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetMedicalShopOnShopType_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@ShopTypeID", ShopTypeID);
+            cmd.Parameters.AddWithValue("@MedicalShopID", MedicalShopID);
+            con.Open();
+
+            SqlDataAdapter daGetMedicalShopData = new SqlDataAdapter(cmd);
+            dsMedicalShop = new DataSet();
+            daGetMedicalShopData.Fill(dsMedicalShop);
+            con.Close();
+            return dsMedicalShop;
+
+        }
     }
 }
