@@ -342,8 +342,12 @@
      <!--Start Eighth Row-->
      <div class="row form-group">
         <div class="col-md-12">
-            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-primary" 
+            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
                  ValidationGroup="SaveUser" onclick="btnSave_Click"/>
+
+
+                 <asp:Button ID="btnClose" runat="server" Text="Close" 
+                class=" btn btn-danger"  />
 
         </div>
      </div>

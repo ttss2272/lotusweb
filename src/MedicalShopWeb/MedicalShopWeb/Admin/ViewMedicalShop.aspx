@@ -63,7 +63,7 @@
         <div class="col-md-12">
             <asp:Button ID="btnSearch" runat="server" Text="Search" 
                 class=" btn btn-primary" onclick="btnSearch_Click" />
-            <asp:Button ID="btnClose" runat="server" Text="Close"  class=" btn btn-default" 
+            <asp:Button ID="btnClose" runat="server" Text="Close"  class=" btn btn-danger" 
                 onclick="btnClose_Click"  />
 
         </div>
@@ -91,26 +91,31 @@
                 <ItemTemplate><%#Container.DataItemIndex+1 %></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Shop Name" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("")%></ItemTemplate>
+                <ItemTemplate>
+                <asp:HyperLink ID="HyperLinkShopName" runat="server" Text='<%#Eval("ShopName")%>' NavigateUrl='<%#String.Format("../Admin/MedicalShop.aspx?MedicalShopID={0}&iss=0", DataBinder.Eval(Container.DataItem,"MedicalShopID") )%>'>
+                              </asp:HyperLink></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Owner Name" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("")%></ItemTemplate>
+                <ItemTemplate><%#Eval("OwnerName")%></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Contact No" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("")%></ItemTemplate>
+                <ItemTemplate><%#Eval("ContactNo")%></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Shop Type" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("")%></ItemTemplate>
+                <ItemTemplate><%#Eval("ShopTypeName")%></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Area" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("")%></ItemTemplate>
+                <ItemTemplate><%#Eval("Area")%></ItemTemplate>
             </asp:TemplateField>
-            <%--<asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
+            <asp:TemplateField HeaderText="City" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("CityName")%></ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Delete" HeaderStyle-HorizontalAlign="Center">
                     <ItemTemplate >
-                             <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit" NavigateUrl='<%#String.Format("../Admin/Country.aspx?CountryId={0}", DataBinder.Eval(Container.DataItem,"CountryID") )%>'>
+                             <asp:HyperLink ID="HyperLinkDelete" runat="server" Text="Delete"  NavigateUrl='<%#String.Format("../Admin/MedicalShop.aspx?MedicalShopID={0}&iss=1", DataBinder.Eval(Container.DataItem,"MedicalShopID") )%>'>
                               </asp:HyperLink>
                     </ItemTemplate>
-             </asp:TemplateField>--%>
+             </asp:TemplateField>
          </Columns>
         </asp:GridView>
      </div>

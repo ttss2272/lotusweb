@@ -241,7 +241,7 @@
     <asp:Label ID="OpeningBalreq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
             <asp:Label ID="lblOpeningBalance" runat="server" Text="Opening Balance" class="control-label">
             <asp:RegularExpressionValidator ID="RegOpeningBal" runat="server" ErrorMessage="*"   
-             ValidationExpression="[0-9]*$" ControlToValidate="txtOopenningBalance" 
+             ValidationExpression="[0-9.]*$" ControlToValidate="txtOopenningBalance" 
              Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
              ToolTip="Enter Only Numbers" ValidationGroup="SaveMedicalShop"></asp:RegularExpressionValidator>
             </asp:Label>
@@ -257,8 +257,12 @@
      <!--Start sixth Row-->
      <div class="row form-group">
         <div class="col-md-12">
-            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-primary" 
+            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
                  ValidationGroup="SaveMedicalShop" onclick="btnSave_Click"/>
+                 <asp:Button ID="btnClear" runat="server" Text="Clear" 
+                class=" btn  btn-primary" onclick="btnClear_Click"/>
+                 <asp:Button ID="btnClose" runat="server" Text="Close" 
+                class=" btn btn-danger" onclick="btnClose_Click"/>
 
         </div>
      </div>

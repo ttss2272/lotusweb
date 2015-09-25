@@ -51,7 +51,7 @@
             <asp:Button ID="btnSearch" runat="server" Text="Search" 
                 class=" btn btn-primary" onclick="btnSearch_Click" />
                 <asp:Button ID="btnClose" runat="server" Text="Close" 
-                class=" btn btn-default" onclick="btnClose_Click"  />
+                class=" btn btn-danger" onclick="btnClose_Click"  />
 
         </div>
      </div>
@@ -70,27 +70,27 @@
    <asp:UpdatePanel runat ="server" ID="GridUpdate"><ContentTemplate>
    <div class="panel-body">
      <div class="row">
-        <asp:GridView ID="grvMedicalShop" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
+        <asp:GridView ID="grvUser" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
          HeaderStyle-ForeColor="White"  BorderColor="White"  HeaderStyle-BorderColor="#4596f1" AllowPaging="true" ><%--onpageindexchanging="grvUser_PageIndexChanging"--%>
 
          <Columns>
             <asp:TemplateField HeaderText="Sr.No" HeaderStyle-HorizontalAlign="Center">
                 <ItemTemplate><%#Container.DataItemIndex+1 %></ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="UserName" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("")%></ItemTemplate>
+            <asp:TemplateField HeaderText="User Name" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("UserName")%></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Conact No" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("")%></ItemTemplate>
+                <ItemTemplate><%#Eval("ContactNo")%></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="E-mail Address" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("")%></ItemTemplate>
+                <ItemTemplate><%#Eval("EmailAddress")%></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Area" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("")%></ItemTemplate>
+                <ItemTemplate><%#Eval("Area")%></ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="City" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("")%></ItemTemplate>
+            <asp:TemplateField HeaderText="Warehouse" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("WarehouseName")%></ItemTemplate>
             </asp:TemplateField>
             <%--<asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
                     <ItemTemplate >

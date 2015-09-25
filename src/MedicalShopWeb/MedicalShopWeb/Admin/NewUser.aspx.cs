@@ -41,6 +41,13 @@ namespace MedicalShopWeb.Admin
                     BindUserType();
                     BindCountry();
                     BindWarehouse();
+                    if (Request.QueryString["UserID"] != null)
+                    {
+                        if (Request.QueryString["iss"] != "1")
+                        { 
+                        }
+                        BindData();
+                    }
                 }
             }
             catch (Exception ex)
@@ -374,6 +381,56 @@ namespace MedicalShopWeb.Admin
             txtLoginName.Text = "";
             txtPassword.Text = "";
             txtConfirmPassword.Text = "";
+        }
+        #endregion
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 23 Sept 2015
+         * Purpose :-  BindData()
+         */
+
+        #region-----------------------------------BindData()------------------------------------
+        private void BindData()
+        {
+            DataSet dsUser = objUser.GetUser(Convert.ToInt32(Request.QueryString["UserID"]));
+
+            if (dsUser.Tables.Count != 0)
+            {
+                if (dsUser.Tables[0].Rows.Count != 0)
+                {
+                    lblPageHeading.Text = "Edit :-" + dsUser.Tables[0].Rows[0]["UserName"].ToString();
+                    txtUserName.Text = dsUser.Tables[0].Rows[0]["UserName"].ToString();
+                    ddlUserType.SelectedValue = dsUser.Tables[0].Rows[0]["UserTypeID"].ToString();
+                    txtEmail.Text = dsUser.Tables[0].Rows[0]["EmailAddress"].ToString();
+                    txtContactNo.Text = dsUser.Tables[0].Rows[0]["ContactNo"].ToString();
+                    ddlCountry.SelectedValue = dsUser.Tables[0].Rows[0]["CountryID"].ToString();
+                    BindState();
+                    ddlState.SelectedValue = dsUser.Tables[0].Rows[0]["StateID"].ToString();
+                    BindCity();
+                    ddlCity.SelectedValue = dsUser.Tables[0].Rows[0]["CityID"].ToString();
+                    txtArea.Text = dsUser.Tables[0].Rows[0]["Area"].ToString();
+                    txtAddress.Text = dsUser.Tables[0].Rows[0]["Address"].ToString();
+                    ddlWarehouse.SelectedValue = dsUser.Tables[0].Rows[0]["WarehouseID"].ToString();
+                }
+                else
+                {
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    lblMessage.Text = "Information Not Available";
+                }
+            }
+
+        }
+        #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 23 Sept 2015
+         * Purpose :-  UnEditable
+         */
+        #region-----------------------------------Uneditable()------------------------------------------
+        private void UnEditable()
+        {
+ 
         }
         #endregion
     }

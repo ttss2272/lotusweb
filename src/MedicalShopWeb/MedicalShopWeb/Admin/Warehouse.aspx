@@ -61,6 +61,9 @@
             <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-primary" 
                  ValidationGroup="SaveWarehouse" onclick="btnSave_Click"/>
 
+                  <asp:Button ID="btnClear" runat="server" Text="Clear" class=" btn btn-primary" />
+                 <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" />
+
         </div>
      </div>
      <!--End of Third Row-->

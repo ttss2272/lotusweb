@@ -18,7 +18,7 @@ namespace MedicalShopWeb.Admin
          * Purpose :- Declare Variables 
          */
         #region-----------------------------------variables---------------------------
-        int MedicalShopID, UpdatedByUserID, IsActive, CityID, ShopTypeID;
+        int MedicalShopID, UpdatedByUserID, IsActive, CityID, ShopTypeID,Edit=0,Delete=0;
         string ShopName, OwnerName, ContactNo, Area, Address;
         decimal OpeningBalance;
         BLMedicalShop objMedicalShop = new BLMedicalShop();
@@ -42,6 +42,16 @@ namespace MedicalShopWeb.Admin
                 {
                     BindShopType();
                     BindCountry();
+                    if (Request.QueryString["MedicalShopID"] != null)
+                    {
+                        if (Request.QueryString["iss"] == "1")
+                        {
+                            btnSave.Text = "Delete";
+                            UnEditable();
+                        }
+                        AssignValues();
+ 
+                    }
                 }
             }
             catch (Exception ex)
@@ -270,7 +280,7 @@ namespace MedicalShopWeb.Admin
         #region----------------------------SaveMedicalShop()---------------------------
         private void SaveMedicalShop()
         {
-            string Result = objMedicalShop.SaveMedicalShop(MedicalShopID, OwnerName, ContactNo, CityID, Area, ShopName, ShopTypeID, OpeningBalance, UpdatedByUserID, IsActive);
+            string Result = objMedicalShop.SaveMedicalShop(MedicalShopID, OwnerName, ContactNo, CityID, Area, ShopName, ShopTypeID, OpeningBalance, UpdatedByUserID, IsActive,Address);
             lblMessage.Text = Result;
  
         }
@@ -284,7 +294,11 @@ namespace MedicalShopWeb.Admin
         #region-------------------------------SetParameters()------------------------------
         private void SetParameters()
         {
-            MedicalShopID = 0;
+            if (Request.QueryString["MedicalShopID"] != null)
+            { MedicalShopID = Convert.ToInt32(Request.QueryString["MedicalShopID"]); }
+            else
+            { MedicalShopID = 0; }
+           
             OwnerName = txtOwnerName.Text;
             ContactNo = txtContactNo.Text;
             CityID = Convert.ToInt32(ddlCity.SelectedValue);
@@ -294,6 +308,106 @@ namespace MedicalShopWeb.Admin
             OpeningBalance = Convert.ToDecimal(txtOopenningBalance.Text);
             UpdatedByUserID = 1;
             IsActive = 1;
+            Address = txtAddress.Text;
+        }
+        #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  Set Value to form Controls
+         */
+
+        #region-------------------------------AssignValues()--------------------------------
+        private void AssignValues()
+        {
+            DataSet dsMedicalShop = objMedicalShop.GetMedicalShop(Convert.ToInt32(Request.QueryString["MedicalShopID"]));
+            if (dsMedicalShop.Tables.Count != 0)
+            {
+                if (dsMedicalShop.Tables[0].Rows.Count != 0)
+                {
+                    lblPageHeading.Text = "Edit :-" + dsMedicalShop.Tables[0].Rows[0]["ShopName"].ToString();
+                    txtShopName.Text = dsMedicalShop.Tables[0].Rows[0]["ShopName"].ToString();
+                    ddlShopType.SelectedValue = dsMedicalShop.Tables[0].Rows[0]["ShopTypeID"].ToString();
+                    txtOwnerName.Text = dsMedicalShop.Tables[0].Rows[0]["OwnerName"].ToString();
+                    txtContactNo.Text = dsMedicalShop.Tables[0].Rows[0]["ContactNo"].ToString();
+                    ddlCountry.SelectedValue = dsMedicalShop.Tables[0].Rows[0]["CountryID"].ToString();
+                    BindState();
+                    ddlState.SelectedValue = dsMedicalShop.Tables[0].Rows[0]["StateID"].ToString();
+                    BindCity();
+                    ddlCity.SelectedValue = dsMedicalShop.Tables[0].Rows[0]["CityID"].ToString();
+                    txtArea.Text = dsMedicalShop.Tables[0].Rows[0]["Area"].ToString();
+                    txtAddress.Text = dsMedicalShop.Tables[0].Rows[0]["Address"].ToString();
+                    txtOopenningBalance.Text = dsMedicalShop.Tables[0].Rows[0]["OpeningBalance"].ToString();
+                    txtOopenningBalance.ReadOnly = true;
+
+                }
+                else
+                {
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    lblMessage.Text = "Data Not Available";
+                }
+            }
+ 
+        }
+        #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  clear button click
+         */
+
+        #region--------------------------------btnClear_Click--------------------------------
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+
+        #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  Close button click
+         */
+        #region--------------------------------btnClose_Click-------------------------------
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Green;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #endregion
+
+        #region------------------------------uneditable()----------------------------------
+        private void UnEditable()
+        {
+            txtShopName.ReadOnly = true;
+            txtOwnerName.ReadOnly = true;
+            txtAddress.ReadOnly = true;
+            txtArea.ReadOnly = true;
+            txtContactNo.ReadOnly = true;
+            txtOopenningBalance.ReadOnly = true;
+            ddlShopType.Enabled = false;
+            ddlCity.Enabled = false;
+            ddlCountry.Enabled = false;
+            ddlState.Enabled = false;
         }
         #endregion
 
