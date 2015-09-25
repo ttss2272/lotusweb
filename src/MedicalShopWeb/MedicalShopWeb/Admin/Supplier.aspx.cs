@@ -13,8 +13,9 @@ namespace MedicalShopWeb
         BLCountry objCountry = new BLCountry();
         BLState objState = new BLState();
         BLCity objCity = new BLCity();
+        BLSupplier objSupplier = new BLSupplier();
         #region--------------SetVariables-------------
-        string CompanyName, SupplierName, ContactNo, Area, Address, ModeOfTransport,CIF,FOB;
+        string CompanyName, SupplierName, ContactNo, Area, Address, ModeOfTransport,PriceType;
         int SupID, IsActive, CityID, UpdatedByUserID;
         #endregion
         protected void Page_Load(object sender, EventArgs e)
@@ -120,7 +121,7 @@ namespace MedicalShopWeb
         #region--------------BindCity-----------------
         private void BindCity()
         {
-            DataSet dsCity = objCity.BindCity(Convert.ToInt32(ddlCity.SelectedValue));
+            DataSet dsCity = objCity.BindCity(Convert.ToInt32(ddlState.SelectedValue));
             ddlCity.Items.Clear();
             if (dsCity.Tables.Count != 0)
             {
@@ -136,51 +137,33 @@ namespace MedicalShopWeb
                     ddlCity.DataSource = null;
                     ddlCity.DataBind();
                 }
-                ddlCity.Items.Insert(0,new ListItem("Select State","-1"));
+                
                 ddlCity.Items.Insert(0,new ListItem("Select City","-1"));
 
             }
         }
         #endregion
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SetParameters();
-                SaveSuppliers();
-            }
-            catch (Exception ex)
-            {
-                
-                lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = ex.Message.ToString();
-            }
-            finally
-            {
-                ClearFields();
-                Response.AppendHeader("Refresh", "2;url=Supplier.aspx");
-            }
-        }
-
+        #region----------------SaveSupplier------------------------
         private void SaveSuppliers()
         {
-            //string Result = obj_Doctor.SaveDoctor(SupID,SupplierName,CompanyName,ContactNo,CityID,Area,Address,ModeOfTransport,CIF,FOB, IsActive, UpdatedByUserID);
-            //if (Result == "Doctor Details Saved Successfully...!!!")
-            //{
-            //    lblMessage.ForeColor = System.Drawing.Color.Green;
-            //    lblMessage.Text = Result;
-            //}
+            string Result = objSupplier.SaveSupplier(SupID, SupplierName, CompanyName, ContactNo, CityID, Area, Address, ModeOfTransport, PriceType, IsActive, UpdatedByUserID);
+            if (Result == "Supplier Details Saved Successfully...!!!")
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Green;
+                lblMessage.Text = Result;
+            }
 
-            //else
-            //{
-            //    lblMessage.ForeColor = System.Drawing.Color.Red;
-            //    lblMessage.Text = Result;
-            //}
+            else
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = Result;
+            }
         }
+        #endregion
         #region------------------SetParameters-----------------
         private void SetParameters()
         {
+            SupID = 0;
             CompanyName = txtcompanyName.Text;
             SupplierName = txtSupplierName.Text;
             ContactNo = txtContactNo.Text;
@@ -188,14 +171,17 @@ namespace MedicalShopWeb
             Area = txtArea.Text;
             Address = txtAddress.Text;
             ModeOfTransport = ddModeOfTransport.SelectedValue.ToString();
+            IsActive = 1;
+            UpdatedByUserID = 1;
             if (rbtnCIF.Checked == true)
             {
-                CIF = "CIF";
+                PriceType = "CIF";
             }
-            if (rbtnFOB.Checked == true)
+            else
             {
-                FOB = "FOB";
+                PriceType = "FOB";
             }
+            
         #endregion
         }
         #region-----------ClearFields-----
@@ -204,12 +190,30 @@ namespace MedicalShopWeb
             txtcompanyName.Text = "";
             txtSupplierName.Text = "";
             txtContactNo.Text = "";
-            ddlCountry.Text = "";
-            ddlState.Text = "";
-            ddlCity.Text = "";
             txtArea.Text = "";
             txtAddress.Text = "";
 
+        }
+        #endregion
+        #region----------------SaveClickCode------------------------------
+        protected void btnSave_Click1(object sender, EventArgs e)
+        {
+            try
+            {
+                SetParameters();
+                SaveSuppliers();
+            }
+            catch (Exception ex)
+            {
+
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+            finally
+            {
+                ClearFields();
+                Response.AppendHeader("Refresh", "2;url=Supplier.aspx");
+            }
         }
         #endregion
     }

@@ -67,10 +67,7 @@
      <!--End Of Second Column-->
    </div>
    <!--End First Row-->
-    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-        </asp:ToolkitScriptManager>
-        <asp:UpdatePanel ID="UpdatePanelTransporter" runat="server">
-            <ContentTemplate>
+   
            
    <!--Start Second Row-->
     <div class="row">
@@ -87,7 +84,8 @@
             </asp:Label>
              </div>
         <div class="col-sm-8">
-            <asp:TextBox ID="txtContactNo" runat="server" class="form-control" placeholder="Enter Contact Number" required />
+            <asp:TextBox ID="txtContactNo" runat="server" class="form-control" 
+                placeholder="Enter Contact Number" required MaxLength="10" />
      </div>
       </div>
      </div>
@@ -107,8 +105,7 @@
         </div>
         <div class="col-sm-8">
             <asp:DropDownList ID="ddlCountry" runat="server" class="form-control" 
-                AutoPostBack="True" 
-                onselectedindexchanged="ddlCountry_SelectedIndexChanged">
+                AutoPostBack="True" onselectedindexchanged="ddlCountry_SelectedIndexChanged">
             </asp:DropDownList>
      </div>
       </div>
@@ -118,9 +115,14 @@
     
     </div>
     <!--End of Second Row-->
-    
+     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </asp:ToolkitScriptManager>
+        
+    <asp:UpdatePanel ID="UpdatePanelTransporter" runat="server">
+            <ContentTemplate>
     <!--Start of Third Row-->
     <div class="row">
+    
     <!--Start First Column-->
          <div class="col-sm-6">
          <div class="row form-group">
@@ -135,7 +137,7 @@
          </div>
         <div class="col-sm-8">
             <asp:DropDownList ID="ddlState" runat="server" class="form-control" 
-                AutoPostBack="True" onselectedindexchanged="ddlState_SelectedIndexChanged">
+             onselectedindexchanged="ddlState_SelectedIndexChanged" AutoPostBack="True">
             </asp:DropDownList>
        </div>
      </div> 
@@ -158,10 +160,10 @@
         </div>
        </div>
       </div>
-    
+    </ContentTemplate></asp:UpdatePanel>
      <!--End Second Column-->
      </div>
-     </ContentTemplate></asp:UpdatePanel>
+     
      <div class="row">
        <!--Start Forth row-->
          <div class="col-sm-6">
@@ -187,7 +189,7 @@
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*"   
              ValidationExpression="[a-zA-Z ]*$" ControlToValidate="txtAddress" 
              Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
-             ToolTip="Enter Only Numbers" ValidationGroup="SaveSupplierDetails"></asp:RegularExpressionValidator>
+             ToolTip="Please Enter Only Characters" ValidationGroup="SaveSupplierDetails"></asp:RegularExpressionValidator>
             </asp:Label>
           </div>
         <div class="col-sm-8">
@@ -213,13 +215,15 @@
             </asp:Label>
            </div>
         <div class="col-sm-8">
+
            <asp:DropDownList ID="ddModeOfTransport" runat="server" class="form-control" 
                 AutoPostBack="True">
                 <asp:ListItem>Select Mode Of Transport</asp:ListItem>
                <asp:ListItem>By Air</asp:ListItem>
                <asp:ListItem>By Sea</asp:ListItem>
+
             </asp:DropDownList>
-           </div>
+            </div>
          </div> 
        </div>
      <!--End Of First Column-->
@@ -229,8 +233,10 @@
         <div class="col-sm-4">
         </div>
         <div class="col-sm-8">
-            <asp:Label ID="lblReqcif" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-           <asp:RadioButton ID="rbtnCIF" runat="server" Text="CIF" GroupName="CIFFOB" class="control-label" />
+            <asp:Label ID="lblReqcif" runat="server" Text="*" ForeColor="Red" class="control-label">
+             
+            </asp:Label>
+           <asp:RadioButton ID="rbtnCIF" runat="server" Text="CIF" GroupName="CIFFOB" class="control-label" Checked="true" />
             <asp:RadioButton ID="rbtnFOB" runat="server" Text="FOB" GroupName="CIFFOB" class="control-label" />
         </div>
      </div> 
@@ -243,7 +249,7 @@
      <div class="row form-group">
         <div class="col-md-12">
             <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-primary" 
-                 ValidationGroup="SaveSupplierDetails"/>
+                 ValidationGroup="SaveSupplierDetails" onclick="btnSave_Click1"/>
                  
                  <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-primary" 
                  ValidationGroup="SaveSupplierDetails"/>
