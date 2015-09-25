@@ -13,7 +13,7 @@ namespace MedicalShopWeb.MasterPages
         {
             if (!IsPostBack)
             {
-                lblLoginName.Text = Session["LoginName"].ToString();
+               // lblLoginName.Text = Session["LoginName"].ToString();
             }
         }
     }
