@@ -13,6 +13,11 @@ namespace MedicalShopWeb.Admin
 {
     public partial class City : System.Web.UI.Page
     {
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :- Declare Variables
+         */
         #region--------------------------Delcare variables-------------------
         int CityID, StateID, CountryID, UpdatedByUserID, IsActive;
             string CityName;
@@ -21,6 +26,11 @@ namespace MedicalShopWeb.Admin
             BLCity objCity = new BLCity();
         #endregion
 
+            /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :- Page_Load
+         */
             #region---------------------------------------------Page_Load----------------------
             protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,6 +53,11 @@ namespace MedicalShopWeb.Admin
         }
             #endregion
 
+            /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :- btnSave_Click
+         */
             #region----------------------------------btnSave_Click-----------------------
             protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -64,6 +79,11 @@ namespace MedicalShopWeb.Admin
         }
             #endregion
 
+            /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :- SetParameters
+         */
         #region----------------------------Setparameters()-----------------------
             private void SetParameters()
             {
@@ -76,6 +96,11 @@ namespace MedicalShopWeb.Admin
             }
         #endregion
 
+            /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :- SaveCity()
+         */
         #region----------------------------------SaveCity()-------------------------
             private void SaveCity()
             {
@@ -86,6 +111,11 @@ namespace MedicalShopWeb.Admin
         
         #endregion
 
+            /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :- ClearFields
+         */
         #region------------------------------------ClearFields----------------------------------
             private void ClearFields()
             {
@@ -95,6 +125,11 @@ namespace MedicalShopWeb.Admin
             }
         #endregion
 
+            /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :-  BindCountry
+         */
         #region---------------------------------BindCountry----------------------------------
             private void BindCountry()
             {
@@ -121,6 +156,11 @@ namespace MedicalShopWeb.Admin
             }
         #endregion
 
+            /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :- BindState
+         */
         #region---------------------------------BindState--------------------------------------
             private void BindState()
             {
@@ -148,9 +188,12 @@ namespace MedicalShopWeb.Admin
         #endregion
 
 
-            
-            
-            
+            /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :- BindGridView()
+         */
+                     
 
         #region------------------------------------BindgridView-------------------------------
             private void BindGridView()
@@ -197,6 +240,11 @@ namespace MedicalShopWeb.Admin
             }
             #endregion
 
+            /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 22 Sept 2015
+         * Purpose :- ddlcountry_SelectedIndexchanged
+         */
             #region--------------------------ddlCountry_SelectedIndexChanged------------------
             protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
             {
