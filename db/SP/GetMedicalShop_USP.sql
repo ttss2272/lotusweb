@@ -18,13 +18,13 @@ GO
 -- Create date: 24Sept 2015
 -- Description:	get medical shop Detail on medical shop id for form binding
 -- =============================================
-ALter PROCEDURE GetMedicalShop_USP 
+ALter PROCEDURE GetMedicalShop_USP --1
 (
 @MedicalShopID int
 )
 AS
 BEGIN
-	SELECT med.MedicalShopID,med.OwnerName,med.ContactNo,med.Area,med.ShopName,med.ShopTypeID,med.OpeningBalance,med.CityID,
+	SELECT med.MedicalShopID,med.OwnerName,med.ContactNo,med.Area,med.[Address],med.ShopName,med.ShopTypeID,med.OpeningBalance,med.CityID,
 	st.StateID,cou.CountryID
 	from MedicalShop med
 	INNER JOIN City ct
