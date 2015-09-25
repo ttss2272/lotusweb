@@ -16,5 +16,13 @@ namespace BusinessLayer
            Result = obj_Doctor.SaveDoctor(DoctorID,DrName,Specialization,DOB,CityId,Area,Address,Mobileno,OpeningBalance,IsActive,UpdatedByUserID);
            return Result;
        }
+
+       public DataSet GetAllData()
+       {
+           DataSet dsGridView = obj_Doctor.GetAllData();
+           return dsGridView;
+       }
+
+       
     }
 }

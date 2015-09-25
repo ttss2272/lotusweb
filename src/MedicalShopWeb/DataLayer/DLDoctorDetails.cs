@@ -10,6 +10,7 @@ namespace DataLayer
     {
         SqlConnection con = new SqlConnection();
         DBConnection conn = new DBConnection();
+        SqlDataAdapter da = new SqlDataAdapter();
         public string SaveDoctor(int DoctorID, string DrName, string Specialization, string DOB, int CityId, string Area, string Address,string Mobileno, double OpeningBalance, int IsActive, int UpdatedByUserID)
         {
             string result = null;
@@ -31,6 +32,20 @@ namespace DataLayer
             result = cmd.ExecuteScalar().ToString();
             con.Close();
             return result; 
+        }
+
+        public DataSet GetAllData()
+        {
+            
+            DataSet ds = new DataSet();
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetDoctorDetailsGridview_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            con.Close();
+            return ds;
+
         }
     }
 }

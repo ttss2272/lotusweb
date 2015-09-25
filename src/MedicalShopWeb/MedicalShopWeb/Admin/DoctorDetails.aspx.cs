@@ -9,12 +9,16 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using MedicalShopWeb.Admin;
+using System.Web.Configuration;
+
 
 namespace MedicalShopWeb
 {
+   
     public partial class DoctorDetails : System.Web.UI.Page
     {
-       
+        SqlConnection con = new SqlConnection();
+        
 
         #region---------------------------Variables------------------------
         int id,CityId,IsActive,DoctorID,UpdatedByUserID;
@@ -37,7 +41,7 @@ namespace MedicalShopWeb
                     #region--------DOBValidation--------------
                     txtDOB.Attributes.Add("onClick", "javascript:setYearRange();");
                     #endregion
-                    //BindGridView();
+                    BindGridView();
                 }
             }
             catch (Exception ex)
@@ -46,7 +50,32 @@ namespace MedicalShopWeb
                 lblMessage.Text = ex.Message.ToString();
             }
         }
+        #region--------------BindGridView-----------------------
+        private void BindGridView()
+        {
+            try
+            {
+                DataSet dsGridview = obj_Doctor.GetAllData();
 
+                if (dsGridview.Tables[0].Rows.Count != 0)
+                {
+                    grvDoctorDetails.DataSource = dsGridview.Tables[0];
+                    grvDoctorDetails.DataBind();
+                }
+                else
+                {
+                    lblMessage.Text = "Records not available";
+                    grvDoctorDetails.DataSource = null;
+                    grvDoctorDetails.DataBind();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #endregion
         #region----------------------------BindCity-----------------------------------
         private void BindCity()
         {
@@ -241,6 +270,60 @@ namespace MedicalShopWeb
         }
 
           #endregion
+
+        protected void grvDoctorDetails_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            grvDoctorDetails.EditIndex = e.NewEditIndex;
+            BindGridView();
+        }
+
+        protected void grvDoctorDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grvDoctorDetails.PageIndex = e.NewPageIndex;
+            BindGridView();
+        }
+
+        protected void grvDoctorDetails_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            grvDoctorDetails.PageIndex = -1;
+            BindGridView();
+        }
+
+        protected void grvDoctorDetails_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            string doctID = grvDoctorDetails.DataKeys[e.RowIndex].Values["DoctorID"].ToString();
+           
+            GridViewRow row = (GridViewRow)grvDoctorDetails.Rows[e.RowIndex];
+            TextBox grvtxtDoctorName = (TextBox)row.Cells[0].Controls[0];
+            TextBox grvtxtsplz = (TextBox)row.Cells[1].Controls[0];
+            TextBox grvtxtDOB = (TextBox)row.Cells[2].Controls[0];
+            TextBox grvtxtcityID = (TextBox)row.Cells[2].Controls[0];
+            TextBox grvtxtArea = (TextBox)row.Cells[2].Controls[0];
+            TextBox grvtxtMobileNo = (TextBox)row.Cells[2].Controls[0];
+            TextBox grvtxtAddress = (TextBox)row.Cells[2].Controls[0];
+            TextBox grvtxtOpeningBalance = (TextBox)row.Cells[2].Controls[0];
+            grvDoctorDetails.EditIndex = -1;
+             
+            SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConMedical"].ToString());
+            
+            SqlCommand cmd = new SqlCommand("SaveDoctorDetails_USP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@DoctorID", doctID);
+            cmd.Parameters.AddWithValue("@DoctorName", grvtxtDoctorName);
+            cmd.Parameters.AddWithValue("@Specialization", grvtxtsplz);
+            cmd.Parameters.AddWithValue("@DOB", grvtxtDOB);
+            cmd.Parameters.AddWithValue("@CityId", grvtxtcityID);
+            cmd.Parameters.AddWithValue("@Area", grvtxtArea);
+            cmd.Parameters.AddWithValue("@Address", grvtxtAddress);
+            cmd.Parameters.AddWithValue("@Mobileno", grvtxtMobileNo);
+            
+            cmd.Parameters.AddWithValue("@OpeningBalance", grvtxtOpeningBalance);
+            conn.Open();
+            cmd.ExecuteScalar().ToString();
+            con.Close();
+            BindGridView();  
+          
+        }
       
 
         

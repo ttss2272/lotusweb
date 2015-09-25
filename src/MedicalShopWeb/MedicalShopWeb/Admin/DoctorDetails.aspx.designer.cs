@@ -436,15 +436,6 @@ namespace MedicalShopWeb {
         protected global::System.Web.UI.WebControls.ValidationSummary validationSummary;
         
         /// <summary>
-        /// grvDoctorDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvDoctorDetails;
-        
-        /// <summary>
         /// lblRquirdInfo control.
         /// </summary>
         /// <remarks>
@@ -461,5 +452,14 @@ namespace MedicalShopWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblInfo;
+        
+        /// <summary>
+        /// grvDoctorDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvDoctorDetails;
     }
 }

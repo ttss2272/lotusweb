@@ -280,35 +280,75 @@
      <!--Start Seven Row-->
      <div class="row form-group">
         <div class="col-md-12">
-            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-primary" 
+            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
                  ValidationGroup="SaveDoctorDetails" onclick="btnSave_Click1"/>
                  
-                 <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-primary" 
+                 <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" 
                  ValidationGroup="SaveDoctorDetails"/>
                   <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" id="validationSummary" />
         </div>
      </div>
      <!--End of Seven Row-->
+     <div class="panel-footer" align="left">
+       <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
+       <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields" ></asp:Label>
+   </div>
      <!--Start Grid View-->
      </div>
      <div class="row">
-        <asp:GridView ID="grvDoctorDetails" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
-         HeaderStyle-ForeColor="White"  BorderColor="White"  HeaderStyle-BorderColor="#4596f1" AllowPaging="true" ><%--onpageindexchanging="grvCountry_PageIndexChanging"--%>
+        <asp:GridView ID="grvDoctorDetails" runat="server" AutoGenerateColumns="false" DataKeyNames="DoctorID" 
+             class="table" HeaderStyle-BackColor="#4596f1"
+         HeaderStyle-ForeColor="White"  BorderColor="White"  
+             HeaderStyle-BorderColor="#4596f1" AllowPaging="true" 
+             onpageindexchanging="grvDoctorDetails_PageIndexChanging" 
+             onrowcancelingedit="grvDoctorDetails_RowCancelingEdit" 
+             onrowediting="grvDoctorDetails_RowEditing" 
+             onrowupdating="grvDoctorDetails_RowUpdating" ><%--onpageindexchanging="grvCountry_PageIndexChanging"--%>
 
          <Columns>
-            <asp:TemplateField HeaderText="Sr.No" HeaderStyle-HorizontalAlign="Center">
+         <asp:BoundField DataField="DoctorID" HeaderText="Id" />
+         <asp:BoundField DataField="DoctorName" HeaderText="Doctor Name" />
+         <asp:BoundField DataField="Specialization" HeaderText="Specialization" />
+         <asp:BoundField DataField="DOB" HeaderText="DOB" />
+         <asp:BoundField DataField="CityID" HeaderText="City ID" />
+         <asp:BoundField DataField="Area" HeaderText="Area" />
+         <asp:BoundField DataField="MobileNo" HeaderText="Mobile Number" />
+         <asp:BoundField DataField="Address" HeaderText="Address" />
+         <asp:BoundField DataField="OpeningBalance" HeaderText="Opening Balance" />
+            <%--<asp:TemplateField HeaderText="Sr.No" HeaderStyle-HorizontalAlign="Center">
                 <ItemTemplate><%#Container.DataItemIndex+1 %></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Doctor Name" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("Doctor Name")%></ItemTemplate>
+                <ItemTemplate><%#Eval("DoctorName")%></ItemTemplate>
             </asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
+            <asp:TemplateField HeaderText="Specialization" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("Specialization")%></ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="DOB" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("DOB")%></ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="City ID" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("CityID")%></ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Area" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("Area")%></ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Mobile No" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("MobileNo")%></ItemTemplate>
+            </asp:TemplateField>
+             <asp:TemplateField HeaderText="Address" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("Address")%></ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Opening Balance" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("OpeningBalance")%></ItemTemplate>
+            </asp:TemplateField>--%>
+            <%--<asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
                     <ItemTemplate >
                              <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit" NavigateUrl='<%#String.Format("../Admin/DoctorDetails.aspx?DoctorID={0}", DataBinder.Eval(Container.DataItem,"DoctorID") )%>'>
                               </asp:HyperLink>
-                    </ItemTemplate>
-             </asp:TemplateField>
+                    </ItemTemplate>--%>
+            <%-- </asp:TemplateField>--%>
+             <asp:CommandField ShowEditButton="true" />
          </Columns>
         </asp:GridView>
      </div>
@@ -320,10 +360,7 @@
      
 </div>
 </div>
-   <div class="panel-footer" align="left">
-       <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
-       <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields" ></asp:Label>
-   </div>
+   
 
 
 </div>
