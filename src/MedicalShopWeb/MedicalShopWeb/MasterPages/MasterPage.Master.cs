@@ -11,7 +11,10 @@ namespace MedicalShopWeb.MasterPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                lblLoginName.Text = Session["LoginName"].ToString();
+            }
         }
     }
 }
