@@ -78,5 +78,43 @@ namespace DataLayer
             return Result;
 
         }
+
+        public DataSet BindUser(int UserID)
+        {
+            DataSet dsUser = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("BindUser_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@UserID", UserID);
+
+            con.Open();
+
+            SqlDataAdapter daGetUserData = new SqlDataAdapter(cmd);
+            dsUser = new DataSet();
+            daGetUserData.Fill(dsUser);
+            con.Close();
+            return dsUser;
+ 
+        }
+
+        public DataSet GetUser(int UserID)
+        {
+            DataSet dsUser = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetUser_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@UserID", UserID);
+
+            con.Open();
+
+            SqlDataAdapter daGetUserData = new SqlDataAdapter(cmd);
+            dsUser = new DataSet();
+            daGetUserData.Fill(dsUser);
+            con.Close();
+            return dsUser;
+
+        }
     }
 }
