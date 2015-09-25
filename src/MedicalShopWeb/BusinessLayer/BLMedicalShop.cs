@@ -17,9 +17,9 @@ namespace BusinessLayer
             return dsShopType;
         }
 
-        public string SaveMedicalShop(int MedicalShopID, string OwnerName, string ContactNo, int CityID, string Area, string ShopName, int ShopTypeID, decimal OpeningBalance, int UpdatedByUserID, int IsActive)
+        public string SaveMedicalShop(int MedicalShopID, string OwnerName, string ContactNo, int CityID, string Area, string ShopName, int ShopTypeID, decimal OpeningBalance, int UpdatedByUserID, int IsActive,string Address)
         {
-            string Result = objMedicalShop.SaveMedicalShop(MedicalShopID, OwnerName, ContactNo, CityID, Area, ShopName, ShopTypeID, OpeningBalance, UpdatedByUserID, IsActive);
+            string Result = objMedicalShop.SaveMedicalShop(MedicalShopID, OwnerName, ContactNo, CityID, Area, ShopName, ShopTypeID, OpeningBalance, UpdatedByUserID, IsActive,Address);
             return Result;
 
         }

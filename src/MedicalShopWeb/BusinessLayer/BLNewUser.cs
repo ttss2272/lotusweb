@@ -27,5 +27,17 @@ namespace BusinessLayer
             string Result = objNewUser.SaveUser(UserID, UserName, UserTypeID, EmailID, ContactNo, CityID, Area, Address, WarehouseID, LoginName, Password, UpdatedByUserID, IsActive);
             return Result;
             }
+
+         public DataSet BindUser(int UserID)
+         {
+             DataSet dsUser = objNewUser.BindUser(UserID);
+             return dsUser;
+         }
+
+         public DataSet GetUser(int UserID)
+         {
+             DataSet dsUser = objNewUser.GetUser(UserID);
+             return dsUser;
+         }
     }
 }
