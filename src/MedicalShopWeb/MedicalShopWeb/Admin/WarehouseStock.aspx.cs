@@ -164,5 +164,27 @@ namespace MedicalShopWeb.Admin
             }
         }
         #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 25 Sept 2015
+         * Purpose :- Page Index Changing
+         */
+        #region------------------------------grvCountry_PageIndexChanging------------------------
+        protected void grvWarehouseStock_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                grvWarehouseStock.PageIndex = e.NewPageIndex;
+                BindGridView();
+                grvWarehouseStock.Focus();
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #endregion
     }
 }
