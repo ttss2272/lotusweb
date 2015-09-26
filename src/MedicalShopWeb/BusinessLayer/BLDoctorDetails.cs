@@ -23,6 +23,10 @@ namespace BusinessLayer
            return dsGridView;
        }
 
-       
+       public DataSet GetDoctor()
+       {
+           DataSet dsDoctor = obj_Doctor.GetDoctor();
+           return dsDoctor;
+       }
     }
 }
