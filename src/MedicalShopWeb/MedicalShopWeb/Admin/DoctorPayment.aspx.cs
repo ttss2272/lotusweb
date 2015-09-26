@@ -28,6 +28,7 @@ namespace MedicalShopWeb.Admin
                 if (!IsPostBack)
                 {
                     BindDoctor();
+                    SetDoctorReciptNo();
                     
                 }
             }
@@ -37,6 +38,12 @@ namespace MedicalShopWeb.Admin
                 lblMessage.Text = ex.Message.ToString();
 
             }
+        }
+
+        private void SetDoctorReciptNo()
+        {
+ 	         DataTable dt = objDoctorPayment.SetDoctorReciptNo();
+              txtReceiptNo.Text=  dt.Rows[0][0].ToString();
         }
 
         #region--------------------------------BindDoctor()---------------------------
@@ -162,4 +169,3 @@ namespace MedicalShopWeb.Admin
        
     }
 
-}
