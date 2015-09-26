@@ -47,5 +47,22 @@ namespace DataLayer
             return ds;
 
         }
+
+        public DataSet GetDoctor()
+        {
+            DataSet dsDoctor = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetDoctorNames_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            con.Open();
+
+            SqlDataAdapter daGetDoctorData = new SqlDataAdapter(cmd);
+            dsDoctor = new DataSet();
+            daGetDoctorData.Fill(dsDoctor);
+            con.Close();
+            return dsDoctor;
+        }
     }
 }
