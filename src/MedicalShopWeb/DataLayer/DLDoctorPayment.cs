@@ -48,5 +48,20 @@ namespace DataLayer
             con.Close();
             return result; 
         }
+
+        public DataTable SetDoctorReciptNo()
+        {
+            DataTable dt = null;
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("Usp_SetDoctorPaymentRecieptNo", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            con.Open();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            return dt;
+        }
     }
 }
