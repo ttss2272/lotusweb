@@ -157,40 +157,49 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlProduct;
         
         /// <summary>
-        /// lblCityRequired control.
+        /// rdbPriceType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCityRequired;
+        protected global::System.Web.UI.WebControls.RadioButtonList rdbPriceType;
         
         /// <summary>
-        /// lblCityName control.
+        /// lblReqPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCityName;
+        protected global::System.Web.UI.WebControls.Label lblReqPrice;
         
         /// <summary>
-        /// RegCity control.
+        /// lblPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegCity;
+        protected global::System.Web.UI.WebControls.Label lblPrice;
         
         /// <summary>
-        /// txtCityName control.
+        /// RegPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCityName;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegPrice;
+        
+        /// <summary>
+        /// txtPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPrice;
         
         /// <summary>
         /// btnSave control.
@@ -211,13 +220,13 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.Button btnClose;
         
         /// <summary>
-        /// grvCity control.
+        /// grvDMPLinking control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvCity;
+        protected global::System.Web.UI.WebControls.GridView grvDMPLinking;
         
         /// <summary>
         /// lblRquirdInfo control.
@@ -236,5 +245,14 @@ namespace MedicalShopWeb.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblInfo;
+        
+        /// <summary>
+        /// hdnDMPID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnDMPID;
     }
 }
