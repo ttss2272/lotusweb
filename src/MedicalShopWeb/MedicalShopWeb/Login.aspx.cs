@@ -19,6 +19,9 @@ namespace MedicalShopWeb
         {
             try
             {
+                if (!IsPostBack)
+                { 
+                }
 
             }
             catch (Exception ex)
@@ -35,7 +38,7 @@ namespace MedicalShopWeb
             try
             {
                 DataSet dsSessionInfo = objLogin.UserLogin(txtLoginName.Text.ToString(), txtPassword.Text.ToString());
-
+                ClearAll();
                 if (dsSessionInfo.Tables.Count != 0)
                 {
                     if (dsSessionInfo.Tables[0].Rows.Count != 0)
@@ -63,6 +66,14 @@ namespace MedicalShopWeb
                 lblMessage.Text = ex.Message.ToString();
             }
 
+        }
+        #endregion
+
+        #region------------------------------------ClearAll()----------------------------------------
+        private void ClearAll()
+        {
+            txtLoginName.Text = "";
+            txtPassword.Text = "";
         }
         #endregion
     }
