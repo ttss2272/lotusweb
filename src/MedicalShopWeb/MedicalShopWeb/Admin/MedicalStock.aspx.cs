@@ -212,7 +212,7 @@ namespace MedicalShopWeb.Admin
         /*
          * Created By:- PriTesh D. Sortee
          * Created Date :- 25 Sept 2015
-         * Purpose   :-
+         * Purpose   :- bind medical purchased product only
          */
 
         #region--------------------------------BindMedicalProducts()-----------------------
@@ -234,7 +234,7 @@ namespace MedicalShopWeb.Admin
                     ddlProduct.DataSource = null;
                     ddlProduct.DataBind();
                 }
-                ddlMedical.Items.Insert(0, new ListItem("Select Medical", "-1"));
+                ddlProduct.Items.Insert(0, new ListItem("Select Product", "-1"));
             }
         }
         #endregion
