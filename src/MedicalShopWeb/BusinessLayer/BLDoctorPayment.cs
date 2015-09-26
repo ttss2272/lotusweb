@@ -22,5 +22,11 @@ namespace BusinessLayer
             Result = objDoctorPayment.SaveDoctorsPayment( DoctorPaymentID,  DoctorsID,  PaidAmountDate,  PaymentAmount,  Comment,  UpdatedByUserID,  IsActive,  RecieptNo);
             return Result;
         }
+
+        public DataTable SetDoctorReciptNo()
+        {
+            DataTable dt = objDoctorPayment.SetDoctorReciptNo();
+            return dt;
+        }
     }
 }
