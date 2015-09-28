@@ -82,7 +82,7 @@
                 ControlToValidate="txtEmail" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
                 SetFocusOnError="True" 
                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
-                ValidationGroup="SaveUser"></asp:RegularExpressionValidator>
+                ValidationGroup="SaveUser" ToolTip= "Enter Proper EmailID"></asp:RegularExpressionValidator>
             </asp:Label>
             
             </div>

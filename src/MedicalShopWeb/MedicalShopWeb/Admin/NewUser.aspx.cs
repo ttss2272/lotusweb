@@ -130,7 +130,7 @@ namespace MedicalShopWeb.Admin
          * Created Date:- 23 Sept 2015
          * Purpose :-  LoginName
          */
-        #region--------------------txtLoginName_TextChanged---------------------------------
+        #region--------------------txtLoginName_TextChanged--------------------------------
         protected void txtLoginName_TextChanged(object sender, EventArgs e)
         {
             try
