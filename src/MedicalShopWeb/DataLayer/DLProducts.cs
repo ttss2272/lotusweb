@@ -58,7 +58,7 @@ namespace DataLayer
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@ProductTypeID", ProductTypeID);
-            cmd.Parameters.AddWithValue("@ProductID", ProductID);
+           
             con.Open();
 
             SqlDataAdapter daGetProductData = new SqlDataAdapter(cmd);
