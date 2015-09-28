@@ -55,7 +55,7 @@ namespace DataLayer
             DataSet dsProductType = new DataSet();
 
             con = conn.GetConnection();
-            SqlCommand cmd = new SqlCommand("GetProductType_USP", con);
+            SqlCommand cmd = new SqlCommand("ProductType_USP", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             con.Open();
@@ -84,6 +84,25 @@ namespace DataLayer
             con.Close();
             return dsProduct;
  
+        }
+
+        public DataSet GetProductOnProductType(int ProductID, int ProductTypeID)
+        {
+            DataSet dsProduct = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetProductAllDetail_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@ProductTypeID", ProductTypeID);
+            cmd.Parameters.AddWithValue("@ProductID", ProductID);
+            con.Open();
+
+            SqlDataAdapter daGetMedicalShopData = new SqlDataAdapter(cmd);
+            dsProduct = new DataSet();
+            daGetMedicalShopData.Fill(dsProduct);
+            con.Close();
+            return dsProduct;
         }
     }
 }
