@@ -229,11 +229,12 @@ namespace MedicalShopWeb
         private void SaveDoctor()
         {
             string Result = obj_Doctor.SaveDoctor(DoctorID,DrName, Specialization, DOB, CityId, Area, Address, Mobileno,OpeningBalance,IsActive,UpdatedByUserID);
-            if (Result == "Doctor Details Saved Successfully...!!!")
+            if (Result == "Doctor Details Saved Successfully...!!!" || Result == "Doctor Details Updated  Successfully...!!!")
             {
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = Result;
             }
+               
 
             else
             {
