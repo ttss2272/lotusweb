@@ -255,7 +255,7 @@
         <div class="col-sm-4">
 
     <asp:Label ID="ReqQuantity" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-            <asp:Label ID="lblQuantity" runat="server" Text="Purchase Price" class="control-label">
+            <asp:Label ID="lblQuantity" runat="server" Text="Purchase Quantity" class="control-label">
             <asp:RegularExpressionValidator ID="RegQuantity" runat="server" ErrorMessage="*"   
              ValidationExpression="[0-9]*$" ControlToValidate="txtQuantity" 
              Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
