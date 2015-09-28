@@ -33,5 +33,24 @@ namespace DataLayer
             con.Close();
             return result; 
         }
+       //Function for bind supplier  to dropdown
+        public DataSet BindSupplier(int SupplierID)
+        {
+            DataSet dsSupplier = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("BindSupplier_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@SupplierID", SupplierID);
+            
+            con.Open();
+
+            SqlDataAdapter daGetSupplierData = new SqlDataAdapter(cmd);
+            dsSupplier = new DataSet();
+            daGetSupplierData.Fill(dsSupplier);
+            con.Close();
+            return dsSupplier;
+ 
+        }
     }
 }

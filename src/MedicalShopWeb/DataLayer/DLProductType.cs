@@ -11,14 +11,14 @@ namespace DataLayer
     {
         SqlConnection con = new SqlConnection();
         DBConnection conn = new DBConnection();
-        public System.Data.DataSet GetProductType(int ProductID, int IsActive)
+        public System.Data.DataSet GetProductType(int ProductTypeID, int IsActive)
         {
             DataSet dsProductType = new DataSet();
 
             con = conn.GetConnection();
             SqlCommand cmd = new SqlCommand("GetProductType_USP", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@ProductTypeID", ProductID);
+            cmd.Parameters.AddWithValue("@ProductTypeID", ProductTypeID);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
             con.Open();
             SqlDataAdapter daGetCountryData = new SqlDataAdapter(cmd);
