@@ -49,15 +49,6 @@ namespace MedicalShopWeb {
         protected global::System.Web.UI.WebControls.Label lblCompanyName;
         
         /// <summary>
-        /// ReqValCompanyName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqValCompanyName;
-        
-        /// <summary>
         /// txtcompanyName control.
         /// </summary>
         /// <remarks>
@@ -85,13 +76,13 @@ namespace MedicalShopWeb {
         protected global::System.Web.UI.WebControls.Label lblDOB;
         
         /// <summary>
-        /// ReqValidSupplierName control.
+        /// RegCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqValidSupplierName;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegCountry;
         
         /// <summary>
         /// txtSupplierName control.
@@ -310,15 +301,6 @@ namespace MedicalShopWeb {
         protected global::System.Web.UI.WebControls.Label lblAddreq;
         
         /// <summary>
-        /// RegularExpressionValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
-        
-        /// <summary>
         /// txtAddress control.
         /// </summary>
         /// <remarks>
@@ -434,5 +416,23 @@ namespace MedicalShopWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblInfo;
+        
+        /// <summary>
+        /// hdnSupplierID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnSupplierID;
+        
+        /// <summary>
+        /// hdnIsDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnIsDelete;
     }
 }

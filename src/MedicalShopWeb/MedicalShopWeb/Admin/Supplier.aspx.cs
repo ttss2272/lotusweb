@@ -14,6 +14,7 @@ namespace MedicalShopWeb
         BLState objState = new BLState();
         BLCity objCity = new BLCity();
         BLSupplier objSupplier = new BLSupplier();
+        
         #region--------------SetVariables-------------
         string CompanyName, SupplierName, ContactNo, Area, Address, ModeOfTransport,PriceType;
         int SupID, IsActive, CityID, UpdatedByUserID;
@@ -25,6 +26,13 @@ namespace MedicalShopWeb
                 if (!IsPostBack)
                 {
                     BindCountry();
+                    hdnSupplierID.Value = "0";
+                    hdnIsDelete.Value = "0";
+                    if (Request.QueryString["SupplierID"] != null)
+                    {
+                        setValues(Convert.ToInt32(Request.QueryString["Supplier"]));
+ 
+                    }
                 }
             }
             catch (Exception ex)
@@ -163,7 +171,7 @@ namespace MedicalShopWeb
         #region------------------SetParameters-----------------
         private void SetParameters()
         {
-            SupID = 0;
+            SupID = Convert.ToInt32( hdnSupplierID.Value);
             CompanyName = txtcompanyName.Text;
             SupplierName = txtSupplierName.Text;
             ContactNo = txtContactNo.Text;
@@ -181,9 +189,9 @@ namespace MedicalShopWeb
             {
                 PriceType = "FOB";
             }
-            
+        }   
         #endregion
-        }
+        
         #region-----------ClearFields-----
         private void ClearFields()
         {
@@ -192,9 +200,11 @@ namespace MedicalShopWeb
             txtContactNo.Text = "";
             txtArea.Text = "";
             txtAddress.Text = "";
+            hdnSupplierID.Value = "0";
 
         }
         #endregion
+
         #region----------------SaveClickCode------------------------------
         protected void btnSave_Click1(object sender, EventArgs e)
         {
@@ -213,6 +223,54 @@ namespace MedicalShopWeb
             {
                 ClearFields();
                 Response.AppendHeader("Refresh", "2;url=Supplier.aspx");
+            }
+        }
+        #endregion
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date :- 28 Sept 2015
+         * Purpose :- When Edit set values on form 
+         */
+        #region------------------------------SetValues()---------------------------------------
+        private void setValues(int SupplierID)
+        {
+            DataSet dsSupplierValues = objSupplier.GetSupplierDetail(SupplierID);
+            if (dsSupplierValues.Tables.Count != 0)
+            {
+                if (dsSupplierValues.Tables[0].Rows.Count != 0)
+                {
+                    hdnSupplierID.Value = dsSupplierValues.Tables[0].Rows[0]["SupplierID"].ToString();
+                    hdnIsDelete.Value = Request.QueryString["iss"].ToString();
+                    lblPageHeading.Text = "Edit " + dsSupplierValues.Tables[0].Rows[0]["CompanyName"].ToString();
+                    txtcompanyName.Text = dsSupplierValues.Tables[0].Rows[0]["CompanyName"].ToString();
+                    txtSupplierName.Text = dsSupplierValues.Tables[0].Rows[0]["ContactPerson"].ToString();
+                    txtContactNo.Text = dsSupplierValues.Tables[0].Rows[0]["ContactNo"].ToString();
+                    ddlCountry.SelectedValue = dsSupplierValues.Tables[0].Rows[0]["CountryID"].ToString();
+                    BindState();
+                    ddlState.SelectedValue = dsSupplierValues.Tables[0].Rows[0]["StateID"].ToString();
+                    BindCity();
+                    ddlCity.SelectedValue = dsSupplierValues.Tables[0].Rows[0]["CityID"].ToString();
+                    txtArea.Text = dsSupplierValues.Tables[0].Rows[0]["Area"].ToString();
+                    txtAddress.Text = dsSupplierValues.Tables[0].Rows[0]["Address"].ToString();
+                    ddModeOfTransport.SelectedValue = dsSupplierValues.Tables[0].Rows[0]["ModeOfTransport"].ToString();
+
+                    if (dsSupplierValues.Tables[0].Rows[0]["PriceType"].ToString() == "FOB")
+                    {
+                        rbtnFOB.Checked = true;
+                    }
+                    else
+                    {
+                        rbtnCIF.Checked = true;
+                    }
+
+                }
+                else
+                {
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    lblMessage.Text = "Information Not Available";
+
+                }
             }
         }
         #endregion
