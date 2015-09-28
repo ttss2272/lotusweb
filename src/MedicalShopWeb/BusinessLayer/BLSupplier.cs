@@ -23,5 +23,18 @@ namespace BusinessLayer
             DataSet dsSupplier = objSupplier.BindSupplier(SupplierID);
             return dsSupplier;
         }
+
+              //Bind Grid View
+        public DataSet GetSupplier(int SupplierID)
+        {
+            DataSet dsSupplier = objSupplier.GetSupplier(SupplierID);
+            return dsSupplier;
+        }
+       //get Details form for edit
+        public DataSet GetSupplierDetail(int SupplierID)
+        {
+            DataSet dsSupplier = objSupplier.GetSupplierDetail(SupplierID);
+            return dsSupplier;
+        }
     }
 }
