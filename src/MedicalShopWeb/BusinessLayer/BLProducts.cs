@@ -20,13 +20,7 @@ namespace BusinessLayer
         {
             DataSet dsProduct = objProducts.BindProduct(ProductID);
             return dsProduct;
-        }
-
-        public DataSet GetProductOnProductType(int ProductID, int ProductTypeID)
-        {
-            DataSet dsProduct = objProducts.GetProductOnProductType(ProductID, ProductTypeID);
-            return dsProduct;
-        }
+        }       
 
 
         public DataSet GetProductType()
@@ -38,6 +32,12 @@ namespace BusinessLayer
         public DataSet BindProductOnProductType(int ProductTypeID)
         {
             DataSet dsProduct = objProducts.BindProductOnProductType(ProductTypeID);
+            return dsProduct;
+        }
+
+        public DataSet GetProductOnProductType(int ProductID, int ProductTypeID)
+        {
+            DataSet dsProduct = objProducts.GetProductOnProductType(ProductID, ProductTypeID);
             return dsProduct;
         }
     }
