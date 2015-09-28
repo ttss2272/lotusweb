@@ -298,7 +298,7 @@
        <div class="row form-group" align="center">
         <div class="col-md-12">
             <asp:Button ID="btnAdd" runat="server" Text="Add" class="btn btn-lg btn-primary" 
-                 ValidationGroup="SavePurchaseProduct"/>
+                 ValidationGroup="SavePurchaseProduct" onclick="btnAdd_Click"/>
                  
 
         </div>
@@ -345,9 +345,9 @@
       <div class="row form-group" align="center">
         <div class="col-md-12">
             <asp:Button ID="btnSave" runat="server" Text="Save" class="btn btn-lg btn-success" 
-                 ValidationGroup="SavePurchaseProduct"/>
+                 ValidationGroup="SavePurchaseProduct" onclick="btnSave_Click"/>
                  <asp:Button ID="BtnCancel" runat="server" Text="Clear" class="btn btn-lg btn-danger" 
-                 ValidationGroup="SavePurchaseProduct"/>
+                 ValidationGroup="SavePurchaseProduct" onclick="BtnCancel_Click"/>
 
                  
 
