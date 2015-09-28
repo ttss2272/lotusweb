@@ -30,5 +30,43 @@ namespace DataLayer
             con.Close();
             return result; 
         }
+
+        public DataSet BindProduct(int ProductID)
+        {
+            DataSet dsProduct = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("BindProduct_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@ProductID", ProductID);
+            con.Open();
+
+            SqlDataAdapter daGetProductData = new SqlDataAdapter(cmd);
+            dsProduct = new DataSet();
+            daGetProductData.Fill(dsProduct);
+            con.Close();
+            return dsProduct;
+        }
+
+        public DataSet GetProductOnProductType(int ProductID, int ProductTypeID)
+        {
+            DataSet dsProduct = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("BindProductOnProductType_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@ProductTypeID", ProductTypeID);
+            cmd.Parameters.AddWithValue("@ProductID", ProductID);
+            con.Open();
+
+            SqlDataAdapter daGetProductData = new SqlDataAdapter(cmd);
+            dsProduct = new DataSet();
+            daGetProductData.Fill(dsProduct);
+            con.Close();
+            return dsProduct;
+        }
+        
     }
 }
