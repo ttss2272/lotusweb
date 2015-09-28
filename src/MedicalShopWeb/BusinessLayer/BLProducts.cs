@@ -27,6 +27,12 @@ namespace BusinessLayer
             DataSet dsProduct = objProducts.GetProductOnProductType(ProductID, ProductTypeID);
             return dsProduct;
         }
-        
+
+
+        public DataSet GetProductType()
+        {
+            DataSet dsProductType = objProducts.GetProductType();
+            return dsProductType;
+        }
     }
 }
