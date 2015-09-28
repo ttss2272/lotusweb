@@ -19,7 +19,7 @@
             <div class="panel panel-default" >
                 <div class="panel-header" align="left">
                     <div class="col-xs-12">
-                       <h3> <asp:Label ID="lblPageHeading" runat="server" Text="Medical Stock" class="control-label"></asp:Label></h3>
+                       <h3> <asp:Label ID="lblPageHeading" runat="server" Text="Medical Stock" class="control-label label label-info"></asp:Label></h3>
                     </div>
                 </div>
                 <div class="panel-body" >

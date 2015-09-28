@@ -12,12 +12,12 @@
 </div>
 <div class="form-group">
 
-<div class="panel panel-default" align="center">
+<div class="panel panel-default">
  
     <div class="panel-header" align="left">
     <div class="col-xs-12">
         <h3>
-        <asp:Label ID="lblPageHeading" runat="server" Text="State" class="control-label label label-primary"></asp:Label></h3>
+        <asp:Label ID="lblPageHeading" runat="server" Text="State" class="control-label label label-info"></asp:Label></h3>
         </div>
         </div>
     <div class="panel-body">
@@ -58,7 +58,7 @@
      <!--End of Second Row-->
 
      <!--Start Third Row-->
-     <div class="row form-group">
+     <div class="row form-group" align="center">
         <div class="col-md-12">
             <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
                 onclick="btnSave_Click" ValidationGroup="SaveState"/>

@@ -16,11 +16,11 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="panel panel-default" align="center">
+            <div class="panel panel-default">
                 <div class="panel-header" align="left">
                     <div class="col-xs-12">
                         <h3>
-                            <asp:Label ID="lblPageHeading" runat="server" Text="Medical Shop" class="control-label"></asp:Label></h3>
+                            <asp:Label ID="lblPageHeading" runat="server" Text="Warehouse Stock" class="control-label label label-info"></asp:Label></h3>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -71,7 +71,7 @@
                                 </div>
                                 <!--End Of Third Row-->
                                 <!--Start Fourth Row-->
-                                <div class="row form-group">
+                                <div class="row form-group" align="center">
                                     <div class="col-md-12">
                                         <asp:Button ID="btnCheck" runat="server" Text="Check" class=" btn btn-success" />
                                         <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" />
@@ -82,10 +82,7 @@
                         </asp:UpdatePanel>
                     </div>
                 </div>
-                <div class="panel-footer" align="left">
-                    <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
-                    <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields"></asp:Label>
-                </div>
+                
                 <div class="panel-body">
                     <div class="row">
                         <asp:GridView ID="grvWarehouseStock" runat="server" AutoGenerateColumns="false" class="table"
@@ -113,6 +110,10 @@
                             </Columns>
                         </asp:GridView>
                     </div>
+                </div>
+                <div class="panel-footer" align="left">
+                    <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields"></asp:Label>
                 </div>
             </div>
         </div>

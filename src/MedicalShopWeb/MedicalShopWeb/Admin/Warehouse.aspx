@@ -17,7 +17,7 @@
     <div class="panel-header" align="left">
     <div class="col-xs-12">
         
-      <h3>  <asp:Label ID="lblPageHeading" runat="server" Text="Warehouse" class="control-label"></asp:Label></h3></div></div>
+      <h3>  <asp:Label ID="lblPageHeading" runat="server" Text="Warehouse" class="control-label label label-info"></asp:Label></h3></div></div>
     <div class="panel-body">
     <div class="col-md-4"></div>
  <div class="col-md-4">  
@@ -58,7 +58,7 @@
      <!--Start Third Row-->
      <div class="row form-group">
         <div class="col-md-12">
-            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-primary" 
+            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
                  ValidationGroup="SaveWarehouse" onclick="btnSave_Click"/>
 
                   <asp:Button ID="btnClear" runat="server" Text="Clear" class=" btn btn-primary" />

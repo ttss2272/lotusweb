@@ -20,7 +20,7 @@
                 <div class="panel-header" align="left">
                     <div class="col-xs-12">
                         <h3>
-                            <asp:Label ID="lblPageHeading" runat="server" Text="Sale Transaction" class="control-label label label-primary"></asp:Label></h3>
+                            <asp:Label ID="lblPageHeading" runat="server" Text="Sale Transaction" class="control-label label label-info"></asp:Label></h3>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -235,23 +235,23 @@
                     <!--End Sixth Row-->
                     <!--Eighth Row-->
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="col-sm-12">
                                 <div class="row form-group">
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <asp:Label ID="lblReqComment" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
                                         <asp:Label ID="lblComment" runat="server" Text="Comment" class="control-label">
         
                                         </asp:Label>
                                     </div>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <asp:TextBox ID="txtComment" runat="server" class="form-control" placeholder="Comment"
                                             TextMode="MultiLine" required></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-md-offset-4">
+                        <div class="col-md-4 col-md-offset-2">
                             <div class="panel panel-body" style="border-color: Gray;">
                                 <div class="col-xs-12">
                                     <!--Start First Row-->

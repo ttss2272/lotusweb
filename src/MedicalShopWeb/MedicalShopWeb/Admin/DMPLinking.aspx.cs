@@ -41,9 +41,9 @@ namespace MedicalShopWeb.Admin
                     BindDoctor();
                     BindMedicalShop();
                    
-                    if (Request.QueryString["DMPID"].ToString() != null)
+                    if (Request.QueryString["DMPID"] != null)
                     {
-                        hdnDMPID.Value = Request.QueryString["DMPID"].ToString();
+                        hdnDMPID.Value = Request.QueryString["DMPID"];
                         SetValues();
                     }
                     else

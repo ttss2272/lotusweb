@@ -16,12 +16,14 @@
 </div>
 <div class="form-group">
 
-<div class="panel panel-default" align="center">
+<div class="panel panel-default">
  
     <div class="panel-header" align="left">
     <div class="col-xs-12">
         
-        <h3><asp:Label ID="lblPageHeading" runat="server" Text="City" class="control-label"></asp:Label></h3></div></div>
+        <h3><asp:Label ID="lblPageHeading" runat="server" Text="City" class="control-label label label-info"></asp:Label></h3>
+        </div>
+        </div>
     <div class="panel-body">
     <div class="col-md-4"></div>
  <div class="col-md-4">
@@ -65,7 +67,8 @@
             </div>
      </div> 
      <!--End Of Second Row-->
-     </ContentTemplate></asp:UpdatePanel>
+     </ContentTemplate>
+     </asp:UpdatePanel>
 
      <!--Start of Third Row-->
      <div class="row form-group">
@@ -85,7 +88,7 @@
      <!--End of third Row-->
 
      <!--Start Fourth Row-->
-     <div class="row form-group">
+     <div class="row form-group" align="center">
         <div class="col-md-12">
             <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
                 ValidationGroup="SaveCity" onclick="btnSave_Click"/>

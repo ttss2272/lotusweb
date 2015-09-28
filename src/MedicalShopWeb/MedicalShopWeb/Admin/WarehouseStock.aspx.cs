@@ -33,7 +33,9 @@ namespace MedicalShopWeb.Admin
             try
             {
                 if (!IsPostBack)
-                { 
+                {
+                    BindWarehouse();
+                    
                 }
 
             }

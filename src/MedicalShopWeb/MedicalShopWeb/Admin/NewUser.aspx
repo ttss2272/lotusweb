@@ -14,12 +14,14 @@
 </div>
 <div class="form-group">
 
-<div class="panel panel-default" align="center">
+<div class="panel panel-default" >
  
     <div class="panel-header" align="left">
     <div class="col-xs-12">
         
-        <h3><asp:Label ID="lblPageHeading" runat="server" Text="User" class="control-label"></asp:Label></h3></div></div>
+        <h3><asp:Label ID="lblPageHeading" runat="server" Text="User" class="control-label label label-info"></asp:Label></h3>
+        </div>
+        </div>
     <div class="panel-body">
    
  <div class="col-md-10">
@@ -313,7 +315,8 @@
        <div class="col-sm-4"></div>
        <div class="col-sm-8">
     <asp:Label ID="lblAvailable" runat="server" Text=""  class="control-label"></asp:Label>
-            </div></div>
+            </div>
+            </div>
      </div>
      <!--End Of First Column-->
      <!--Start of Second Column-->
@@ -340,7 +343,7 @@
     <!--End Of Seventh Row-->
 
      <!--Start Eighth Row-->
-     <div class="row form-group">
+     <div class="row form-group" align="center">
         <div class="col-md-12">
             <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
                  ValidationGroup="SaveUser" onclick="btnSave_Click"/>
