@@ -13,6 +13,15 @@ namespace MedicalShopWeb.Admin {
     public partial class DoctorPayment {
         
         /// <summary>
+        /// ToolkitScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
+        
+        /// <summary>
         /// lblMessage control.
         /// </summary>
         /// <remarks>
@@ -92,24 +101,6 @@ namespace MedicalShopWeb.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlDrName;
-        
-        /// <summary>
-        /// ToolkitScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
-        
-        /// <summary>
-        /// UpdatePanelTransporter control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelTransporter;
         
         /// <summary>
         /// Daterequired control.
