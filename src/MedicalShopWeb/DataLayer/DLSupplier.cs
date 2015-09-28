@@ -52,5 +52,44 @@ namespace DataLayer
             return dsSupplier;
  
         }
+
+       //Bind Grid View
+        public DataSet GetSupplier(int SupplierID)
+        {
+            DataSet dsSupplier = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetAllSupplierDetail_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@SupplierID", SupplierID);
+
+            con.Open();
+
+            SqlDataAdapter daGetSupplierData = new SqlDataAdapter(cmd);
+            dsSupplier = new DataSet();
+            daGetSupplierData.Fill(dsSupplier);
+            con.Close();
+            return dsSupplier;
+ 
+         }
+
+        public DataSet GetSupplierDetail(int SupplierID)
+        {
+            DataSet dsSupplier = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetSupplierDetail_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@SupplierID", SupplierID);
+
+            con.Open();
+
+            SqlDataAdapter daGetSupplierData = new SqlDataAdapter(cmd);
+            dsSupplier = new DataSet();
+            daGetSupplierData.Fill(dsSupplier);
+            con.Close();
+            return dsSupplier;
+ 
+        }
     }
 }
