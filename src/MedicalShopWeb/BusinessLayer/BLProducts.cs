@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataLayer;
+using System.Data;
 namespace BusinessLayer
 {
     public class BLProducts
@@ -14,5 +15,18 @@ namespace BusinessLayer
             result = objProducts.SaveProducts(ProductID,ProductTypeID, ProductName, batch, code, PurchasePrice, SalePrice, IsActive, UpdatedByUserID);
             return result;
         }
+
+        public DataSet BindProduct(int ProductID)
+        {
+            DataSet dsProduct = objProducts.BindProduct(ProductID);
+            return dsProduct;
+        }
+
+        public DataSet GetProductOnProductType(int ProductID, int ProductTypeID)
+        {
+            DataSet dsProduct = objProducts.GetProductOnProductType(ProductID, ProductTypeID);
+            return dsProduct;
+        }
+        
     }
 }
