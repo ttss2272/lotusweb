@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="CntPlcLeft" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CntPlcCenter" runat="server">
-<asp:ToolkitScriptManager ID="ToolkitScriptManagerPurchaseProduct" runat="server"></asp:ToolkitScriptManager>
+    <asp:ToolkitScriptManager ID="ToolkitScriptManagerPurchaseProduct" runat="server"></asp:ToolkitScriptManager>
 <div class="form">
 <div class="row" align="center">
  <div class="col-md-12">
@@ -153,6 +153,8 @@
        <!--End Third Row-->
 
        <!--Start Fourth Row-->
+       <asp:UpdatePanel runat="server" ID="UpdatePanelProductType">
+       <ContentTemplate>
        <div class="row">
     <!--Start First Column-->
          <div class="col-sm-6">
@@ -169,7 +171,8 @@
             
             </div>
         <div class="col-sm-8">
-            <asp:DropDownList ID="ddlProductType" runat="server" class="form-control">
+            <asp:DropDownList ID="ddlProductType" runat="server" class="form-control" 
+                onselectedindexchanged="ddlProductType_SelectedIndexChanged" AutoPostBack="true">
             </asp:DropDownList>
      </div> 
          </div>
@@ -199,6 +202,8 @@
      
      <!--End Second Column-->
       </div>
+      </ContentTemplate>
+       </asp:UpdatePanel>
        <!--End Fourth Row-->
 
        <!--Start Fifth Row-->
