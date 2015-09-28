@@ -333,12 +333,12 @@ namespace MedicalShopWeb.Admin
                     txtContactNo.Text = dsMedicalShop.Tables[0].Rows[0]["ContactNo"].ToString();
                     ddlCountry.SelectedValue = dsMedicalShop.Tables[0].Rows[0]["CountryID"].ToString();
                     BindState();
-                    ddlState.SelectedValue = dsMedicalShop.Tables[0].Rows[0]["StateID"].ToString();
+                    ddlState.SelectedValue= dsMedicalShop.Tables[0].Rows[0]["StateID"].ToString();
                     BindCity();
-                    ddlCity.SelectedValue = dsMedicalShop.Tables[0].Rows[0]["CityID"].ToString();
+                    ddlCity.SelectedValue= dsMedicalShop.Tables[0].Rows[0]["CityID"].ToString();
                     txtArea.Text = dsMedicalShop.Tables[0].Rows[0]["Area"].ToString();
-                    txtAddress.Text = dsMedicalShop.Tables[0].Rows[0]["Address"].ToString();
-                    txtOopenningBalance.Text = dsMedicalShop.Tables[0].Rows[0]["OpeningBalance"].ToString();
+                    txtAddress.Text= dsMedicalShop.Tables[0].Rows[0]["Address"].ToString();
+                   txtOopenningBalance.Text= dsMedicalShop.Tables[0].Rows[0]["OpeningBalance"].ToString();
                     txtOopenningBalance.ReadOnly = true;
 
                 }

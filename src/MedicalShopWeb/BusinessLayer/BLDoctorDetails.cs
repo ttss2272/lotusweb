@@ -17,9 +17,9 @@ namespace BusinessLayer
            return Result;
        }
 
-       public DataSet GetAllData()
+       public DataSet GetAllData(int DoctorID)
        {
-           DataSet dsGridView = obj_Doctor.GetAllData();
+           DataSet dsGridView = obj_Doctor.GetAllData(DoctorID);
            return dsGridView;
        }
 
@@ -27,6 +27,26 @@ namespace BusinessLayer
        {
            DataSet dsDoctor = obj_Doctor.GetDoctor();
            return dsDoctor;
+       }
+
+       //public DataSet GetName(int DoctorID)
+       //{
+       //    DataSet dsMedicalShop = obj_Doctor.GetNameSplz(DoctorName);
+       //    return dsMedicalShop;
+       //}
+
+       public DataSet GetDoctorName()
+       {
+           DataSet dsDoctorName = obj_Doctor.GetDoctorName();
+           return dsDoctorName;
+       }
+
+
+
+       public DataSet GetDoctorData(int DoctorID)
+       {
+           DataSet dsDoctoData = obj_Doctor.GetDoctorData(DoctorID);
+           return dsDoctoData;
        }
     }
 }

@@ -34,17 +34,22 @@ namespace DataLayer
             return result; 
         }
 
-        public DataSet GetAllData()
+        public DataSet GetAllData(int DoctorID)
         {
             
-            DataSet ds = new DataSet();
+            DataSet dsDoctorDetails = new DataSet();
             con = conn.GetConnection();
             SqlCommand cmd = new SqlCommand("GetDoctorDetailsGridview_USP", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            da = new SqlDataAdapter(cmd);
-            da.Fill(ds);
+            cmd.Parameters.AddWithValue("@DoctorID", DoctorID);
+           
+            con.Open();
+
+            SqlDataAdapter daGetDoctorDetailsData = new SqlDataAdapter(cmd);
+            dsDoctorDetails = new DataSet();
+            daGetDoctorDetailsData.Fill(dsDoctorDetails);
             con.Close();
-            return ds;
+            return dsDoctorDetails;
 
         }
 
@@ -64,5 +69,41 @@ namespace DataLayer
             con.Close();
             return dsDoctor;
         }
+
+         public DataSet GetDoctorName()
+        {
+            DataSet dsDoctorName = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetDoctorNames_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            con.Open();
+
+            SqlDataAdapter daGetCountryData = new SqlDataAdapter(cmd);
+            dsDoctorName = new DataSet();
+            daGetCountryData.Fill(dsDoctorName);
+            con.Close();
+            return dsDoctorName;
+ 
+        }
+
+
+
+         public DataSet GetDoctorData(int DoctorID)
+         {
+             DataSet dsDoctorDetails = new DataSet();
+             con = conn.GetConnection();
+             SqlCommand cmd = new SqlCommand("GetDoctorDetails_USP", con);
+             cmd.CommandType = CommandType.StoredProcedure;
+             cmd.Parameters.AddWithValue("@DoctorID", DoctorID);
+             con.Open();
+
+             SqlDataAdapter daGetDoctorDetailsData = new SqlDataAdapter(cmd);
+             dsDoctorDetails = new DataSet();
+             daGetDoctorDetailsData.Fill(dsDoctorDetails);
+             con.Close();
+             return dsDoctorDetails;
+         }
     }
 }

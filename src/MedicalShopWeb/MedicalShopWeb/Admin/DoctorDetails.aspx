@@ -282,39 +282,34 @@
         <div class="col-md-12">
             <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
                  ValidationGroup="SaveDoctorDetails" onclick="btnSave_Click1"/>
-                 
+                 <asp:Button ID="btnClear" runat="server" Text="Clear" 
+                class=" btn  btn-primary" onclick="btnClear_Click"/>
                  <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" 
-                 ValidationGroup="SaveDoctorDetails"/>
-                  <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" id="validationSummary" />
+                 ValidationGroup="SaveDoctorDetails" onclick="btnClose_Click"/>
+                
         </div>
      </div>
      <!--End of Seven Row-->
-     <div class="panel-footer" align="left">
+     
+   </div>
+   </div>
+
+   <div class="panel-footer" align="left">
        <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
        <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields" ></asp:Label>
    </div>
-     <!--Start Grid View-->
-     </div>
+         
+</div>
+
+</div>
+
+<!--Start Grid View-->
+     
      <div class="row">
-        <asp:GridView ID="grvDoctorDetails" runat="server" AutoGenerateColumns="false" DataKeyNames="DoctorID" 
-             class="table" HeaderStyle-BackColor="#4596f1"
-         HeaderStyle-ForeColor="White"  BorderColor="White"  
-             HeaderStyle-BorderColor="#4596f1" AllowPaging="true" 
-             onpageindexchanging="grvDoctorDetails_PageIndexChanging" 
-             onrowcancelingedit="grvDoctorDetails_RowCancelingEdit" 
-             onrowediting="grvDoctorDetails_RowEditing" 
-             onrowupdating="grvDoctorDetails_RowUpdating" ><%--onpageindexchanging="grvCountry_PageIndexChanging"--%>
+        <asp:GridView ID="grvDoctorDetails" runat="server" AutoGenerateColumns="false" ><%--onpageindexchanging="grvCountry_PageIndexChanging"--%>
 
          <Columns>
-         <asp:BoundField DataField="DoctorID" HeaderText="Id" />
-         <asp:BoundField DataField="DoctorName" HeaderText="Doctor Name" />
-         <asp:BoundField DataField="Specialization" HeaderText="Specialization" />
-         <asp:BoundField DataField="DOB" HeaderText="DOB" />
-         <asp:BoundField DataField="CityID" HeaderText="City ID" />
-         <asp:BoundField DataField="Area" HeaderText="Area" />
-         <asp:BoundField DataField="MobileNo" HeaderText="Mobile Number" />
-         <asp:BoundField DataField="Address" HeaderText="Address" />
-         <asp:BoundField DataField="OpeningBalance" HeaderText="Opening Balance" />
+         
             <%--<asp:TemplateField HeaderText="Sr.No" HeaderStyle-HorizontalAlign="Center">
                 <ItemTemplate><%#Container.DataItemIndex+1 %></ItemTemplate>
             </asp:TemplateField>
@@ -354,16 +349,9 @@
      </div>
 
      <!--End Grid View-->
-    
-        
-   
-     
-</div>
-</div>
    
 
 
 </div>
-</div>
-</div>
+
 </asp:Content>

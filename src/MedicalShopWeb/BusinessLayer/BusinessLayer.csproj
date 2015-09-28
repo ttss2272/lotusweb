@@ -42,8 +42,14 @@
   <ItemGroup>
     <Compile Include="BLCity.cs" />
     <Compile Include="BLCountry.cs" />
+    <Compile Include="BLDoctorDetails.cs" />
     <Compile Include="BLMedicalShop.cs" />
+    <Compile Include="BLNewUser.cs" />
+    <Compile Include="BLProducts.cs" />
+    <Compile Include="BLProductType.cs" />
     <Compile Include="BLState.cs" />
+    <Compile Include="BLSupplier.cs" />
+    <Compile Include="BLWarehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

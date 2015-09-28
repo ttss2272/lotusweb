@@ -41,7 +41,15 @@ namespace MedicalShopWeb
                     #region--------DOBValidation--------------
                     txtDOB.Attributes.Add("onClick", "javascript:setYearRange();");
                     #endregion
-                    BindGridView();
+                   // BindGridView();
+                    if (Request.QueryString["DoctorID"] != null)
+                    {
+                        if (Request.QueryString["iss"] == "1")
+                        {
+                            btnSave.Text = "Delete";
+                        }
+                        AssignValues();
+                    }
                 }
             }
             catch (Exception ex)
@@ -50,32 +58,39 @@ namespace MedicalShopWeb
                 lblMessage.Text = ex.Message.ToString();
             }
         }
-        #region--------------BindGridView-----------------------
-        private void BindGridView()
+        #region-------------AssignValues-------------------
+        private void AssignValues()
         {
-            try
+            DataSet dsDoctor = obj_Doctor.GetDoctorData(Convert.ToInt32(Request.QueryString["DoctorID"]));
+            if (dsDoctor.Tables.Count != 0)
             {
-                DataSet dsGridview = obj_Doctor.GetAllData();
-
-                if (dsGridview.Tables[0].Rows.Count != 0)
+                if (dsDoctor.Tables[0].Rows.Count != 0)
                 {
-                    grvDoctorDetails.DataSource = dsGridview.Tables[0];
-                    grvDoctorDetails.DataBind();
+                    lblPageHeading.Text = "Edit :-" + dsDoctor.Tables[0].Rows[0]["DoctorName"].ToString();
+                    txtDoctorName.Text =dsDoctor.Tables[0].Rows[0]["DoctorName"].ToString();
+                    txtspecialz.Text = dsDoctor.Tables[0].Rows[0]["Specialization"].ToString();
+                    txtDOB.Text= dsDoctor.Tables[0].Rows[0]["DOB"].ToString();
+                    ddlCountry.SelectedValue = dsDoctor.Tables[0].Rows[0]["CountryID"].ToString();
+                    BindState();
+                    ddlState.SelectedValue = dsDoctor.Tables[0].Rows[0]["StateID"].ToString();
+                    BindCity();
+                    ddlCity.SelectedValue = dsDoctor.Tables[0].Rows[0]["CityID"].ToString();
+                    txtArea.Text = dsDoctor.Tables[0].Rows[0]["Area"].ToString();
+                    txtmobno.Text = dsDoctor.Tables[0].Rows[0]["MobileNo"].ToString();
+                    txtAddress.Text = dsDoctor.Tables[0].Rows[0]["Address"].ToString();
+                    txtOpeningBalance.Text = dsDoctor.Tables[0].Rows[0]["OpeningBalance"].ToString();
+                    txtOpeningBalance.ReadOnly = true;
+
                 }
                 else
                 {
-                    lblMessage.Text = "Records not available";
-                    grvDoctorDetails.DataSource = null;
-                    grvDoctorDetails.DataBind();
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    lblMessage.Text = "Data Not Available";
                 }
-                
-            }
-            catch (Exception ex)
-            {
-                lblMessage.Text = ex.Message.ToString();
             }
         }
         #endregion
+        
         #region----------------------------BindCity-----------------------------------
         private void BindCity()
         {
@@ -166,8 +181,12 @@ namespace MedicalShopWeb
         {
             try
             {
-                
-                DoctorID = 0;
+                if (Request.QueryString["DoctorID"] != null)
+                { 
+                  DoctorID = Convert.ToInt32(Request.QueryString["DoctorID"]); }
+                else
+                { DoctorID = 0; }
+               
                 DrName = txtDoctorName.Text;
                 Specialization = txtspecialz.Text;
                 DOB = txtDOB.Text;
@@ -199,6 +218,10 @@ namespace MedicalShopWeb
             txtAddress.Text = "";
             txtArea.Text = "";
             txtOpeningBalance.Text="";
+           
+            ddlCountry.SelectedValue = "-1";
+            ddlState.SelectedValue = "-1";
+            ddlCity.SelectedValue = "-1";
         }
         #endregion
 
@@ -271,61 +294,18 @@ namespace MedicalShopWeb
 
           #endregion
 
-        protected void grvDoctorDetails_RowEditing(object sender, GridViewEditEventArgs e)
+        #region----------------------ClearFields----------------------------------
+        protected void btnClear_Click(object sender, EventArgs e)
         {
-            grvDoctorDetails.EditIndex = e.NewEditIndex;
-            BindGridView();
+            ClearFields();
         }
+        #endregion
 
-        protected void grvDoctorDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        #region-----------------CloseClick--------------------------------------
+        protected void btnClose_Click(object sender, EventArgs e)
         {
-            grvDoctorDetails.PageIndex = e.NewPageIndex;
-            BindGridView();
+            //Response.Redirect("~/Defult.aspx");
         }
-
-        protected void grvDoctorDetails_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            grvDoctorDetails.PageIndex = -1;
-            BindGridView();
-        }
-
-        protected void grvDoctorDetails_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            string doctID = grvDoctorDetails.DataKeys[e.RowIndex].Values["DoctorID"].ToString();
-           
-            GridViewRow row = (GridViewRow)grvDoctorDetails.Rows[e.RowIndex];
-            TextBox grvtxtDoctorName = (TextBox)row.Cells[0].Controls[0];
-            TextBox grvtxtsplz = (TextBox)row.Cells[1].Controls[0];
-            TextBox grvtxtDOB = (TextBox)row.Cells[2].Controls[0];
-            TextBox grvtxtcityID = (TextBox)row.Cells[2].Controls[0];
-            TextBox grvtxtArea = (TextBox)row.Cells[2].Controls[0];
-            TextBox grvtxtMobileNo = (TextBox)row.Cells[2].Controls[0];
-            TextBox grvtxtAddress = (TextBox)row.Cells[2].Controls[0];
-            TextBox grvtxtOpeningBalance = (TextBox)row.Cells[2].Controls[0];
-            grvDoctorDetails.EditIndex = -1;
-             
-            SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConMedical"].ToString());
-            
-            SqlCommand cmd = new SqlCommand("SaveDoctorDetails_USP", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@DoctorID", doctID);
-            cmd.Parameters.AddWithValue("@DoctorName", grvtxtDoctorName);
-            cmd.Parameters.AddWithValue("@Specialization", grvtxtsplz);
-            cmd.Parameters.AddWithValue("@DOB", grvtxtDOB);
-            cmd.Parameters.AddWithValue("@CityId", grvtxtcityID);
-            cmd.Parameters.AddWithValue("@Area", grvtxtArea);
-            cmd.Parameters.AddWithValue("@Address", grvtxtAddress);
-            cmd.Parameters.AddWithValue("@Mobileno", grvtxtMobileNo);
-            
-            cmd.Parameters.AddWithValue("@OpeningBalance", grvtxtOpeningBalance);
-            conn.Open();
-            cmd.ExecuteScalar().ToString();
-            con.Close();
-            BindGridView();  
-          
-        }
-      
-
-        
+        #endregion
     }
 }
