@@ -9,9 +9,9 @@ namespace BusinessLayer
    public class BLProductType
     {
        DLProductType objProductType = new DLProductType();
-        public DataSet GetProductType(int ProductID, int IsActive)
+        public DataSet GetProductType(int ProductTypeID, int IsActive)
         {
-            DataSet dsProductType = objProductType.GetProductType(ProductID, IsActive);
+            DataSet dsProductType = objProductType.GetProductType(ProductTypeID, IsActive);
             return dsProductType;
         }
     }

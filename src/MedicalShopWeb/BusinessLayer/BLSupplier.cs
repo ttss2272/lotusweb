@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using DataLayer;
+
 namespace BusinessLayer
 {
    public class BLSupplier
@@ -13,6 +15,13 @@ namespace BusinessLayer
             string result = null;
             result = objSupplier.SaveSupplier(SupID, SupplierName, CompanyName, ContactNo, CityID, Area, Address, ModeOfTransport, PriceType, IsActive, UpdatedByUserID);
             return result;
+        }
+
+        //Function for bind supplier  to dropdown
+        public DataSet BindSupplier(int SupplierID)
+        {
+            DataSet dsSupplier = objSupplier.BindSupplier(SupplierID);
+            return dsSupplier;
         }
     }
 }
