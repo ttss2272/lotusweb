@@ -166,6 +166,15 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlMedical;
         
         /// <summary>
+        /// UpdatepanelProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatepanelProduct;
+        
+        /// <summary>
         /// lblReqProduct control.
         /// </summary>
         /// <remarks>
@@ -308,6 +317,15 @@ namespace MedicalShopWeb.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvPurhaseProduct;
+        
+        /// <summary>
+        /// lblReqComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReqComment;
         
         /// <summary>
         /// lblComment control.
