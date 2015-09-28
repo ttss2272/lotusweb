@@ -18,7 +18,7 @@
       <div class="panel panel-default" align="center">
        <div class="panel-header" align="left">
     <div class="col-xs-12">
-        <h3><asp:Label ID="lblPageHeading" runat="server" Text="Medical Shop" class="control-label"></asp:Label></h3>
+        <h3><asp:Label ID="lblPageHeading" runat="server" Text="User" class="control-label"></asp:Label></h3>
     </div>
     </div>
    
