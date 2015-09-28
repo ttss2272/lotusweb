@@ -208,7 +208,7 @@ namespace MedicalShopWeb.Admin
         * Created Date:- 24 Sept 2015
         * Purpose :-  btnSearch_Click
         */
-        #region---------------------------btnSearch_Click---------------------------------------
+        #region---------------------------btnSearch_Click-------------------------------------
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             try
