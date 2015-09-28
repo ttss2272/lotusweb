@@ -50,22 +50,22 @@ namespace DataLayer
         }        
 
 
-        public DataSet GetProductType()
-        {
-            DataSet dsProductType = new DataSet();
+        //public DataSet GetProductType()bbbb
+        //{
+        //    DataSet dsProductType = new DataSet();
 
-            con = conn.GetConnection();
-            SqlCommand cmd = new SqlCommand("ProductType_USP", con);
-            cmd.CommandType = CommandType.StoredProcedure;
+        //    con = conn.GetConnection();
+        //    SqlCommand cmd = new SqlCommand("ProductType_USP", con);
+        //    cmd.CommandType = CommandType.StoredProcedure;
 
-            con.Open();
+        //    con.Open();
 
-            SqlDataAdapter daGetProductData = new SqlDataAdapter(cmd);
-            dsProductType = new DataSet();
-            daGetProductData.Fill(dsProductType);
-            con.Close();
-            return dsProductType;
-        }
+        //    SqlDataAdapter daGetProductData = new SqlDataAdapter(cmd);
+        //    dsProductType = new DataSet();
+        //    daGetProductData.Fill(dsProductType);
+        //    con.Close();
+        //    return dsProductType;
+        //}
 
         public DataSet BindProductOnProductType(int ProductTypeID)
         {
