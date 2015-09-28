@@ -12,10 +12,10 @@ namespace MedicalShopWeb.Admin
     public partial class ViewProducts : System.Web.UI.Page
     {
 
-        #region-------------------------------Declare Variables-------------------------
+        #region-------------------------------Declare Variables-----------------
         int ProductID;
         BLProducts objProducts = new BLProducts();
-       // BLProductType objProductType = new BLProductType();
+        BLProductType objProductType = new BLProductType();
         #endregion
 
         #region-----------------------------Page_Load---------------------------
@@ -89,18 +89,25 @@ namespace MedicalShopWeb.Admin
         #region----------------------------------BindProductType()-------------------------------
         private void BindProductType()
         {
-           DataSet dsProductType = objProducts.GetProductType();
-            ddlProductType.Items.Clear();
+            DataSet dsProductType = objProductType.GetProductType(0, 1);
+
             if (dsProductType.Tables.Count > 0)
             {
                 if (dsProductType.Tables[0].Rows.Count > 0)
                 {
-                    ddlProductType.DataTextField = "ProductTypeName";
+                    ddlProductType.DataTextField = "Product Type";
                     ddlProductType.DataValueField = "ProductTypeID";
                     ddlProductType.DataSource = dsProductType;
                     ddlProductType.DataBind();
                 }
-                ddlProductType.Items.Insert(0, new ListItem("Select All", "0"));
+                else
+                {
+
+                    ddlProductType.DataSource = null;
+                    ddlProductType.DataBind();
+
+                }
+                ddlProductType.Items.Insert(0, new ListItem("Select All Product Type", "0"));
             }
             }
         #endregion
@@ -129,5 +136,70 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+        #region-------------------------ddlProductType_SelectedIndexchanged------------------------------
+        protected void ddlProductType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BindProduct();
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #endregion
+
+        #region--------------------------------grvProduct_PageIndexChangeing--------------------------
+
+        protected void grvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                grvProducts.PageIndex = e.NewPageIndex;
+                BindGridView();
+                grvProducts.Focus();
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+
+        }
+
+        #endregion
+
+        #region---------------------------btnSearch_Click-------------------------------------
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BindGridView();
+
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+
+        #endregion
+        #region--------------------------------btnClose_Click-----------------------------------
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #endregion
         }
     }

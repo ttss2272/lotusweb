@@ -35,7 +35,7 @@
             </div>
              <div class="col-sm-8">
             <asp:DropDownList ID="ddlProductType" runat="server"  class="form-control" 
-                AutoPostBack="True">
+                AutoPostBack="True" OnSelectedIndexChanged="ddlProductType_SelectedIndexChanged">
             </asp:DropDownList>
         </div>
      </div>
@@ -59,8 +59,9 @@
      <div class="row form-group">
         <div class="col-md-12">
             <asp:Button ID="btnSearch" runat="server" Text="Search" 
-                class=" btn btn-primary"/>
-            <asp:Button ID="btnClose" runat="server" Text="Close"  class=" btn btn-danger"/>
+                class=" btn btn-primary" onclick="btnSearch_Click"/>
+            <asp:Button ID="btnClose" runat="server" Text="Close"  class=" btn btn-danger" 
+                onclick="btnClose_Click"/>
 
         </div>
          </div>
@@ -79,26 +80,31 @@
    <div class="panel-body">
      <div class="row">
         <asp:GridView ID="grvProducts" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
-         HeaderStyle-ForeColor="White"  BorderColor="White"  HeaderStyle-BorderColor="#4596f1" AllowPaging="true">
+         HeaderStyle-ForeColor="White"  BorderColor="White"  HeaderStyle-BorderColor="#4596f1" AllowPaging="true" onPageIndexChanging="grvProducts_PageIndexChanging">
 
          <Columns>
           <asp:TemplateField HeaderText="Sr.No" HeaderStyle-HorizontalAlign="Center">
                 <ItemTemplate><%#Container.DataItemIndex+1 %></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Product Name" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate>
-                <asp:HyperLink ID="HyperLinkProductName" runat="server" Text='<%#Eval("ProductName")%>' NavigateUrl='<%#String.Format("../Admin/Products.aspx?ProductID={0}&iss=0", DataBinder.Eval(Container.DataItem,"ProductID") )%>'>
-                              </asp:HyperLink></ItemTemplate>
+         <ItemTemplate><%#Eval("ProductName")%>
+                <%--<asp:HyperLink ID="HyperLinkProductName" runat="server" Text='<%#Eval("ProductName")%>' NavigateUrl='<%#String.Format("../Admin/Products.aspx?ProductID={0}&iss=0", DataBinder.Eval(Container.DataItem,"ProductID") )%>'>
+                              </asp:HyperLink>--%></ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Code" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("Code")%></ItemTemplate>
+            <asp:TemplateField HeaderText="Product Code" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("ProductCode")%></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Purchase Price" HeaderStyle-HorizontalAlign="Center">
                 <ItemTemplate><%#Eval("PurchasePrice")%></ItemTemplate>
             </asp:TemplateField>                     
             <asp:TemplateField HeaderText="Sale Price" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("Price")%></ItemTemplate>
+                <ItemTemplate><%#Eval("SallingPrice")%></ItemTemplate>
             </asp:TemplateField>
+             <asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
+                    <ItemTemplate >
+                             <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit"  NavigateUrl='<%#String.Format("../Admin/Product.aspx?ProductID={0}&iss=1", DataBinder.Eval(Container.DataItem,"ProductID") )%>'>
+                              </asp:HyperLink>
+                                                  </ItemTemplate></asp:TemplateField>
             <asp:TemplateField HeaderText="Delete" HeaderStyle-HorizontalAlign="Center">
                     <ItemTemplate >
                              <asp:HyperLink ID="HyperLinkDelete" runat="server" Text="Delete"  NavigateUrl='<%#String.Format("../Admin/Product.aspx?ProductID={0}&iss=1", DataBinder.Eval(Container.DataItem,"ProductID") )%>'>
