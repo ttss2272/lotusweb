@@ -155,7 +155,7 @@ namespace MedicalShopWeb
         private void SaveSuppliers()
         {
             string Result = objSupplier.SaveSupplier(SupID, SupplierName, CompanyName, ContactNo, CityID, Area, Address, ModeOfTransport, PriceType, IsActive, UpdatedByUserID);
-            if (Result == "Supplier Details Saved Successfully...!!!")
+            if ((Result == "Supplier Details Saved Successfully...!!!") || (Result == "Supplier Details Updated  Successfully...!!!"))
             {
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = Result;
