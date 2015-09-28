@@ -85,5 +85,24 @@ namespace DataLayer
             con.Close();
             return dsProductType;
         }
+
+        public DataSet BindProductOnProductType(int ProductTypeID)
+        {
+            DataSet dsProduct = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("BindProductOnProductType_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@ProductTypeID", ProductTypeID);
+            con.Open();
+
+            SqlDataAdapter daGetProductData = new SqlDataAdapter(cmd);
+            dsProduct = new DataSet();
+            daGetProductData.Fill(dsProduct);
+            con.Close();
+            return dsProduct;
+ 
+        }
     }
 }
