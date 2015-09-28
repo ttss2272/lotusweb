@@ -17,7 +17,9 @@
     <div class="panel-header" align="left">
     <div class="col-xs-12">
         
-        <asp:Label ID="lblPageHeading" runat="server" Text="Country" class="control-label"></asp:Label></div></div>
+        <h3><asp:Label ID="lblPageHeading" runat="server" Text="Country" class="control-label label label-primary"></asp:Label></h3>
+        </div>
+        </div>
     <div class="panel-body">
     <div class="col-md-4"></div>
      <div class="col-md-4">  
