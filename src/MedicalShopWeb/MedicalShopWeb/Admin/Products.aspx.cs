@@ -104,7 +104,7 @@ namespace MedicalShopWeb
             ProductTypeID = Convert.ToInt32(ddproductType.SelectedValue.ToString());
             ProductName = txtProductName.Text;
             code = txtCode.Text;
-            batch = txtbatch.Text;
+            //batch = txtbatch.Text;
             PurchasePrice = txtPurchasePrice.Text;
             SalePrice = txtSalePrice.Text;
             IsActive = 1;
@@ -116,7 +116,7 @@ namespace MedicalShopWeb
         {
             txtProductName.Text = "";
             txtCode.Text = "";
-            txtbatch.Text = "";
+            //txtbatch.Text = "";
             txtPurchasePrice.Text = "";
             txtSalePrice.Text="";
         }

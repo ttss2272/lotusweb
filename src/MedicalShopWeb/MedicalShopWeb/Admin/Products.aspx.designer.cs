@@ -94,6 +94,15 @@ namespace MedicalShopWeb {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqValidPrductName;
         
         /// <summary>
+        /// RegProductName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegProductName;
+        
+        /// <summary>
         /// txtProductName control.
         /// </summary>
         /// <remarks>
@@ -157,42 +166,6 @@ namespace MedicalShopWeb {
         protected global::System.Web.UI.WebControls.TextBox txtCode;
         
         /// <summary>
-        /// BatchRequired control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label BatchRequired;
-        
-        /// <summary>
-        /// lblBatch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBatch;
-        
-        /// <summary>
-        /// reqbatch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqbatch;
-        
-        /// <summary>
-        /// txtbatch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbatch;
-        
-        /// <summary>
         /// PurchaseRequired control.
         /// </summary>
         /// <remarks>
@@ -218,6 +191,15 @@ namespace MedicalShopWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqValPurchasePrice;
+        
+        /// <summary>
+        /// RegularExpressionValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
         /// txtPurchasePrice control.
@@ -247,13 +229,13 @@ namespace MedicalShopWeb {
         protected global::System.Web.UI.WebControls.Label lblSalePrice;
         
         /// <summary>
-        /// ReqValSaleprice control.
+        /// ReqSalePrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqValSaleprice;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ReqSalePrice;
         
         /// <summary>
         /// txtSalePrice control.

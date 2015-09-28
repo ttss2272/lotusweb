@@ -60,8 +60,12 @@
             <asp:Label ID="lblDOB" runat="server" Text="Product Name" class="control-label">
              <asp:RequiredFieldValidator ID="ReqValidPrductName" runat="server" 
                 ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
-                ControlToValidate="txtProductName" InitialValue="-1" SetFocusOnError="True" 
+                ControlToValidate="txtProductName" SetFocusOnError="True" 
                 ToolTip="Please Enter Product Name" ValidationGroup="SaveProductDetails"></asp:RequiredFieldValidator>
+                 <asp:RegularExpressionValidator ID="RegProductName" runat="server" ErrorMessage="*"   
+             ValidationExpression="[a-zA-Z ]*$" ControlToValidate="txtProductName" 
+             Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
+             ToolTip="Enter Only Characters" ValidationGroup="SaveProductDetails"></asp:RegularExpressionValidator>
             </asp:Label>
             
             </div>
@@ -88,8 +92,8 @@
             <asp:Label ID="lblCode" runat="server" Text="Code" class="control-label">
             <asp:RequiredFieldValidator ID="ReqCode" runat="server" 
                 ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
-                ControlToValidate="txtCode" InitialValue="-1" SetFocusOnError="True" 
-                ToolTip="Please Select Country" ValidationGroup="SaveProductDetails"></asp:RequiredFieldValidator>
+                ControlToValidate="txtCode" SetFocusOnError="True" 
+                ToolTip="Please Enter Code Number" ValidationGroup="SaveProductDetails"></asp:RequiredFieldValidator>
             </asp:Label>
             
             </div>
@@ -104,9 +108,9 @@
     <!--End of Third Row-->
 
     <!--Start of Fourth Row-->
-    <div class="row">
+   <%-- <div class="row">--%>
     <!--Start First column -->
-         <div class="col-sm-6">
+        <%-- <div class="col-sm-6">
       <div class="row form-group">
         <div class="col-sm-4">
 
@@ -124,10 +128,10 @@
      </div>
       </div>
      </div>
-     
+     --%>
      <!--End first Column-->
     
-    </div>
+   <%-- </div>--%>
     <!--End of Fourth Row-->
     </ContentTemplate></asp:UpdatePanel>
     <!--Start of Fifth Row-->
@@ -144,6 +148,10 @@
                 ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
                 ControlToValidate="txtPurchasePrice" InitialValue="-1" SetFocusOnError="True" 
                 ToolTip="Please Enter Pruchase Price" ValidationGroup="SaveProductDetails"></asp:RequiredFieldValidator>
+                  <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*"   
+             ValidationExpression="[0-9]*$" ControlToValidate="txtPurchasePrice" 
+             Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
+             ToolTip="Enter Only Numbers" ValidationGroup="SaveProductDetails"></asp:RegularExpressionValidator>
             </asp:Label>
             
             </div>
@@ -166,10 +174,14 @@
 
     <asp:Label ID="lblSalePriceReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
             <asp:Label ID="lblSalePrice" runat="server" Text="Sale Price" class="control-label">
-            <asp:RequiredFieldValidator ID="ReqValSaleprice" runat="server" 
+           <%-- <asp:RequiredFieldValidator ID="ReqValSaleprice" runat="server" 
                 ErrorMessage="*" Display="Dynamic" Font-Bold="True" ForeColor="Red" 
                 ControlToValidate="txtSalePrice" InitialValue="-1" SetFocusOnError="True" 
-                ToolTip="Please Enter Sale Price" ValidationGroup="SaveProductDetails"></asp:RequiredFieldValidator>
+                ToolTip="Please Enter Sale Price" ValidationGroup="SaveProductDetails"></asp:RequiredFieldValidator>--%>
+                <asp:RegularExpressionValidator ID="ReqSalePrice" runat="server" ErrorMessage="*"   
+             ValidationExpression="[0-9]*$" ControlToValidate="txtSalePrice" 
+             Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
+             ToolTip="Enter Only Numbers" ValidationGroup="SaveProductDetails"></asp:RegularExpressionValidator>
             </asp:Label>
             
             </div>
