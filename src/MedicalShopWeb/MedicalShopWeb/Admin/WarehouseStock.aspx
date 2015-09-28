@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <asp:TextBox ID="txtStock" runat="server" class="form-control" placeholder="Stock"
-                                            ReadOnly OnTextChanged="txtStock_TextChanged"></asp:TextBox>
+                                            ReadOnly></asp:TextBox>
                                     </div>
                                 </div>
                                 <!--End Of Third Row-->
