@@ -81,7 +81,7 @@
   
    <!--Start Grid View-->
    <asp:UpdatePanel runat ="server" ID="GridUpdate"><ContentTemplate>
-   <div class="panel-body">
+   <div class="panel-body table table-responsive">
      <div class="row">
         <asp:GridView ID="grvMedicalShop" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
          HeaderStyle-ForeColor="White"  BorderColor="White"  HeaderStyle-BorderColor="#4596f1" AllowPaging="true" onpageindexchanging="grvMedicalShop_PageIndexChanging">

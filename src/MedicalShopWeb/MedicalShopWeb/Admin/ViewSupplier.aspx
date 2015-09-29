@@ -21,7 +21,7 @@
                     <div class="col-xs-12">
                         <h3>
                             <asp:Label ID="lblPageHeading" runat="server" Text="View Supplier" class="control-label
-label label-primary"></asp:Label></h3>
+label label-info"></asp:Label></h3>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -49,7 +49,7 @@ label label-primary"></asp:Label></h3>
                         <!--End Second Row-->
                     </div>
                     <!--Start Gridview-->
-                    
+                    <div class="panel-body table table-responsive">
                     <div class="row">
         <asp:GridView ID="grvSupplier" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
          HeaderStyle-ForeColor="White"  BorderColor="White"  HeaderStyle-BorderColor="#4596f1" AllowPaging="true" ><%--onpageindexchanging="grvState_PageIndexChanging"--%>
@@ -99,7 +99,7 @@ label label-primary"></asp:Label></h3>
          </Columns>
         </asp:GridView>
      </div>
-                        
+                        </div>
                     
                     <!--End GridView-->
                 </div>

@@ -18,7 +18,7 @@
       <div class="panel panel-default" align="center">
        <div class="panel-header" align="left">
     <div class="col-xs-12">
-        <h3><asp:Label ID="lblPageHeading" runat="server" Text="User" class="control-label"></asp:Label></h3>
+        <h3><asp:Label ID="lblPageHeading" runat="server" Text="User" class="control-label label label-info"></asp:Label></h3>
     </div>
     </div>
    
@@ -68,7 +68,7 @@
   
    <!--Start Grid View-->
    <asp:UpdatePanel runat ="server" ID="GridUpdate"><ContentTemplate>
-   <div class="panel-body">
+   <div class="panel-body table table-responsive">
      <div class="row">
         <asp:GridView ID="grvUser" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
          HeaderStyle-ForeColor="White"  BorderColor="White"  HeaderStyle-BorderColor="#4596f1" AllowPaging="true" ><%--onpageindexchanging="grvUser_PageIndexChanging"--%>

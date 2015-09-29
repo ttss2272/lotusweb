@@ -17,7 +17,7 @@
       <div class="panel panel-default" align="center">
        <div class="panel-header" align="left">
     <div class="col-xs-12">
-        <h3><asp:Label ID="lblPageHeading" runat="server" Text="View Products" class="control-label"></asp:Label></h3>
+        <h3><asp:Label ID="lblPageHeading" runat="server" Text="View Products" class="control-label label label-info"></asp:Label></h3>
     </div>
     </div>
     <div class="panel-body">
@@ -77,7 +77,7 @@
    </div>
     <!--Start Grid View-->
    <asp:UpdatePanel runat ="server" ID="GridUpdate"><ContentTemplate>
-   <div class="panel-body">
+   <div class="panel-body table table-responsive">
      <div class="row">
         <asp:GridView ID="grvProducts" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
          HeaderStyle-ForeColor="White"  BorderColor="White"  HeaderStyle-BorderColor="#4596f1" AllowPaging="true" onPageIndexChanging="grvProducts_PageIndexChanging">
@@ -102,7 +102,7 @@
             </asp:TemplateField>
              <asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
                     <ItemTemplate >
-                             <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit"  NavigateUrl='<%#String.Format("../Admin/Product.aspx?ProductID={0}&iss=1", DataBinder.Eval(Container.DataItem,"ProductID") )%>'>
+                             <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit"  NavigateUrl='<%#String.Format("../Admin/Products.aspx?ProductID={0}&iss=1", DataBinder.Eval(Container.DataItem,"ProductID") )%>'>
                               </asp:HyperLink>
                                                   </ItemTemplate></asp:TemplateField>
             <asp:TemplateField HeaderText="Delete" HeaderStyle-HorizontalAlign="Center">
