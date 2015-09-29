@@ -3,6 +3,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CntPlcLeft" runat="server">
+<script type="text/javascript">
+    function myFunction() {
+
+        {
+            document.getElementById('1').style.visibility = 'hidden';
+            document.getElementById('Div1').style.visibility = 'visible';
+            
+        }
+
+    }
+    function myFunction2() {
+        document.getElementById('1').style.visibility = 'visible';
+        document.getElementById('Div1').style.visibility = 'hidden';
+        
+    }
+    </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CntPlcCenter" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManagerPurchaseProduct" runat="server"></asp:ToolkitScriptManager>
@@ -23,8 +39,9 @@
         </div></div>
     <div class="panel-body">
         <div class="col-md-12">
+        <fieldset id="ff">
              <!--Start First Row-->
-    <div class="row">
+    <div class="row" id="1">
     <!--Start First Column-->
          <div class="col-sm-6">
          <div class="row form-group">
@@ -48,30 +65,6 @@
           <!--End First Column-->
      <!--Start Second Column-->
          <div class="col-sm-6">
-      <div class="row form-group">
-        <div class="col-sm-4">
-
-    <asp:Label ID="DateRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-            <asp:Label ID="lblPurchaseDate" runat="server" Text="Purchase Date" class="control-label">
-            
-            </asp:Label>
-            
-            </div>
-        <div class="col-sm-8">
-            <asp:TextBox ID="txtPurchaseDate" runat="server" class="form-control" placeholder="DD/MM/YYYY" required></asp:TextBox></div>
-            <asp:CalendarExtender ID="CalendarExtenderPurchaseDate" runat="server" TargetControlID="txtPurchaseDate" Format="dd/MM/yyyy">
-            </asp:CalendarExtender>
-     </div>
-      </div>
-     
-     <!--End Second Column-->
-      </div>
-       <!--End First Row-->
-
-       <!--Start Second Row-->
-    <div class="row">
-    <!--Start First Column-->
-         <div class="col-sm-6">
          <div class="row form-group">
         <div class="col-sm-4">
 
@@ -90,6 +83,71 @@
      </div> 
          </div>
          </div>
+     
+     <!--End Second Column-->
+      </div>
+       <!--End First Row-->
+       <!--Start Hindden row-->
+       <div class="row" id="Div1">
+    <!--Start First Column-->
+         <div class="col-sm-6">
+         <div class="row form-group">
+        <div class="col-sm-4">
+
+    
+            <asp:Label ID="Label2" runat="server" Text="Warehouse" class="control-label">
+            
+            </asp:Label>
+            
+            </div>
+        <div class="col-sm-8">
+    <asp:TextBox ID="txtWareName" runat="server" class="form-control"></asp:TextBox>
+     </div> 
+         </div>
+         </div>
+          <!--End First Column-->
+     <!--Start Second Column-->
+         <div class="col-sm-6">
+         <div class="row form-group">
+        <div class="col-sm-4">
+
+    
+            <asp:Label ID="lblSup" runat="server" Text="Supplier" class="control-label">
+            
+            </asp:Label>
+            
+            </div>
+        <div class="col-sm-8">
+           
+            <asp:TextBox ID="txtSupName" runat="server" class="form-control"></asp:TextBox>
+                 </div> 
+         </div>
+         </div>
+     
+     <!--End Second Column-->
+      </div>
+       <!--End hidden row-->
+       <!--Start Second Row-->
+    <div class="row" id="2">
+
+    
+    <!--Start First Column-->
+        <div class="col-sm-6">
+      <div class="row form-group">
+        <div class="col-sm-4">
+
+    <asp:Label ID="DateRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
+            <asp:Label ID="lblPurchaseDate" runat="server" Text="Purchase Date" class="control-label">
+            
+            </asp:Label>
+            
+            </div>
+        <div class="col-sm-8">
+            <asp:TextBox ID="txtPurchaseDate" runat="server" class="form-control" placeholder="DD/MM/YYYY" required></asp:TextBox></div>
+            <asp:CalendarExtender ID="CalendarExtenderPurchaseDate" runat="server" TargetControlID="txtPurchaseDate" Format="dd/MM/yyyy">
+            </asp:CalendarExtender>
+     </div>
+      </div>     
           <!--End First Column-->
 
      <!--Start Second Column-->
@@ -111,7 +169,7 @@
      <!--End Second Column-->
       </div>
        <!--End Second Row-->
-
+       </fieldset>
         <!--Start Third Row-->
     <div class="row">
     <!--Start First Column-->
@@ -194,7 +252,8 @@
             
             </div>
         <div class="col-sm-8">
-            <asp:DropDownList ID="ddlProduct" runat="server" class="form-control">
+            <asp:DropDownList ID="ddlProduct" runat="server" class="form-control" AutoPostBack="true" 
+                onselectedindexchanged="ddlProduct_SelectedIndexChanged">
             </asp:DropDownList>
      </div> 
          </div>
@@ -202,8 +261,7 @@
      
      <!--End Second Column-->
       </div>
-      </ContentTemplate>
-       </asp:UpdatePanel>
+      
        <!--End Fourth Row-->
 
        <!--Start Fifth Row-->
@@ -216,7 +274,7 @@
     <asp:Label ID="lblReqPurchasePrice" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
             <asp:Label ID="lblPurchasePrice" runat="server" Text="Purchase Price" class="control-label">
             <asp:RegularExpressionValidator ID="RegPurchasePrice" runat="server" ErrorMessage="*"   
-             ValidationExpression="[0-9]*$" ControlToValidate="txtPurchasePrice" 
+             ValidationExpression="[0-9.]*$" ControlToValidate="txtPurchasePrice" 
              Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
              ToolTip="Enter Only Numbers" ValidationGroup="SavePurchaseProduct"></asp:RegularExpressionValidator>
             </asp:Label>
@@ -237,7 +295,7 @@
     <asp:Label ID="lblReqSaleingPrice" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
             <asp:Label ID="lblSellingPrice" runat="server" Text="Selling Price" class="control-label">
             <asp:RegularExpressionValidator ID="RegSellingPrice" runat="server" ErrorMessage="*"   
-             ValidationExpression="[0-9]*$" ControlToValidate="txtSellingPrice" 
+             ValidationExpression="[0-9.]*$" ControlToValidate="txtSellingPrice" 
              Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
              ToolTip="Enter Only Numbers" ValidationGroup="SavePurchaseProduct"></asp:RegularExpressionValidator>
             </asp:Label>
@@ -250,6 +308,8 @@
      
      <!--End Second Column-->
       </div>
+      </ContentTemplate>
+       </asp:UpdatePanel>
        <!--End Fifth Row-->
 
        <!--Start Sixth Row-->
@@ -322,13 +382,16 @@
                 <ItemTemplate><%#Container.DataItemIndex+1 %></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Product Name" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("Country Name")%></ItemTemplate>
+                <ItemTemplate><%#Eval("ProductName")%></ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Batch No" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("BatchNo")%></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Quantity" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("Country Name")%></ItemTemplate>
+                <ItemTemplate><%#Eval("Quantity")%></ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Purchase Price" HeaderStyle-HorizontalAlign="Center">
-                <ItemTemplate><%#Eval("Country Name")%></ItemTemplate>
+                <ItemTemplate><%#Eval("PurchaseRate")%></ItemTemplate>
             </asp:TemplateField>
             <%--<asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
                     <ItemTemplate >

@@ -21,8 +21,9 @@ namespace MedicalShopWeb.Admin
         BLProductType objProductType = new BLProductType();
         BLProducts objProducts = new BLProducts();
         BLSupplier objSupplier = new BLSupplier();
+        BLPurchaseProduct objPurchaseProduct = new BLPurchaseProduct();
 
-        int PurchaseProductID,WarehouseID,SupplierID,ProductTypID,ProductID,IsActive;
+        int PurchaseProductID, WarehouseID, SupplierID, ProductTypID, ProductID, IsActive, NewPPID = 0, UpdatedByUserID;
             string PurchaseDate,ReceiptNo,ModeOfPayment,BatchNo,ExpiryDate;
             decimal PurchasePrice, SellingPrice, PurchaseQuantity;
         #endregion
@@ -41,6 +42,11 @@ namespace MedicalShopWeb.Admin
                     BindWarehouse();
                     BindSupplier();
                     BindProductType();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "myFunction", "myFunction2();", true);
+                    if (ViewState["PPID"] == null)
+                    {
+                        btnSave.CssClass = "btn btn-success btn-lg disabled";
+                    }
                 }
             }
             catch (Exception ex)
@@ -61,12 +67,35 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
-
+                
+                if (ViewState["PPID"] == null)
+                {
+                    AddDisable();
+                    SetAddParameters();
+                    ViewState["PPID"] = objPurchaseProduct.SavePurchaseProduct(PurchaseProductID, WarehouseID, PurchaseDate, SupplierID, ReceiptNo, ModeOfPayment, UpdatedByUserID, IsActive);
+                }
+                if (ViewState["PPID"] != null)
+                {
+                    btnSave.CssClass = "btn btn-success btn-lg";
+                        SetProductDetail();
+                    SaveTempPurchaseProduct();
+                }
+                else
+                {
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    lblMessage.Text = "Error to Save Purchase Product.";
+                }
             }
             catch (Exception ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message.ToString();
+            }
+            finally
+            {
+                BindGridView();
+                AddClear();
+
             }
         }
         #endregion
@@ -254,16 +283,19 @@ namespace MedicalShopWeb.Admin
         /*
          * Created By :- PriTesh D. Sortee
          * Created Date:- 28 sept 2015
-         * purpose :- SetAddParameters()
+         * purpose :- SetAddParameters() for Save PurchaseTransaction on click on add button
          */
         #region------------------------------------------SetAddParameters()-----------------------------------
         private void SetAddParameters()
         {
+            PurchaseProductID = 0;
             WarehouseID = Convert.ToInt32(ddlWarehouse.SelectedValue);
             PurchaseDate = txtPurchaseDate.Text;
             SupplierID = Convert.ToInt32(ddlSupplier.SelectedValue);
             ReceiptNo = txtReceiptNo.Text;
             ModeOfPayment = txtModeOfPayment.Text;
+            UpdatedByUserID = 1;
+            IsActive = 1;
             
 
  
@@ -281,6 +313,11 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 28 sept 2015
+         * purpose :- SetProducDetail to enter data in temp table
+         */
         #region----------------------------------------SetProductDetail()-------------------------------------
         private void SetProductDetail()
         {
@@ -290,6 +327,148 @@ namespace MedicalShopWeb.Admin
             SellingPrice = Convert.ToDecimal(txtSellingPrice.Text);
             BatchNo = txtBatchNo.Text;
             ExpiryDate = txtExpiryDate.Text;
+        }
+        #endregion
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date 29 sept 2015
+         * Purpose :- disable fields when edit
+         */
+        #region--------------------------------------adddisable()-----------------------------------
+        private void AddDisable()
+        {
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "MyFunction()", true);
+            //ddlWarehouse.Enabled = false;
+
+            //ddlWarehouse.CssClass = "disabled";
+            //ddlWarehouse.CssClass = "readonly";
+            //txtPurchaseDate.ReadOnly = true;
+            ddlWarehouse.Enabled = false;
+            ddlSupplier.Enabled = false;
+            txtSupName.Text = ddlSupplier.SelectedItem.Text;
+            txtSupName.ReadOnly = true;
+            txtWareName.Text = ddlWarehouse.SelectedItem.Text;
+            txtWareName.ReadOnly = true;
+            txtPurchaseDate.ReadOnly = true;
+            txtReceiptNo.ReadOnly = true;
+            txtModeOfPayment.ReadOnly = true;
+            ScriptManager.RegisterStartupScript(this, GetType(), "myFunction", "myFunction();", true); 
+        }
+        #endregion
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date 29 sept 2015
+         * Purpose :- ddlProductSelectedIndexChanged
+         */
+
+        #region-------------------------------ddlProductSelectedIndexChanged-----------------------
+        protected void ddlProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BindProductPrice();
+
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #endregion
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date 29 Sept 2015
+         * Purpose :- Bind product Price
+         */
+        #region-----------------------------------BindProductPrice()--------------------------------
+        private void BindProductPrice()
+        {
+            DataSet dsProductPrice = objProducts.GetProductPrice(Convert.ToInt32(ddlProduct.SelectedValue));
+
+            if (dsProductPrice.Tables.Count != 0)
+            {
+                if (dsProductPrice.Tables[0].Rows.Count != 0)
+                {
+                    txtPurchasePrice.Text = dsProductPrice.Tables[0].Rows[0]["PurchasePrice"].ToString();
+                    txtSellingPrice.Text = dsProductPrice.Tables[0].Rows[0]["SallingPrice"].ToString();
+                }
+                else
+                {
+                    txtSellingPrice.Text = "0";
+                    txtPurchasePrice.Text = "0";
+                }
+            }
+        }
+        #endregion
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date 29 Sept 2015
+         * Purpose :- Save Temp purchase Product()
+         */
+        #region-------------------------SaveTempPurchaseProduct()---------------------------
+        private void SaveTempPurchaseProduct()
+        {
+            string Result = objPurchaseProduct.SaveTempPurchaseDetail(Convert.ToInt32(ViewState["PPID"]), ProductID, PurchaseQuantity, PurchasePrice, SellingPrice, BatchNo, ExpiryDate);
+            if (Result == "1")
+            {
+            }
+            else
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = "Error to Save Purchase Product Details.";
+ 
+            }
+ 
+        }
+        #endregion
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date 29 Sept 2015
+         * Purpose :- BindGridView for Purchase Product
+         */
+        #region--------------------------------------BindGridView()-------------------------------
+        private void BindGridView()
+        {
+            DataSet dsGetProduct = objPurchaseProduct.GetTempPurchaseDetail(Convert.ToInt32(ViewState["PPID"]));
+
+            if (dsGetProduct.Tables.Count != 0)
+            {
+                if (dsGetProduct.Tables[0].Rows.Count != 0)
+                {
+                    grvPurhaseProduct.DataSource = dsGetProduct;
+                    grvPurhaseProduct.DataBind();
+                }
+                else
+                { 
+                    grvPurhaseProduct.DataSource = null;
+                    grvPurhaseProduct.DataBind();
+                }
+            }
+            
+        }
+        #endregion
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date 29 Sept 2015
+         * Purpose :- Clear fiels on click on add
+         */
+        #region---------------------------------AddClear()-----------------------------------
+        private void AddClear()
+        {
+            txtBatchNo.Text = "";
+            ddlProductType.SelectedValue = "-1";
+            ddlProduct.SelectedValue = "-1";
+            txtPurchasePrice.Text = "";
+            txtSellingPrice.Text = "";
+            txtQuantity.Text = "";
+            txtExpiryDate.Text = "";
         }
         #endregion
     }
