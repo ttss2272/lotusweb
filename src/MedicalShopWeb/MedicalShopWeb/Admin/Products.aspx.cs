@@ -140,7 +140,7 @@ namespace MedicalShopWeb
         #region------------------------------SetValues()---------------------------------------
         private void setValues()
         {
-            DataSet dsProductValues = objProducts.GetProductDetail(Convert.ToInt32(Request.QueryString["ProductID"]),0);
+            DataSet dsProductValues = objProducts.GetProductOnProductType(Convert.ToInt32(Request.QueryString["ProductID"]), 0);
             if (dsProductValues.Tables.Count != 0)
             {
                 if (dsProductValues.Tables[0].Rows.Count != 0)
