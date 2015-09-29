@@ -36,5 +36,10 @@ namespace BusinessLayer
             DataSet dsSupplier = objSupplier.GetSupplierDetail(SupplierID);
             return dsSupplier;
         }
+
+        public DataSet BindSupplierName(int p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

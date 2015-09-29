@@ -162,7 +162,7 @@
                                             </div>
                                             <div class="col-sm-8">
                                                 <asp:TextBox ID="txtPaidAmo" runat="server" class="form-control" placeholder="Enter Paid Amount"
-                                                    required>
+                                                    required ontextchanged="txtPaidAmo_TextChanged">
            
                                                 </asp:TextBox>
                                             </div>
@@ -178,7 +178,7 @@
                                             </div>
                                             <div class="col-sm-8">
                                                 <asp:TextBox ID="txtRemBal" runat="server" class="form-control" placeholder="Remaining Balance"
-                                                    required ReadOnly="True" ontextchanged="txtRemBal_TextChanged">
+                                                    required ReadOnly="True">
            
                                                 </asp:TextBox>
                                             </div>

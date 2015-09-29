@@ -36,7 +36,7 @@ namespace MedicalShopWeb.Admin
             }
         }
         /*
-         Creates by Sameer   Date:-29/09/2015
+         Created by Sameer   Date:-29/09/2015
          * Bind Sale Invoice Number to dropdownlist
          */
         #region----------BindSaleInvoiceNo-------------------
@@ -58,7 +58,7 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
         /*
-         Creates by Sameer   Date:-29/09/2015
+         Created by Sameer   Date:-29/09/2015
          * Bind Medical shop name to dropdownlist
          */
         #region----------------BindMedicalShopName----------------
@@ -80,7 +80,7 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
         /*
-         Creates by Sameer   Date:-29/09/2015
+         Created by Sameer   Date:-29/09/2015
          * Bind Total Amount,Current Balance and Remening Balance to Text Box
          */
         protected void ddlSaleInvoiceNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,7 +97,7 @@ namespace MedicalShopWeb.Admin
             }
         }
         /*
-        Creates by Sameer   Date:-29/09/2015
+        Created by Sameer   Date:-29/09/2015
         * Bind Total Amount to Text Box
         */
         #region---------------------BindTotalAmount----------------------
@@ -119,41 +119,8 @@ namespace MedicalShopWeb.Admin
             }
         }
         #endregion
-        /*
-         Creates by Sameer   Date:-29/09/2015
-         * Bind Get Reamaing balance
-         */
-        #region---------------------GetRemBalanceTextchange--------------------------
-        protected void txtRemBal_TextChanged(object sender, EventArgs e)
-        {
-            if (txtPaidAmo.Text != null)
-            {
-                try
-                {
-                    float CurrentBal = (float)Convert.ToDecimal(txtCurrentBal.Text.ToString());
-                    float paidAmo = (float)Convert.ToDecimal(txtPaidAmo.Text.ToString());
-                    double RemainningBalance = CurrentBal - paidAmo;
-                    if (RemainningBalance < 0)
-                    {
-                        lblMessage.ForeColor = System.Drawing.Color.Red;
-                        lblMessage.Text = "Paid Amount Must Be Same or less than Remaining Balance";
-                        txtRemBal.Text = "";
-                        txtPaidAmo.Text = "";
-                    }
-                    else
-                    {
-                        txtRemBal.Text = Convert.ToString(CurrentBal - paidAmo);
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                    lblMessage.ForeColor = System.Drawing.Color.Red;
-                    lblMessage.Text = ex.Message.ToString();
-                }
-            }
-        }
-        #endregion
+       
+       
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -199,6 +166,41 @@ namespace MedicalShopWeb.Admin
             MedicalPaymentNo = txtInvoiceNo.Text;
             BalanceAmount = Convert.ToDouble(txtRemBal.Text);
             Coment = txtComment.Text;
+        }
+        #endregion
+        /*
+         Created by Sameer   Date:-29/09/2015
+         * Bind Get Reamaing balance
+         */
+        #region---------------------GetPaidAmtTextchange--------------------------
+          protected void txtPaidAmo_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPaidAmo.Text != null)
+            {
+                try
+                {
+                    float CurrentBal = (float)Convert.ToDecimal(txtCurrentBal.Text.ToString());
+                    float paidAmo = (float)Convert.ToDecimal(txtPaidAmo.Text.ToString());
+                    double RemainningBalance = CurrentBal - paidAmo;
+                    if (RemainningBalance < 0)
+                    {
+                        lblMessage.ForeColor = System.Drawing.Color.Red;
+                        lblMessage.Text = "Paid Amount Must Be Same or less than Remaining Balance";
+                        txtRemBal.Text = "";
+                        txtPaidAmo.Text = "";
+                    }
+                    else
+                    {
+                        txtRemBal.Text = Convert.ToString(CurrentBal - paidAmo);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    lblMessage.Text = ex.Message.ToString();
+                }
+            }
         }
         #endregion
     }
