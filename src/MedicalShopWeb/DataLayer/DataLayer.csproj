@@ -45,8 +45,15 @@
     <Compile Include="DBConnection.cs" />
     <Compile Include="DLCity.cs" />
     <Compile Include="DLCountry.cs" />
+    <Compile Include="DLDoctor.cs" />
+    <Compile Include="DLDoctorDetails.cs" />
     <Compile Include="DLMedicalShop.cs" />
+    <Compile Include="DLNewUser.cs" />
+    <Compile Include="DLProducts.cs" />
+    <Compile Include="DLProductType.cs" />
     <Compile Include="DLState.cs" />
+    <Compile Include="DLSupplier.cs" />
+    <Compile Include="DLWarehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
