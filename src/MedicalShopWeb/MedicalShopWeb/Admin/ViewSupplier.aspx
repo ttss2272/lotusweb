@@ -92,7 +92,7 @@ label label-info"></asp:Label></h3>
 
              <asp:TemplateField HeaderText="Delete" HeaderStyle-HorizontalAlign="Center">
                     <ItemTemplate >
-                             <asp:HyperLink ID="HyperLinkDelete" runat="server" Text="Delete" NavigateUrl='<%#String.Format("../Admin/Supplier.aspx?SupplierID={0}&iss=1", DataBinder.Eval(Container.DataItem,"SupplierID") )%>'>
+                             <asp:HyperLink ID="HyperLinkDelete" runat="server" Text="Delete" NavigateUrl='<%#String.Format("../Admin/Supplier.aspx?SupplierID={0}&iss=0", DataBinder.Eval(Container.DataItem,"SupplierID") )%>'>
                               </asp:HyperLink>
                     </ItemTemplate>
              </asp:TemplateField>

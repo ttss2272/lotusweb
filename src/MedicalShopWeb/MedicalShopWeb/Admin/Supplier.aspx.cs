@@ -30,7 +30,7 @@ namespace MedicalShopWeb
                     hdnIsDelete.Value = "0";
                     if (Request.QueryString["SupplierID"] != null)
                     {
-                        setValues(Convert.ToInt32(Request.QueryString["Supplier"]));
+                        setValues(Convert.ToInt32(Request.QueryString["SupplierID"]));
  
                     }
                 }
@@ -171,6 +171,7 @@ namespace MedicalShopWeb
         #region------------------SetParameters-----------------
         private void SetParameters()
         {
+           
             SupID = Convert.ToInt32( hdnSupplierID.Value);
             CompanyName = txtcompanyName.Text;
             SupplierName = txtSupplierName.Text;
