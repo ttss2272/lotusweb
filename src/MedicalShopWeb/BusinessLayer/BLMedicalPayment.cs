@@ -22,9 +22,9 @@ namespace BusinessLayer
             return dsTotalAmt;
         }
 
-        public string SaveMedicalPayment(int SaleTransactionID, double PaidAmount, string PaymentDate, int UpdatedByUserID, string MedicalPaymentNo, double BalanceAmount)
+        public string SaveMedicalPayment(int SaleTransactionID, double PaidAmount, string PaymentDate, int UpdatedByUserID, string MedicalPaymentNo, double BalanceAmount,string coment)
         {
-            string result = objMedicalPayment.SaveMedicalPayment(SaleTransactionID, PaidAmount, PaymentDate, UpdatedByUserID, MedicalPaymentNo, BalanceAmount);
+            string result = objMedicalPayment.SaveMedicalPayment(SaleTransactionID, PaidAmount, PaymentDate, UpdatedByUserID, MedicalPaymentNo, BalanceAmount,coment);
             return result;
         }
     }

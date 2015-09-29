@@ -16,7 +16,7 @@ namespace MedicalShopWeb.Admin
         #region------------------SetVariables-----------------
         int SaleTransactionID, UpdatedByUserID;
         double PaidAmount, BalanceAmount;
-        string PaymentDate, Place, MedicalPaymentNo;
+        string PaymentDate, Coment, MedicalPaymentNo;
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -172,7 +172,19 @@ namespace MedicalShopWeb.Admin
         #region-----------------------SaveMedicalTransction--------------
         private void SaveMedicalTransction()
         {
-            string result = objMedicalPayment.SaveMedicalPayment(SaleTransactionID, PaidAmount, PaymentDate, UpdatedByUserID, MedicalPaymentNo, BalanceAmount);
+            string result = objMedicalPayment.SaveMedicalPayment(SaleTransactionID, PaidAmount, PaymentDate, UpdatedByUserID, MedicalPaymentNo, BalanceAmount,Coment);
+            if (result == "Medical Payment Detail Save Sucessfully")
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Green;
+                lblMessage.Text = result;
+            }
+
+
+            else
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = result;
+            }
         }
         #endregion
         #region-------------SetParaMeters------------------
@@ -186,6 +198,7 @@ namespace MedicalShopWeb.Admin
             //Place = "Place";
             MedicalPaymentNo = txtInvoiceNo.Text;
             BalanceAmount = Convert.ToDouble(txtRemBal.Text);
+            Coment = txtComment.Text;
         }
         #endregion
     }

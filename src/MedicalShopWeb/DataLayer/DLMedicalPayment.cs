@@ -33,7 +33,7 @@ namespace DataLayer
            return dsTotalAmt;
        }
 
-       public string SaveMedicalPayment(int SaleTransactionID, double PaidAmount, string PaymentDate, int UpdatedByUserID, string MedicalPaymentNo, double BalanceAmount)
+       public string SaveMedicalPayment(int SaleTransactionID, double PaidAmount, string PaymentDate, int UpdatedByUserID, string MedicalPaymentNo, double BalanceAmount,string coment)
        {
            string result = null;
            con = conn.GetConnection();
@@ -45,7 +45,7 @@ namespace DataLayer
            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
            cmd.Parameters.AddWithValue("@MedicalPaymentNo", MedicalPaymentNo);
            cmd.Parameters.AddWithValue("@BalanceAmount", BalanceAmount);
-           
+           cmd.Parameters.AddWithValue("@Comment", coment);
            con.Open();
            result = cmd.ExecuteScalar().ToString();
            con.Close();
