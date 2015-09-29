@@ -94,7 +94,8 @@
                                         </asp:Label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <asp:DropDownList ID="ddlMedical" runat="server" class="form-control">
+                                        <asp:DropDownList ID="ddlMedical" runat="server" class="form-control" 
+                                            onselectedindexchanged="ddlMedical_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
