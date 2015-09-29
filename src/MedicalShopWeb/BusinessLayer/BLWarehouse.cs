@@ -27,5 +27,13 @@ namespace BusinessLayer
              DataSet dsWarehouse = objWarehouse.BindWarehouse(WarehouseID,IsActive);
              return dsWarehouse;
          }
+
+
+         //get Details form for edit
+         public DataSet GetWarehouseDetail(int WarehouseID)
+         {
+             DataSet dsWarehouse = objWarehouse.GetProductDetail(WarehouseID);
+             return dsWarehouse;
+         }
     }
 }
