@@ -47,25 +47,7 @@ namespace DataLayer
             daGetProductData.Fill(dsProduct);
             con.Close();
             return dsProduct;
-        }        
-
-
-        //public DataSet GetProductType()bbbb
-        //{
-        //    DataSet dsProductType = new DataSet();
-
-        //    con = conn.GetConnection();
-        //    SqlCommand cmd = new SqlCommand("ProductType_USP", con);
-        //    cmd.CommandType = CommandType.StoredProcedure;
-
-        //    con.Open();
-
-        //    SqlDataAdapter daGetProductData = new SqlDataAdapter(cmd);
-        //    dsProductType = new DataSet();
-        //    daGetProductData.Fill(dsProductType);
-        //    con.Close();
-        //    return dsProductType;
-        //}
+        }               
 
         public DataSet BindProductOnProductType(int ProductTypeID)
         {
@@ -101,6 +83,26 @@ namespace DataLayer
             SqlDataAdapter daGetMedicalShopData = new SqlDataAdapter(cmd);
             dsProduct = new DataSet();
             daGetMedicalShopData.Fill(dsProduct);
+            con.Close();
+            return dsProduct;
+        }
+
+        public DataSet GetProductDetail(int ProductID, int ProductTypeID)
+        {
+            DataSet dsProduct = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetProductAllDetail_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ProductID", ProductID);
+            cmd.Parameters.AddWithValue("@ProductTypeID", ProductTypeID);
+
+
+            con.Open();
+
+            SqlDataAdapter daGetProductData = new SqlDataAdapter(cmd);
+            dsProduct = new DataSet();
+            daGetProductData.Fill(dsProduct);
             con.Close();
             return dsProduct;
         }
