@@ -41,10 +41,9 @@ namespace BusinessLayer
             return dsProduct;
         }
 
-        //get Details form for edit
-        public DataSet GetProductDetail(int ProductID, int ProductTypeID)
+        public DataSet GetProductPrice(int ProductID)
         {
-            DataSet dsProduct = objProducts.GetProductDetail(ProductID, ProductTypeID);
+            DataSet dsProduct = objProducts.GetProductPrice(ProductID);
             return dsProduct;
         }
     }
