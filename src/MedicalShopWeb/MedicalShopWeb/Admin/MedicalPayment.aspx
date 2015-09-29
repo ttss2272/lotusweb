@@ -101,7 +101,9 @@
                                                 </asp:Label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <asp:DropDownList ID="ddlSaleInvoiceNo" runat="server" class="form-control" AutoPostBack="True">
+                                                <asp:DropDownList ID="ddlSaleInvoiceNo" runat="server" class="form-control" 
+                                                    AutoPostBack="True" 
+                                                    onselectedindexchanged="ddlSaleInvoiceNo_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
@@ -176,7 +178,7 @@
                                             </div>
                                             <div class="col-sm-8">
                                                 <asp:TextBox ID="txtRemBal" runat="server" class="form-control" placeholder="Remaining Balance"
-                                                    required ReadOnly="True">
+                                                    required ReadOnly="True" ontextchanged="txtRemBal_TextChanged">
            
                                                 </asp:TextBox>
                                             </div>
@@ -209,7 +211,8 @@
                         <!--Start Seven Row-->
                         <div class="row form-group" align="center">
                             <div class="col-md-12">
-                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" ValidationGroup="SaveMedicalPaymentDetails" />
+                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
+                                    ValidationGroup="SaveMedicalPaymentDetails" onclick="btnSave_Click" />
                                 <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" ValidationGroup="SaveMedicalPaymentDetails" />
                                 <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" ID="validationSummary" />
                             </div>

@@ -9,6 +9,6 @@ namespace BusinessLayer
 {
     public class BLSaleTransaction
     {
-        DLSaleTransaction objSaleTransaction = new DLSaleTransaction();
+        
     }
 }
