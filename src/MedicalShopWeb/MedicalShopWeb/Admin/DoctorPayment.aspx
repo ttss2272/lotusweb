@@ -130,7 +130,7 @@
                             <!--End of third Row-->
                         </div>
                         <!--Start fourth Row-->
-                        <div class="row form-group">
+                        <div class="row form-group" align ="center">
                             <div class="col-md-12">
                                 <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" ValidationGroup="SaveDoctorPayment" />
                                 <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" ValidationGroup="SaveDoctorPayment" />
