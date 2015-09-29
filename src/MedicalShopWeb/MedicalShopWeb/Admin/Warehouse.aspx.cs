@@ -36,6 +36,14 @@ namespace MedicalShopWeb.Admin
                 if (!IsPostBack)
                 {
                     BindGridview();
+                    if (Request.QueryString["WarehouseID"] != null)
+                    {
+                        if (Request.QueryString["iss"] == "1")
+                        {
+                            btnSave.Text = "Delete";
+                        }
+                        setValues();
+                    }
                 }
 
             }
@@ -45,6 +53,28 @@ namespace MedicalShopWeb.Admin
                 lblMessage.Text = ex.Message.ToString();
             }
 
+        }
+        #endregion
+
+        #region------------------------------SetValues()---------------------------------------
+        private void setValues()
+        {
+            DataSet dsWarehouseValues = objWarehouse.GetWarehouseDetail(Convert.ToInt32(Request.QueryString["WarehouseID"]));
+            if (dsWarehouseValues.Tables.Count != 0)
+            {
+                if (dsWarehouseValues.Tables[0].Rows.Count != 0)
+                {
+                    lblPageHeading.Text = "Edit :-" + dsWarehouseValues.Tables[0].Rows[0]["WarehouseName"].ToString();
+                    txtWarehouseName.Text = dsWarehouseValues.Tables[0].Rows[0]["WarehouseName"].ToString();
+                    txtLocation.Text = dsWarehouseValues.Tables[0].Rows[0]["WarehouseLocation"].ToString();
+                }
+                else
+                {
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    lblMessage.Text = "Information Not Available";
+
+                }
+            }
         }
         #endregion
 
@@ -82,7 +112,15 @@ namespace MedicalShopWeb.Admin
         #region----------------------------SetParameters()------------------------------------
         private void SetParameters()
         {
-            WarehouseID = 0;
+            if (Request.QueryString["WarehouseID"] != null)
+            {
+                WarehouseID = Convert.ToInt32(Request.QueryString["WarehouseID"]);
+            }
+            else
+            {
+                WarehouseID = 0;
+            }
+            
             WarehouseName = txtWarehouseName.Text;
             Location = txtLocation.Text;
             UpdatedByUserID = 1;

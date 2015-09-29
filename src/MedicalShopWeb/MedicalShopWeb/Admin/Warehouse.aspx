@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterPage.Master" AutoEventWireup="true" CodeBehind="Warehouse.aspx.cs" Inherits="MedicalShopWeb.Admin.Warehouse" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CntPlcLeft" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CntPlcCenter" runat="server">
+<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
 <div class="form">
 <div class="row" align="center">
  <div class="col-md-12">
@@ -17,7 +19,9 @@
     <div class="panel-header" align="left">
     <div class="col-xs-12">
         
-      <h3>  <asp:Label ID="lblPageHeading" runat="server" Text="Warehouse" class="control-label label label-info"></asp:Label></h3></div></div>
+      <h3>  <asp:Label ID="lblPageHeading" runat="server" Text="Warehouse" class="control-label label label-info"></asp:Label></h3>
+      </div>
+      </div>
     <div class="panel-body">
     <div class="col-md-4"></div>
  <div class="col-md-4">  
@@ -67,8 +71,12 @@
         </div>
      </div>
      <!--End of Third Row-->
+    
      <!--Start Grid View-->
-
+   
+      <asp:UpdatePanel runat ="server" ID="GridUpdate">
+      <ContentTemplate>
+   <div class="panel-body">
      <div class="row">
         <asp:GridView ID="grvWarehouse" runat="server" AutoGenerateColumns="false" class="table" HeaderStyle-BackColor="#4596f1"
          HeaderStyle-ForeColor="White"  BorderColor="White"  HeaderStyle-BorderColor="#4596f1" AllowPaging="true" ><%--onpageindexchanging="grvWarehouse_PageIndexChanging"--%>
@@ -85,16 +93,18 @@
                 <ItemTemplate><%#Eval("Location")%></ItemTemplate>
             </asp:TemplateField>
 
-            <%--<asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
+            <asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
                     <ItemTemplate >
-                             <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit" NavigateUrl='<%#String.Format("../Admin/Country.aspx?CountryId={0}", DataBinder.Eval(Container.DataItem,"CountryID") )%>'>
+                             <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit" NavigateUrl='<%#String.Format("Warehouse.aspx?WarehouseID={0}&iss=0", DataBinder.Eval(Container.DataItem,"WarehouseID") )%>'>
                               </asp:HyperLink>
                     </ItemTemplate>
-             </asp:TemplateField>--%>
+             </asp:TemplateField>
          </Columns>
         </asp:GridView>
      </div>
-
+     </div>
+      </ContentTemplate>
+      </asp:UpdatePanel>
      <!--End Grid View-->
      </div>
         
