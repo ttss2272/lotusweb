@@ -211,6 +211,8 @@
                 <div class="panel-footer" align="left">
                     <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
                     <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields"></asp:Label>
+                     <asp:HiddenField ID="hdnProductID" runat="server" />
+                <asp:HiddenField ID="hdnIsDelete" runat="server" />
                 </div>
             </div>
         </div>

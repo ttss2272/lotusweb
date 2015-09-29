@@ -25,6 +25,14 @@ namespace MedicalShopWeb
                 if (!IsPostBack)
                 {
                     BindProductType();
+                    if (Request.QueryString["ProductID"] != null)
+                    {
+                        if (Request.QueryString["iss"] == "1")
+                        {
+                            btnSave.Text = "Delete";
+                        }
+                        setValues();
+                    }
                 }
             }
             catch (Exception ex)
@@ -100,7 +108,14 @@ namespace MedicalShopWeb
         #region--------------SetParameter------------
         private void SetParameters()
         {
-            ProductID = 0;
+            if (Request.QueryString["ProductID"] != null)
+            {
+                ProductID = Convert.ToInt32(Request.QueryString["ProductID"]);
+            }
+            else
+            {
+                ProductID = 0;
+            }
             ProductTypeID = Convert.ToInt32(ddproductType.SelectedValue.ToString());
             ProductName = txtProductName.Text;
             code = txtCode.Text;
@@ -119,6 +134,31 @@ namespace MedicalShopWeb
             //txtbatch.Text = "";
             txtPurchasePrice.Text = "";
             txtSalePrice.Text="";
+        }
+        #endregion
+
+        #region------------------------------SetValues()---------------------------------------
+        private void setValues()
+        {
+            DataSet dsProductValues = objProducts.GetProductDetail(Convert.ToInt32(Request.QueryString["ProductID"]),0);
+            if (dsProductValues.Tables.Count != 0)
+            {
+                if (dsProductValues.Tables[0].Rows.Count != 0)
+                {
+                    lblPageHeading.Text = "Edit :-" + dsProductValues.Tables[0].Rows[0]["ProductName"].ToString();
+                    ddproductType.SelectedValue = dsProductValues.Tables[0].Rows[0]["ProductTypeID"].ToString();
+                    txtProductName.Text = dsProductValues.Tables[0].Rows[0]["ProductName"].ToString();
+                    txtCode.Text = dsProductValues.Tables[0].Rows[0]["ProductCode"].ToString();
+                    txtPurchasePrice.Text = dsProductValues.Tables[0].Rows[0]["PurchasePrice"].ToString();
+                    txtSalePrice.Text = dsProductValues.Tables[0].Rows[0]["SallingPrice"].ToString();                                                                         
+                }
+                else
+                {
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    lblMessage.Text = "Information Not Available";
+
+                }
+            }
         }
         #endregion
     }
