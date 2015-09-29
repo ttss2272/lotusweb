@@ -73,5 +73,23 @@ namespace DataLayer
             con.Close();
             return dsWarehouse;
         }
+
+        public DataSet GetProductDetail(int WarehouseID)
+        {
+            DataSet dsWarehouse = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetWarehouseDetail_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@WarehouseID", WarehouseID);
+
+            con.Open();
+
+            SqlDataAdapter daGetWarehouseData = new SqlDataAdapter(cmd);
+            dsWarehouse = new DataSet();
+            daGetWarehouseData.Fill(dsWarehouse);
+            con.Close();
+            return dsWarehouse;
+        }
     }
 }
