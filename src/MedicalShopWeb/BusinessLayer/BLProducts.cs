@@ -40,5 +40,12 @@ namespace BusinessLayer
             DataSet dsProduct = objProducts.GetProductOnProductType(ProductID, ProductTypeID);
             return dsProduct;
         }
+
+        //get Details form for edit
+        public DataSet GetProductDetail(int ProductID, int ProductTypeID)
+        {
+            DataSet dsProduct = objProducts.GetProductDetail(ProductID, ProductTypeID);
+            return dsProduct;
+        }
     }
 }
