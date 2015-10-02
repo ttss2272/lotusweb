@@ -118,7 +118,8 @@
                                                 </asp:Label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <asp:DropDownList ID="ddlProduct" runat="server" class="form-control" AutoPostBack="true">
+                                                <asp:DropDownList ID="ddlProduct" runat="server" class="form-control" 
+                                                    AutoPostBack="true" onselectedindexchanged="ddlProduct_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>

@@ -27,5 +27,7 @@ namespace BusinessLayer
             DataSet dsTempPurchaseDetail = objPurchaseProduct.GetTempPurchaseDetail(PurchaseProductID);
             return dsTempPurchaseDetail;
         }
+
+       
     }
 }

@@ -17,6 +17,7 @@ namespace MedicalShopWeb.Admin
         BLMedicalShop objMedicalShop = new BLMedicalShop();
         BLProducts objProducts = new BLProducts();
         BLWarehouseStock objWarehouseStock = new BLWarehouseStock();
+        BLPurchaseProduct objPurchaseProduct = new BLPurchaseProduct();
         #endregion
 
         #region-------------------------------------Page_Load-----------------------------
@@ -24,7 +25,12 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
-
+                if (!IsPostBack)
+                {
+                    BindWarehouse();
+                    BindMedicalShop();
+                    BindProduct();
+                }
             }
             catch (Exception ex)
             {
@@ -100,7 +106,7 @@ namespace MedicalShopWeb.Admin
         * Purpose :-  BindMedicalShop() 
         */
         #region-------------------------------BindMedicalShop()-----------------------
-        private void BindMedicalShop1()
+        private void BindMedicalShop()
         {
             DataSet dsMedicalShop = objMedicalShop.BindMedicalShop(0);
 
@@ -164,22 +170,62 @@ namespace MedicalShopWeb.Admin
         private void GetProductStock()
         {
             DataSet dsWaehouseStock = objWarehouseStock.GetProductStock(Convert.ToInt32(ddlWarehouse.SelectedValue), Convert.ToInt32(ddlProduct.SelectedValue));
-
+            DataSet dsSellingPrice = objProducts.GetProductPrice(Convert.ToInt32(ddlProduct.SelectedValue));
             if (dsWaehouseStock.Tables.Count != 0)
             {
                 if (dsWaehouseStock.Tables[0].Rows.Count != 0)
                 {
                     txtCurrentStock.Text = dsWaehouseStock.Tables[0].Rows[0]["Stock"].ToString();
+                    txtSalePrice.Text = dsSellingPrice.Tables[0].Rows[0]["SellingPrice"].ToString();
+                    txtTotal.Text = "";
                 }
                 else
                 {
-
+                    txtCurrentStock.Text = "0";
                 }
             }
         }
         #endregion
+        /*
+         * Created By:- Sameer Shinde
+         * Created Date:-02/10/2015
+         * Purpose:-Bind Product to dropdoown
+         */
+        #region--------------------------BindProduct()---------------------------------------------
+        private void BindProduct()
+        {
+            DataSet dsProduct =objProducts.BindProduct(0);
+            ddlProduct.Items.Clear();
+            if (dsProduct.Tables.Count != 0)
+            {
+                if (dsProduct.Tables[0].Rows.Count != 0)
+                {
+                    ddlProduct.DataTextField = "ProductName";
+                    ddlProduct.DataValueField = "ProductID";
+                    ddlProduct.DataSource = dsProduct;
+                    ddlProduct.DataBind();
+                }
+                else
+                {
+                    ddlProduct.DataSource = null;
+                    ddlProduct.DataBind();
+                }
+                ddlProduct.Items.Insert(0, new ListItem("Select Product", "-1"));
+            }
+        }
+        #endregion
 
-        
+        /*
+         * Created By:- Sameer Shinde
+         * Created Date:-02/10/2015
+         * Purpose:-Get Product Stock 
+         */
+        #region----------------------------------ProductSelectedIndexChange-------------------
+        protected void ddlProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetProductStock();
+        }
+        #endregion
 
     }
 }
