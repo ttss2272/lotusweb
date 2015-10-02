@@ -18,6 +18,9 @@ namespace MedicalShopWeb.Admin
         BLProducts objProducts = new BLProducts();
         BLWarehouseStock objWarehouseStock = new BLWarehouseStock();
         BLPurchaseProduct objPurchaseProduct = new BLPurchaseProduct();
+        int SaleTransctionNo, UpdatedByUSerID, IsActive, ProductID;
+        string date, warehouse, medical, Product, CurrentStock;
+        decimal SalePrice, Quantity;
         #endregion
 
         #region-------------------------------------Page_Load-----------------------------
@@ -30,6 +33,11 @@ namespace MedicalShopWeb.Admin
                     BindWarehouse();
                     BindMedicalShop();
                     BindProduct();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "myFunction", "myFunction2();", true);
+                    if (ViewState["SPID"] == null)
+                    {
+                        btnSave.CssClass = "btn btn-success btn-lg disabled";
+                    }
                 }
             }
             catch (Exception ex)
@@ -39,13 +47,28 @@ namespace MedicalShopWeb.Admin
             }
         }
         #endregion
-
+        /*
+         * Created By :- Sameer Shinde
+         * Created Date:- 02 Oct 2015
+         * Purpose :-  btnAdd_Click
+         */
         #region---------------------------------btnAdd_Click1---------------------------------
         protected void btnAdd_Click1(object sender, EventArgs e)
         {
             try
             {
-
+                if (ViewState["SPID"] == null)
+                {
+                    AddDisable();
+                    SetAddParameters();
+                    ViewState["SPID"] = objSaleTransaction.SaveSaleProduct(SaleTransctionNo,date,warehouse,medical,Product,CurrentStock,SalePrice,Quantity,UpdatedByUSerID,IsActive);
+                }
+                if (ViewState["SPID"] != null)
+                {
+                    btnSave.CssClass = "btn btn-success btn-lg";
+                    SetProductDetail();
+                    SaveTempSaleProduct();
+                }
             }
             catch (Exception ex)
             {
@@ -53,6 +76,111 @@ namespace MedicalShopWeb.Admin
                 lblMessage.Text = ex.Message.ToString();
             }
         }
+        /*
+         * Created By :- Sameer Shinde
+         * Created Date:- 02 Oct 2015
+         * Purpose :-  Save Temporarly Sale Product
+         */
+        
+        #region-------------------------------SaveTempSaleProduct------------------------------
+        private void SaveTempSaleProduct()
+        {
+            try
+            {
+                string Result = objSaleTransaction.SaveTempSaleDetail(Convert.ToInt32(ViewState["SPID"]), ProductID, Quantity, SalePrice);
+                if (Result == "1")
+                {
+                }
+                else
+                {
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    lblMessage.Text = "Error to Save Sale Product Details.";
+
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+            finally
+            {
+                BindGridView();
+                AddClear();
+
+            }
+ 
+        }
+        #region----------------------------------BindGridView-------------------------------------
+        private void BindGridView()
+        {
+            DataSet dsGetProduct =objSaleTransaction.GetTempSaleDetail(Convert.ToInt32(ViewState["SPID"]));
+
+            if (dsGetProduct.Tables.Count != 0)
+            {
+                if (dsGetProduct.Tables[0].Rows.Count != 0)
+                {
+                   grvSaleProduct.DataSource = dsGetProduct;
+                   grvSaleProduct.DataBind();
+                }
+                else
+                {
+                    grvSaleProduct.DataSource = null;
+                    grvSaleProduct.DataBind();
+                }
+            }
+        }
+        #endregion
+        #endregion
+        /*
+         * Created By :- Sameer Shinde
+         * Created Date:- 02 Oct 2015
+         * Purpose :-  Set Product Details
+         */
+        
+        #region------------------------------SetProductDetail()--------------------------------------
+        private void SetProductDetail()
+        {
+            ProductID = Convert.ToInt32(ddlProduct.SelectedValue);
+            Quantity =Convert.ToDecimal(txtQuantity.Text);
+            SalePrice = Convert.ToDecimal(txtSalePrice.Text);
+            
+        }
+        #endregion
+        /*
+         * Created By :- Sameer Shinde
+         * Created Date:- 02 Oct 2015
+         * Purpose :-  Add Parameter
+         */
+         #region-------------------------SetAddParaMeters------------------------
+        private void SetAddParameters()
+        {
+            SaleTransctionNo = Convert.ToInt32(txtSaleTransactionNo.Text);
+            date = txtSaleDate.Text;
+            warehouse = ddlWarehouse.SelectedValue;
+            medical = ddlMedical.SelectedValue;
+            Product = ddlProduct.SelectedValue;
+            CurrentStock = txtCurrentStock.Text;
+            SalePrice = txtSalePrice.Text;
+            Quantity = txtQuantity.Text;
+            UpdatedByUSerID = 1;
+            IsActive = 1;
+        }
+        #endregion
+        /*
+         * Created By :- Sameer Shinde
+         * Created Date:- 02 Oct 2015
+         * Purpose :-  Add Disable
+         */
+        #region----------------------------------AddDisable----------------------------
+        private void AddDisable()
+        {
+            //ddlWarehouse.Enabled = false;
+            ddlMedical.Enabled = false;
+            //Ask to pritesh which field disable
+            ScriptManager.RegisterStartupScript(this, GetType(), "myFunction", "myFunction();", true); 
+        }
+        #endregion
         #endregion
 
         #region---------------------------------btnAdd_Click---------------------------------
@@ -224,6 +352,19 @@ namespace MedicalShopWeb.Admin
         protected void ddlProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetProductStock();
+        }
+        #endregion
+
+        #region---------------------------------AddClear()-----------------------------------
+        private void AddClear()
+        {
+           ddlWarehouse.SelectedValue= "-1";
+           ddlMedical.SelectedValue = "-1";
+           ddlProduct.SelectedValue = "-1";
+           txtCurrentStock.Text = "";
+           txtSalePrice.Text = "";
+           txtQuantity.Text = "";
+           
         }
         #endregion
 

@@ -5,6 +5,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CntPlcLeft" runat="server">
+<script type="text/javascript">
+    function myFunction() {
+
+        {
+            document.getElementById('1').style.visibility = 'hidden';
+            document.getElementById('Div1').style.visibility = 'visible';
+
+        }
+
+    }
+    function myFunction2() {
+        document.getElementById('1').style.visibility = 'visible';
+        document.getElementById('Div1').style.visibility = 'hidden';
+
+    }
+    </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CntPlcCenter" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManagerPurchaseProduct" runat="server">
@@ -199,7 +215,7 @@
                         <div class="col-sm-1">
                         </div>
                         <div class="col-sm-10">
-                            <asp:GridView ID="grvPurhaseProduct" runat="server" AutoGenerateColumns="false" class="table"
+                            <asp:GridView ID="grvSaleProduct" runat="server" AutoGenerateColumns="false" class="table"
                                 HeaderStyle-BackColor="#4596f1" HeaderStyle-ForeColor="White" BorderColor="White"
                                 HeaderStyle-BorderColor="#4596f1" AllowPaging="true">
                                 <%--onpageindexchanging="grvCountry_PageIndexChanging"--%>
