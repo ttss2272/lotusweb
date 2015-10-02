@@ -490,6 +490,24 @@ namespace MedicalShopWeb.Admin {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtenderExpiryDate;
         
         /// <summary>
+        /// lblTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotal;
+        
+        /// <summary>
+        /// txtTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTotal;
+        
+        /// <summary>
         /// btnAdd control.
         /// </summary>
         /// <remarks>

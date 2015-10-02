@@ -329,7 +329,8 @@
             
             </div>
         <div class="col-sm-8">
-            <asp:TextBox ID="txtQuantity" runat="server" class="form-control" placeholder="Quantity" required></asp:TextBox>
+            <asp:TextBox ID="txtQuantity" runat="server" class="form-control" 
+                placeholder="Quantity" required ontextchanged="txtQuantity_TextChanged"></asp:TextBox>
      </div> 
          </div>
          </div>
@@ -359,9 +360,28 @@
       </div>
        <!--End of Sixth Row-->
 
-       <!--Start Seventh Row-->
+        <!--Start Seventh Row-->
+       <div class="row">
+    <!--Start First Column-->
+         <div class="col-sm-6">
+         <div class="row form-group">
+        <div class="col-sm-4">
+
+    
+            <asp:Label ID="lblTotal" runat="server" Text="Total" class="control-label">
+           
+            </asp:Label>
+            
+            </div>
+        <div class="col-sm-8">
+            <asp:TextBox ID="txtTotal" runat="server" class="form-control" ReadOnly ="true" placeholder="Total" required></asp:TextBox>
+     </div> 
+         </div>
+         </div>
+
+       <!--Start Eighth Row-->
        <div class="row form-group" align="center">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <asp:Button ID="btnAdd" runat="server" Text="Add" class="btn btn-lg btn-primary" 
                  ValidationGroup="SavePurchaseProduct" onclick="btnAdd_Click"/>
                  

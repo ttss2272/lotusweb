@@ -23,7 +23,8 @@ namespace MedicalShopWeb.Admin
         BLSupplier objSupplier = new BLSupplier();
         BLPurchaseProduct objPurchaseProduct = new BLPurchaseProduct();
 
-        int PurchaseProductID, WarehouseID, SupplierID, ProductTypID, ProductID, IsActive, NewPPID = 0, UpdatedByUserID;
+        
+        int PurchaseProductID, WarehouseID, SupplierID, ProductTypID, ProductID, IsActive, NewPPID = 0, UpdatedByUserID,rst;
             string PurchaseDate,ReceiptNo,ModeOfPayment,BatchNo,ExpiryDate;
             decimal PurchasePrice, SellingPrice, PurchaseQuantity;
         #endregion
@@ -79,6 +80,7 @@ namespace MedicalShopWeb.Admin
                     btnSave.CssClass = "btn btn-success btn-lg";
                         SetProductDetail();
                     SaveTempPurchaseProduct();
+                   
                 }
                 else
                 {
@@ -310,6 +312,16 @@ namespace MedicalShopWeb.Admin
         #region------------------------------------------SetSaveParameters()-----------------------------------
         private void SetSaveParameters()
         {
+            int PurchaseTransactionDetailID = 0;
+            int PurchaseTransactionID = rst;
+            int ProductID = Convert.ToInt32(ddlProduct.SelectedValue);
+            double Quantity = Convert.ToDouble(txtQuantity.Text);
+            double PurchaseRate = Convert.ToDouble(txtPurchasePrice.Text);
+            string BatchNo = txtBatchNo.Text;            
+            string ExpiryDate = Convert.ToString(txtExpiryDate.Text);
+            double SellingPrice = Convert.ToDouble(txtSellingPrice.Text);
+            int UpdatedByUserID = 1;
+            IsActive = 1;
         }
         #endregion
 
@@ -327,6 +339,14 @@ namespace MedicalShopWeb.Admin
             SellingPrice = Convert.ToDecimal(txtSellingPrice.Text);
             BatchNo = txtBatchNo.Text;
             ExpiryDate = txtExpiryDate.Text;
+        }
+        #endregion
+
+        #region----------------------------------------SetSaveProductDetail()-------------------------------------
+        private void SetSaveProductDetail()
+        {
+            double BalanceAmount = Convert.ToDouble(txtTotal.Text);
+            int UpdatedByUserID = 1;
         }
         #endregion
 
@@ -425,7 +445,7 @@ namespace MedicalShopWeb.Admin
             }
  
         }
-        #endregion
+        #endregion       
 
         /*
          * Created By:- PriTesh D. Sortee
@@ -471,5 +491,8 @@ namespace MedicalShopWeb.Admin
             txtExpiryDate.Text = "";
         }
         #endregion
+       
+                        
+        }
     }
 }
