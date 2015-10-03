@@ -15,7 +15,7 @@ namespace DataLayer
         public string SaveSaleTransation(int SaleTransctionNo, string date, string warehouse, string medical, string Product, string CurrentStock, decimal SalePrice, decimal Quantity, int UpdatedByUSerID, int IsActive)
         {
             con = conn.GetConnection();
-            SqlCommand cmd = new SqlCommand("SaveSaleTransacation_USP", con);   //SP not created
+            SqlCommand cmd = new SqlCommand("SaveSaleTransacation_USP", con);   
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@SaleTransactionNo", SaleTransctionNo);
             cmd.Parameters.AddWithValue("@SellingDate", date);
