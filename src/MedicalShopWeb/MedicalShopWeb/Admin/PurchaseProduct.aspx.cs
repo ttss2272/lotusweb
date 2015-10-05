@@ -112,7 +112,8 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
-
+                SetSaveParameters();
+                SetSaveProductDetail();
             }
             catch (Exception ex)
             {
@@ -345,6 +346,13 @@ namespace MedicalShopWeb.Admin
         #region----------------------------------------SetSaveProductDetail()-------------------------------------
         private void SetSaveProductDetail()
         {
+            int ProductID = Convert.ToInt32(ddlProduct.SelectedValue);
+            PurchaseQuantity = Convert.ToDecimal(txtQuantity.Text);
+            PurchasePrice = Convert.ToDecimal(txtPurchasePrice.Text);
+            SellingPrice = Convert.ToDecimal(txtSellingPrice.Text);
+            BatchNo = txtBatchNo.Text;
+            ExpiryDate = txtExpiryDate.Text;
+
             double BalanceAmount = Convert.ToDouble(txtTotal.Text);
             int UpdatedByUserID = 1;
         }
@@ -495,4 +503,3 @@ namespace MedicalShopWeb.Admin
                         
         }
     }
-}
