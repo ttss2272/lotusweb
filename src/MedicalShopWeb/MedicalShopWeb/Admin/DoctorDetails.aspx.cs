@@ -8,11 +8,10 @@ using BusinessLayer;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
-using MedicalShopWeb.Admin;
 using System.Web.Configuration;
 
 
-namespace MedicalShopWeb
+namespace MedicalShopWeb.Admin
 {
    
     public partial class DoctorDetails : System.Web.UI.Page

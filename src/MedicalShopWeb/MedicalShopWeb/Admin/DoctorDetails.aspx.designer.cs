@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MedicalShopWeb {
+namespace MedicalShopWeb.Admin {
     
     
     public partial class DoctorDetails {
