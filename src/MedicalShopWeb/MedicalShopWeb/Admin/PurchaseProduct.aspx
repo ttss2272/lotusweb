@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CntPlcLeft" runat="server">
-<script type="text/javascript">
+    <script type="text/javascript">
     function myFunction() {
 
         {
@@ -40,6 +40,46 @@
     <div class="panel-body">
         <div class="col-md-12">
         <fieldset id="ff">
+        <!--Start Hindden row-->
+       <div class="row" id="Div1">
+    <!--Start First Column-->
+         <div class="col-sm-6">
+         <div class="row form-group">
+        <div class="col-sm-4">
+
+    
+            <asp:Label ID="Label2" runat="server" Text="Warehouse" class="control-label">
+            
+            </asp:Label>
+            
+            </div>
+        <div class="col-sm-8">
+    <asp:TextBox ID="txtWareName" runat="server" class="form-control"></asp:TextBox>
+     </div> 
+         </div>
+         </div>
+          <!--End First Column-->
+     <!--Start Second Column-->
+         <div class="col-sm-6">
+         <div class="row form-group">
+        <div class="col-sm-4">
+
+    
+            <asp:Label ID="lblSup" runat="server" Text="Supplier" class="control-label">
+            
+            </asp:Label>
+            
+            </div>
+        <div class="col-sm-8">
+           
+            <asp:TextBox ID="txtSupName" runat="server" class="form-control"></asp:TextBox>
+                 </div> 
+         </div>
+         </div>
+     
+     <!--End Second Column-->
+      </div>
+       <!--End hidden row-->
              <!--Start First Row-->
     <div class="row" id="1">
     <!--Start First Column-->
@@ -87,46 +127,7 @@
      <!--End Second Column-->
       </div>
        <!--End First Row-->
-       <!--Start Hindden row-->
-       <div class="row" id="Div1">
-    <!--Start First Column-->
-         <div class="col-sm-6">
-         <div class="row form-group">
-        <div class="col-sm-4">
-
-    
-            <asp:Label ID="Label2" runat="server" Text="Warehouse" class="control-label">
-            
-            </asp:Label>
-            
-            </div>
-        <div class="col-sm-8">
-    <asp:TextBox ID="txtWareName" runat="server" class="form-control"></asp:TextBox>
-     </div> 
-         </div>
-         </div>
-          <!--End First Column-->
-     <!--Start Second Column-->
-         <div class="col-sm-6">
-         <div class="row form-group">
-        <div class="col-sm-4">
-
-    
-            <asp:Label ID="lblSup" runat="server" Text="Supplier" class="control-label">
-            
-            </asp:Label>
-            
-            </div>
-        <div class="col-sm-8">
-           
-            <asp:TextBox ID="txtSupName" runat="server" class="form-control"></asp:TextBox>
-                 </div> 
-         </div>
-         </div>
-     
-     <!--End Second Column-->
-      </div>
-       <!--End hidden row-->
+       
        <!--Start Second Row-->
     <div class="row" id="2">
 
@@ -330,7 +331,7 @@
             </div>
         <div class="col-sm-8">
             <asp:TextBox ID="txtQuantity" runat="server" class="form-control" 
-                placeholder="Quantity" required ontextchanged="txtQuantity_TextChanged"></asp:TextBox>
+                placeholder="Quantity" required ></asp:TextBox>
      </div> 
          </div>
          </div>
@@ -362,7 +363,7 @@
 
         <!--Start Seventh Row-->
        <div class="row">
-    <!--Start First Column-->
+    <!--Start Total Column-->
          <div class="col-sm-6">
          <div class="row form-group">
         <div class="col-sm-4">
@@ -378,7 +379,7 @@
      </div> 
          </div>
          </div>
-
+         <!--End Total Column-->
        <!--Start Eighth Row-->
        <div class="row form-group" align="center">
         <div class="col-md-10">
@@ -388,7 +389,7 @@
 
         </div>
      </div>
-       <!--End Seventh Row-->
+       <!--End Eighth Row-->
 
        <!--Bind Gridview-->
        <div class="row">
@@ -426,9 +427,7 @@
      </div>
        <!--End Of GridView-->
 
-       <!--Start Eighth Row-->
-
-       <!--End OF Eighth Row-->
+      
        <!--Start Ninth Row-->
       <div class="row form-group" align="center">
         <div class="col-md-12">
@@ -442,14 +441,16 @@
         </div>
      </div>
        <!--End Ninth Row-->
+
+
        </div>
         </div>
-    
+    </div>
     <div class="panel-footer" align="left">
        <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
        <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields" ></asp:Label>
    </div>
-</div>
+
 </div>
 </div>
 </asp:Content>
