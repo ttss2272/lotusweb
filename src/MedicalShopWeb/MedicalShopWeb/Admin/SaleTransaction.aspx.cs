@@ -19,8 +19,8 @@ namespace MedicalShopWeb.Admin
         BLWarehouseStock objWarehouseStock = new BLWarehouseStock();
         BLPurchaseProduct objPurchaseProduct = new BLPurchaseProduct();
         int SaleTransctionNo, UpdatedByUSerID, IsActive, ProductID;
-        string date, warehouse, medical, Product, CurrentStock;
-        decimal SalePrice, Quantity;
+        string date, warehouse, medical, Product, CurrentStock,Discount,Comment;
+        decimal SalePrice, Quantity,PaidAmt;
         #endregion
 
         #region-------------------------------------Page_Load-----------------------------
@@ -163,6 +163,9 @@ namespace MedicalShopWeb.Admin
             CurrentStock = txtCurrentStock.Text;
             SalePrice =Convert.ToDecimal(txtSalePrice.Text);
             Quantity =Convert.ToDecimal(txtQuantity.Text);
+            txtDiscount.Text = "0";
+
+
             UpdatedByUSerID = 1;
             IsActive = 1;
         }
