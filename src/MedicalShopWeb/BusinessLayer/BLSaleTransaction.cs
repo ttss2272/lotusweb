@@ -10,9 +10,9 @@ namespace BusinessLayer
     public class BLSaleTransaction
     {
         DLSaleTransaction objSaleTransaction = new DLSaleTransaction();
-            public string SaveSaleProduct(int SaleTransctionNo, string date, string warehouse, string medical, string Product, string CurrentStock, decimal SalePrice, decimal Quantity, int UpdatedByUSerID, int IsActive)
+        public string SaveSaleProduct(int SaleTransactionID, string SaleTransactionNo, int WarehouseID, int MedicalID, string SellingDate, int UpdatedByUserID,decimal DiscountAmt,decimal BalAmt)
             {
-            string result = objSaleTransaction.SaveSaleTransation(SaleTransctionNo,date,warehouse,medical,Product,CurrentStock,SalePrice,Quantity,UpdatedByUSerID,IsActive);
+                string result = objSaleTransaction.SaveSaleTransation(SaleTransactionID, SaleTransactionNo, WarehouseID, MedicalID, SellingDate, UpdatedByUserID, DiscountAmt, BalAmt);
             return result;
              }
 
