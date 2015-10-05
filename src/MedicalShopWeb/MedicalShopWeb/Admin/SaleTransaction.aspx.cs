@@ -18,9 +18,9 @@ namespace MedicalShopWeb.Admin
         BLProducts objProducts = new BLProducts();
         BLWarehouseStock objWarehouseStock = new BLWarehouseStock();
         BLPurchaseProduct objPurchaseProduct = new BLPurchaseProduct();
-        int SaleTransctionNo, UpdatedByUSerID, IsActive, ProductID;
-        string date, warehouse, medical, Product, CurrentStock,Discount,Comment;
-        decimal SalePrice, Quantity,PaidAmt;
+        int WarehouseID,MedicalID, UpdatedByUSerID, IsActive, ProductID;
+        string date, Product, CurrentStock, comment, SaleTransctionNo;
+        decimal SalePrice, Quantity,PaidAmt,DiscountAmt,BalAmt;
         #endregion
 
         #region-------------------------------------Page_Load-----------------------------
@@ -30,6 +30,8 @@ namespace MedicalShopWeb.Admin
             {
                 if (!IsPostBack)
                 {
+                    txtDiscount.Text = "0";
+                    txtAmountPaid.Text = "0";
                     BindWarehouse();
                     BindMedicalShop();
                     BindProduct();
@@ -57,11 +59,12 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
+                int SaleTransactionID = 0;
                 if (ViewState["SPID"] == null)
                 {
                     AddDisable();
                     SetAddParameters();
-                    ViewState["SPID"] = objSaleTransaction.SaveSaleProduct(SaleTransctionNo,date,warehouse,medical,Product,CurrentStock,SalePrice,Quantity,UpdatedByUSerID,IsActive);
+                    ViewState["SPID"] = objSaleTransaction.SaveSaleProduct(SaleTransactionID, SaleTransctionNo, WarehouseID, MedicalID, date, UpdatedByUSerID, DiscountAmt, BalAmt);
                 }
                 if (ViewState["SPID"] != null)
                 {
@@ -155,17 +158,17 @@ namespace MedicalShopWeb.Admin
          #region-------------------------SetAddParaMeters------------------------
         private void SetAddParameters()
         {
-            SaleTransctionNo = Convert.ToInt32(txtSaleTransactionNo.Text);
+
+            SaleTransctionNo = txtSaleTransactionNo.Text;
             date = txtSaleDate.Text;
-            warehouse = ddlWarehouse.SelectedValue;
-            medical = ddlMedical.SelectedValue;
+            WarehouseID =Convert.ToInt32(ddlWarehouse.SelectedValue);
+            MedicalID =Convert.ToInt32(ddlMedical.SelectedValue);
             Product = ddlProduct.SelectedValue;
             CurrentStock = txtCurrentStock.Text;
             SalePrice =Convert.ToDecimal(txtSalePrice.Text);
             Quantity =Convert.ToDecimal(txtQuantity.Text);
-            txtDiscount.Text = "0";
-
-
+            DiscountAmt = 0;
+            BalAmt = 0;
             UpdatedByUSerID = 1;
             IsActive = 1;
         }

@@ -258,12 +258,12 @@
                                     <div class="col-sm-4">
                                         <asp:Label ID="lblReqComment" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
                                         <asp:Label ID="lblComment" runat="server" Text="Comment" class="control-label">
-        
+                
                                         </asp:Label>
                                     </div>
                                     <div class="col-sm-8">
                                         <asp:TextBox ID="txtComment" runat="server" class="form-control" placeholder="Comment"
-                                            TextMode="MultiLine" required></asp:TextBox>
+                                            TextMode="MultiLine"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
