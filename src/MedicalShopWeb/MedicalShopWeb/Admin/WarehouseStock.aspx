@@ -73,8 +73,8 @@
                                 <!--Start Fourth Row-->
                                 <div class="row form-group" align="center">
                                     <div class="col-md-12">
-                                        <asp:Button ID="btnCheck" runat="server" Text="Check" class=" btn btn-success" />
-                                        <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" />
+                                        <asp:Button ID="btnCheck" runat="server" Text="Check" class=" btn btn-success btn-lg" />
+                                        <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" />
                                     </div>
                                 </div>
                                 <!--End of Fourth Row-->

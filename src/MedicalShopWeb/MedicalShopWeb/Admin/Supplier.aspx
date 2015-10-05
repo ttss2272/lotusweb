@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <!--Start First Row-->
                         <div class="row">
                             <!--Start First Column-->
@@ -227,9 +227,10 @@
                     <!--Start Six Row-->
                     <div class="row form-group" align="center">
                         <div class="col-md-12">
-                            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" ValidationGroup="SaveSupplierDetails"
+                            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" ValidationGroup="SaveSupplierDetails"
                                 OnClick="btnSave_Click1" />
-                            <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" ValidationGroup="SaveSupplierDetails" />
+                                <asp:Button ID="btnClear" runat="server" Text="Clear" class=" btn btn-primary btn-lg" ValidationGroup="SaveSupplierDetails" />
+                            <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" />
                         </div>
                     </div>
                     <!--End of Six Row-->

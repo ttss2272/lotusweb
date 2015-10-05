@@ -175,9 +175,9 @@
                         <!--Start Seven Row-->
                         <div class="row form-group">
                             <div class="col-md-offset-2">
-                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" ValidationGroup="SaveProductDetails"
+                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" ValidationGroup="SaveProductDetails"
                                     OnClick="btnSave_Click" />
-                                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" ValidationGroup="SaveProductDetails" />
+                                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" ValidationGroup="SaveProductDetails" />
                             </div>
                         </div>
                         <!--End of Seven Row-->

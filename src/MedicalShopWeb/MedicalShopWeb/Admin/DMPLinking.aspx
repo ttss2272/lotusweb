@@ -108,9 +108,9 @@
                         <!--Start Fourth Row-->
                         <div class="row form-group" align="center">
                             <div class="col-md-12">
-                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" ValidationGroup="SaveDMPLinking"
+                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" ValidationGroup="SaveDMPLinking"
                                     OnClick="btnSave_Click" />
-                                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" OnClick="btnClose_Click" />
+                                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" OnClick="btnClose_Click" />
                             </div>
                         </div>
                         <!--End of Fourth Row-->

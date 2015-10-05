@@ -60,13 +60,13 @@
      <!--Start Third Row-->
      <div class="row form-group" align="center">
         <div class="col-md-12">
-            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
+            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" 
                 onclick="btnSave_Click" ValidationGroup="SaveState"/>
 
-                <asp:Button ID="btnClear" runat="server" Text="Clear" class=" btn btn-primary" 
+                <asp:Button ID="btnClear" runat="server" Text="Clear" class=" btn btn-primary btn-lg" 
                />
 
-                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" 
+                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" 
                 />
 
         </div>

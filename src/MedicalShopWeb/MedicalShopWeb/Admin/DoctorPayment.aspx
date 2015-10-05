@@ -132,8 +132,8 @@
                         <!--Start fourth Row-->
                         <div class="row form-group" align ="center">
                             <div class="col-md-12">
-                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" ValidationGroup="SaveDoctorPayment" />
-                                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" ValidationGroup="SaveDoctorPayment" />
+                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" ValidationGroup="SaveDoctorPayment" />
+                                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" ValidationGroup="SaveDoctorPayment" />
                                 <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" ID="validationSummary" />
                             </div>
                         </div>

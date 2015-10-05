@@ -211,9 +211,9 @@
                         <!--Start Seven Row-->
                         <div class="row form-group" align="center">
                             <div class="col-md-12">
-                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
+                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" 
                                     ValidationGroup="SaveMedicalPaymentDetails" onclick="btnSave_Click" />
-                                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" ValidationGroup="SaveMedicalPaymentDetails" />
+                                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" ValidationGroup="SaveMedicalPaymentDetails" />
                                 <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" ID="validationSummary" />
                             </div>
                         </div>

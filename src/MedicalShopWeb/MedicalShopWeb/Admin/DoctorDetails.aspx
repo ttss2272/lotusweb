@@ -172,7 +172,7 @@
             <asp:Label ID="lblArea" runat="server" Text="Mobile No" class="control-label">
             
              <asp:RegularExpressionValidator ID="RegOpeningBal" runat="server" ErrorMessage="*"   
-             ValidationExpression="[0-9]*$" ControlToValidate="txtmobno" 
+             ValidationExpression="[0-9.-]*$" ControlToValidate="txtmobno" 
              Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
              ToolTip="Enter Only Numbers" ValidationGroup="SaveDoctorDetails"></asp:RegularExpressionValidator>
             </asp:Label>

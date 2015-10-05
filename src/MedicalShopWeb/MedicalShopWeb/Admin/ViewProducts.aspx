@@ -59,8 +59,8 @@
      <div class="row form-group">
         <div class="col-md-12">
             <asp:Button ID="btnSearch" runat="server" Text="Search" 
-                class=" btn btn-primary" onclick="btnSearch_Click"/>
-            <asp:Button ID="btnClose" runat="server" Text="Close"  class=" btn btn-danger" 
+                class=" btn btn-primary btn-lg" onclick="btnSearch_Click"/>
+            <asp:Button ID="btnClose" runat="server" Text="Close"  class=" btn btn-danger btn-lg" 
                 onclick="btnClose_Click"/>
 
         </div>

@@ -363,26 +363,10 @@
 
         <!--Start Seventh Row-->
        <div class="row">
-    <!--Start Total Column-->
-         <div class="col-sm-6">
-         <div class="row form-group">
-        <div class="col-sm-4">
-
-    
-            <asp:Label ID="lblTotal" runat="server" Text="Total" class="control-label">
-           
-            </asp:Label>
-            
-            </div>
-        <div class="col-sm-8">
-            <asp:TextBox ID="txtTotal" runat="server" class="form-control" ReadOnly ="true" placeholder="Total" required></asp:TextBox>
-     </div> 
-         </div>
-         </div>
-         <!--End Total Column-->
+   
        <!--Start Eighth Row-->
        <div class="row form-group" align="center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <asp:Button ID="btnAdd" runat="server" Text="Add" class="btn btn-lg btn-primary" 
                  ValidationGroup="SavePurchaseProduct" onclick="btnAdd_Click"/>
                  
@@ -427,7 +411,23 @@
      </div>
        <!--End Of GridView-->
 
-      
+       <!--Start Total Column-->
+         <div class="col-sm-6 col-md-offset-6">
+         <div class="row form-group">
+        <div class="col-sm-4">
+
+    
+            <asp:Label ID="lblTotal" runat="server" Text="Total" class="control-label">
+           
+            </asp:Label>
+            
+            </div>
+        <div class="col-sm-8">
+            <asp:TextBox ID="txtTotal" runat="server" class="form-control" ReadOnly ="true" placeholder="Total" required></asp:TextBox>
+     </div> 
+         </div>
+         </div>
+         <!--End Total Column-->
        <!--Start Ninth Row-->
       <div class="row form-group" align="center">
         <div class="col-md-12">
@@ -451,6 +451,7 @@
        <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields" ></asp:Label>
    </div>
 
+</div>
 </div>
 </div>
 </asp:Content>
