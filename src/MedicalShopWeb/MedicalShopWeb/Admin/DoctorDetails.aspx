@@ -280,11 +280,11 @@
      <!--Start Seven Row-->
      <div class="row form-group">
         <div class="col-md-12">
-            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success" 
+            <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" 
                  ValidationGroup="SaveDoctorDetails" onclick="btnSave_Click1"/>
                  <asp:Button ID="btnClear" runat="server" Text="Clear" 
-                class=" btn  btn-primary" onclick="btnClear_Click"/>
-                 <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger" 
+                class=" btn  btn-primary btn-lg" onclick="btnClear_Click"/>
+                 <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" 
                  ValidationGroup="SaveDoctorDetails" onclick="btnClose_Click"/>
                 
         </div>
