@@ -161,8 +161,8 @@ namespace MedicalShopWeb.Admin
             medical = ddlMedical.SelectedValue;
             Product = ddlProduct.SelectedValue;
             CurrentStock = txtCurrentStock.Text;
-            SalePrice = txtSalePrice.Text;
-            Quantity = txtQuantity.Text;
+            SalePrice =Convert.ToDecimal(txtSalePrice.Text);
+            Quantity =Convert.ToDecimal(txtQuantity.Text);
             UpdatedByUSerID = 1;
             IsActive = 1;
         }
