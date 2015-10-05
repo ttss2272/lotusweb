@@ -12,21 +12,19 @@ namespace DataLayer
         SqlConnection con = new SqlConnection();
         DBConnection conn = new DBConnection();
         
-        public string SaveSaleTransation(int SaleTransctionNo, string date, string warehouse, string medical, string Product, string CurrentStock, decimal SalePrice, decimal Quantity, int UpdatedByUSerID, int IsActive)
+        public string SaveSaleTransation(int SaleTransactionID,string SaleTransactionNo,int WarehouseID, int MedicalID,string SellingDate, int UpdatedByUserID,decimal DiscountAmt,decimal BalAmt)
         {
             con = conn.GetConnection();
-            SqlCommand cmd = new SqlCommand("SaveSaleTransacation_USP", con);   
+            SqlCommand cmd = new SqlCommand("SaveSaleTransaction_USP", con);   
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@SaleTransactionNo", SaleTransctionNo);
-            cmd.Parameters.AddWithValue("@SellingDate", date);
-            cmd.Parameters.AddWithValue("@WarehouseID", warehouse);
-            cmd.Parameters.AddWithValue("@MedicalShopID", medical);
-            cmd.Parameters.AddWithValue("@ProductID", Product);
-           // cmd.Parameters.AddWithValue("@CurrentStock", CurrentStock);
-            cmd.Parameters.AddWithValue("@SalePrice", SalePrice);
-            cmd.Parameters.AddWithValue("@Quantity", Quantity);
-            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUSerID);
-            cmd.Parameters.AddWithValue("@IsActive", IsActive);
+            cmd.Parameters.AddWithValue("@SaleTransactionID", SaleTransactionID);
+            cmd.Parameters.AddWithValue("@SaleTransactionNo", SaleTransactionNo);
+            cmd.Parameters.AddWithValue("@WarehouseID", WarehouseID);
+            cmd.Parameters.AddWithValue("@MedicalShopID", MedicalID);
+            cmd.Parameters.AddWithValue("@SellingDate", SellingDate);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@DiscountAmount", DiscountAmt);
+            cmd.Parameters.AddWithValue("@BalanceAmount", BalAmt);
 
             con.Open();
             string Result = cmd.ExecuteScalar().ToString();
