@@ -20,7 +20,7 @@ namespace MedicalShopWeb.Admin
         BLPurchaseProduct objPurchaseProduct = new BLPurchaseProduct();
         int WarehouseID,MedicalID, UpdatedByUSerID, IsActive, ProductID;
         string date, Product, CurrentStock, comment, SaleTransctionNo;
-        decimal SalePrice, Quantity,PaidAmt,DiscountAmt,BalAmt;
+        decimal SalePrice, Quantity,PaidAmt,DiscountAmt,BalAmt,Total;
         #endregion
 
         #region-------------------------------------Page_Load-----------------------------
@@ -90,9 +90,10 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
-                string Result = objSaleTransaction.SaveTempSaleDetail(Convert.ToInt32(ViewState["SPID"]), ProductID, Quantity, SalePrice);
+                string Result = objSaleTransaction.SaveTempSaleDetail(Convert.ToInt32(ViewState["SPID"]), ProductID, Quantity, SalePrice,DiscountAmt);
                 if (Result == "1")
                 {
+
                 }
                 else
                 {
@@ -100,6 +101,8 @@ namespace MedicalShopWeb.Admin
                     lblMessage.Text = "Error to Save Sale Product Details.";
 
                 }
+                Total = Total + (Quantity * SalePrice);
+                txtTotal.Text = Total.ToString();
             }
             catch (Exception ex)
             {
@@ -147,6 +150,7 @@ namespace MedicalShopWeb.Admin
             ProductID = Convert.ToInt32(ddlProduct.SelectedValue);
             Quantity =Convert.ToDecimal(txtQuantity.Text);
             SalePrice = Convert.ToDecimal(txtSalePrice.Text);
+            DiscountAmt = 0;
             
         }
         #endregion
@@ -209,7 +213,17 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
+                int SaleTransactionID = 0;
+                SetSaveParameters();
+                SetProductDetail();
 
+                if (ViewState["SPID"] != null)
+                {
+                    DataSet dsGetDataForSaveSaleTranDetail = objSaleTransaction.GetDataForSaleTransDetail(Convert.ToInt32(ViewState["SPID"]));
+                    int count = dsGetDataForSaveSaleTranDetail.Tables[0].Rows.Count;
+
+
+                }
             }
             catch (Exception ex)
             {
@@ -217,6 +231,21 @@ namespace MedicalShopWeb.Admin
                 lblMessage.Text = ex.Message.ToString();
             }
         }
+        /*
+        * Created By :- Sameer Shinde
+        * Created Date:- 06 Oct 2015
+        * Purpose :-  Set Save Parameters 
+        */
+        #region----------------------SetSaveParameters------------------------------------
+        private void SetSaveParameters()
+        {
+            ProductID = Convert.ToInt32(ddlProduct.SelectedValue);
+            SalePrice =Convert.ToDecimal(txtSalePrice.Text);
+            Quantity = Convert.ToDecimal(txtQuantity.Text);
+            IsActive = 1;
+           
+        }
+        #endregion
         #endregion
 
         #region---------------------------------btnCancel_Click---------------------------------
