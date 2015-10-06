@@ -31,28 +31,81 @@ namespace DataLayer
             con.Close();
             return Result;
         }
+        /*
+         * Creted by:-Sameer Shinde
+         * Date:- 06 Oct 2015
+         * Purpose:- Data Save In Sales Transactions Details Table
+         */ 
+        public string SaveSaleTransactionDetails(int SaleTransactionDetailID, int SaleTansactionID, int ProductID, decimal Quntity, decimal SellingPrice, int IsActive)
+        {
+            string result = null;
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("SaveSaleTransactionDetails_USP", con);  
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@SaleTansactionDetailID", SaleTransactionDetailID);
+            cmd.Parameters.AddWithValue("@SaleTansactionID", SaleTansactionID);
+            cmd.Parameters.AddWithValue("@ProductID", ProductID);
+            cmd.Parameters.AddWithValue("@Quantity", Quntity);
+            cmd.Parameters.AddWithValue("@SellingPrice", SellingPrice);
+           
+            con.Open();
+            result = cmd.ExecuteScalar().ToString();
+            con.Close();
+            return result;
+        }
+        /*
+        * Creted by:-Sameer Shinde
+        * Date:- 06 Oct 2015
+        * Purpose:- Add medical Stock
+        */ 
+        public int AddMedicalStock(string DateOfStock, decimal CurrentStock, int MedicalShopID, int ProductID)
+        {
+            int Result = 0;
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("AddMedicalStock_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
 
-        public string SaveTempSaleDetail(int SaleProductID, int ProductID, decimal Quantity, decimal SalePrice)
+            cmd.Parameters.AddWithValue("@DateOfStock", DateOfStock);
+            cmd.Parameters.AddWithValue("@CurrentStock", CurrentStock);
+            cmd.Parameters.AddWithValue("@MedicalShopID", MedicalShopID);
+            cmd.Parameters.AddWithValue("@ProductID", ProductID);
+            con.Open();
+            Result = cmd.ExecuteNonQuery();
+            con.Close();
+            return Result;
+        }
+
+        /*
+         * Creted by:-Sameer Shinde
+         * Date:- 06 Oct 2015
+         * Purpose:- Data Save In Sales Transactions Temp Table
+         */ 
+        public string SaveTempSaleDetail(int SaleTransactionID, int ProductID, decimal Quantity, decimal SalePrice, decimal DiscountAmt)
         {
             con = conn.GetConnection();
-            SqlCommand cmd = new SqlCommand("SaveTempSaleDetail_USP", con);    //Sp not created
+            SqlCommand cmd = new SqlCommand("SaveTempSaleTransactionDetail_USP", con);    
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@ProductID", ProductID);
             cmd.Parameters.AddWithValue("@SalePrice", SalePrice);
             cmd.Parameters.AddWithValue("@Quantity", Quantity);
-            
+            cmd.Parameters.AddWithValue("@DiscountAmount", DiscountAmt);
+            cmd.Parameters.AddWithValue("@SaleTransactionID", SaleTransactionID);
             con.Open();
             string Result = cmd.ExecuteNonQuery().ToString();
             con.Close();
             return Result;
         }
-
+        /*
+         * Creted by:-Sameer Shinde
+         * Date:- 06 Oct 2015
+         * Purpose:- Get Details from Temp sales table
+         */ 
          public DataSet GetTempSaleDetail(int SaleProductID)
         {
             DataSet dsTempSaleProductDetail = new DataSet();
 
             con = conn.GetConnection();
-            SqlCommand cmd = new SqlCommand("GetTempSaleDetail_USP", con);       //SP not created
+            SqlCommand cmd = new SqlCommand("GetTempSaleDetail_USP", con);      
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@SaleTransactionID", SaleProductID);
 
@@ -64,5 +117,27 @@ namespace DataLayer
             con.Close();
             return dsTempSaleProductDetail;
         }
+         /*
+          * Creted by:-Sameer Shinde
+          * Date:- 06 Oct 2015
+          * Purpose:-Get data from temp table for purpose of Save data in Save Sales Details table 
+          */ 
+         public DataSet GetDataForSaleTransDetail(int SaleTransactionID)
+         {
+             DataSet dsGetProductData = new DataSet();
+
+             con = conn.GetConnection();
+             SqlCommand cmd = new SqlCommand("GetDataForSaleTransDetail_USP", con);
+             cmd.CommandType = CommandType.StoredProcedure;
+             cmd.Parameters.AddWithValue("@SaleTransactionID", SaleTransactionID);
+
+             con.Open();
+
+             SqlDataAdapter daGetSaleDetailData = new SqlDataAdapter(cmd);
+             dsGetProductData = new DataSet();
+             daGetSaleDetailData.Fill(dsGetProductData);
+             con.Close();
+             return dsGetProductData;
+         }
     }
 }
