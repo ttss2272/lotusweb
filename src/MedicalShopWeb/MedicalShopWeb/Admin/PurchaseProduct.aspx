@@ -433,7 +433,7 @@
         <div class="col-md-12">
             <asp:Button ID="btnSave" runat="server" Text="Save" class="btn btn-lg btn-success" 
                  ValidationGroup="SavePurchaseProduct" onclick="btnSave_Click"/>
-                 <asp:Button ID="BtnCancel" runat="server" Text="Clear" class="btn btn-lg btn-danger" 
+                 <asp:Button ID="BtnCancel" runat="server" Text="Cancel" class="btn btn-lg btn-danger" 
                  ValidationGroup="SavePurchaseProduct" onclick="BtnCancel_Click"/>
 
                  
