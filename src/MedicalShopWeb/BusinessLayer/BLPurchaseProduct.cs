@@ -28,6 +28,11 @@ namespace BusinessLayer
             return dsTempPurchaseDetail;
         }
 
+         public DataSet GetTotal(int PurchaseTransactionID)
+        {
+            DataSet dsTempPurchaseTotal = objPurchaseProduct.GetTotal(PurchaseTransactionID);
+            return dsTempPurchaseTotal;
+            }
        
     }
 }
