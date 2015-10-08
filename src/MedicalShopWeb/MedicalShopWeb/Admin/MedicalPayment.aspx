@@ -213,7 +213,10 @@
                             <div class="col-md-12">
                                 <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" 
                                     ValidationGroup="SaveMedicalPaymentDetails" onclick="btnSave_Click" />
-                                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" ValidationGroup="SaveMedicalPaymentDetails" />
+                                <asp:LinkButton ID="lnkClear" runat="server" class="btn btn-lg btn-primary" 
+                                    onclick="lnkClear_Click">Clear</asp:LinkButton>
+                                <asp:LinkButton ID="lnkclose" runat="server" class="btn btn-lg btn-danger" 
+                                    onclick="lnkclose_Click">Close</asp:LinkButton>
                                 <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" ID="validationSummary" />
                             </div>
                         </div>

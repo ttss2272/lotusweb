@@ -11,21 +11,31 @@ namespace MedicalShopWeb.Admin
 {
     public partial class MedicalPayment : System.Web.UI.Page
     {
-        BLMedicalPayment objMedicalPayment = new BLMedicalPayment();
-        BLMedicalShop objMedicalShop = new BLMedicalShop();
+        /*
+          Created by Sameer   Date:-29/09/2015
+          * Declare Variables
+          */
         #region------------------SetVariables-----------------
         int SaleTransactionID, UpdatedByUserID;
         double PaidAmount, BalanceAmount;
         string PaymentDate, Coment, MedicalPaymentNo;
+        BLMedicalPayment objMedicalPayment = new BLMedicalPayment();
+        BLMedicalShop objMedicalShop = new BLMedicalShop();
         #endregion
+
+        /*
+          Created by Sameer   Date:-29/09/2015
+          * 
+          */
+        #region----------------------Page_Load-------------------------------
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 if (!IsPostBack)
                 {
-                    BindMedicalShopName();
-                    BindSaleInvoiceNo();
+                    ClearFields();
+                    
                 }
             }
             catch (Exception ex)
@@ -35,6 +45,8 @@ namespace MedicalShopWeb.Admin
                 lblMessage.Text = ex.Message.ToString();
             }
         }
+        #endregion
+
         /*
          Created by Sameer   Date:-29/09/2015
          * Bind Sale Invoice Number to dropdownlist
@@ -42,7 +54,7 @@ namespace MedicalShopWeb.Admin
         #region----------BindSaleInvoiceNo-------------------
         private void BindSaleInvoiceNo()
         {
-            DataSet dsSaleInvoiceNo =objMedicalPayment.BindSaleTransctionNo();
+            DataSet dsSaleInvoiceNo =objMedicalPayment.BindSaleTransctionNo(Convert.ToInt32(ddlMedicalShop.SelectedValue));
 
             if (dsSaleInvoiceNo.Tables.Count > 0)
             {
@@ -53,7 +65,7 @@ namespace MedicalShopWeb.Admin
                     ddlSaleInvoiceNo.DataSource = dsSaleInvoiceNo;
                     ddlSaleInvoiceNo.DataBind();
                 }
-                ddlMedicalShop.Items.Insert(0, new ListItem("Select Sale Transction Invoice No", "-1"));
+                ddlMedicalShop.Items.Insert(0, new ListItem("Select Sale Invoice No", "-1"));
             }
         }
         #endregion
@@ -75,7 +87,8 @@ namespace MedicalShopWeb.Admin
                    ddlMedicalShop.DataSource = dsMedicalName;
                    ddlMedicalShop.DataBind();
                 }
-                ddlMedicalShop.Items.Insert(0, new ListItem("Select Medical Shop Name", "-1"));
+                ddlMedicalShop.Items.Insert(0, new ListItem("Select Medical Shop", "-1"));
+                ddlSaleInvoiceNo.Items.Insert(0, new ListItem("Select Sale Invoice No", "-1"));
             }
         }
         #endregion
@@ -83,6 +96,7 @@ namespace MedicalShopWeb.Admin
          Created by Sameer   Date:-29/09/2015
          * Bind Total Amount,Current Balance and Remening Balance to Text Box
          */
+        #region------------------------ddlSaleInvoiceSelectedIndexChanged---------------------------------
         protected void ddlSaleInvoiceNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -96,6 +110,8 @@ namespace MedicalShopWeb.Admin
                 lblMessage.Text = ex.Message.ToString();
             }
         }
+        #endregion
+
         /*
         Created by Sameer   Date:-29/09/2015
         * Bind Total Amount to Text Box
@@ -119,9 +135,12 @@ namespace MedicalShopWeb.Admin
             }
         }
         #endregion
-       
-       
 
+       /*
+        * Created By:- Sameer 
+        * Purpose :- btnSave_Click
+        */
+        #region------------------------------------btnSave_Click------------------------------------------
         protected void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -136,6 +155,12 @@ namespace MedicalShopWeb.Admin
                 lblMessage.Text = ex.Message.ToString();
             }
         }
+        #endregion
+
+        /*
+        * Created By:- Sameer 
+        * Purpose :- 
+        */
         #region-----------------------SaveMedicalTransction--------------
         private void SaveMedicalTransction()
         {
@@ -154,6 +179,11 @@ namespace MedicalShopWeb.Admin
             }
         }
         #endregion
+
+        /*
+        * Created By:- Sameer 
+        */
+
         #region-------------SetParaMeters------------------
         private void SetParameters()
         {
@@ -203,5 +233,77 @@ namespace MedicalShopWeb.Admin
             }
         }
         #endregion
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date:- 8 OCt 2015
+         * Purpose :- Clear Fields()
+         */
+        #region---------------------------ClearFields()----------------------------------------
+          private void ClearFields()
+          {
+              txtPaymentDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+              BindMedicalShopName();
+              SetSupplierPaymentRecieptNo();
+              txtTotalAmo.Text = "0.00";
+              txtCurrentBal.Text = "0.00";
+              txtPaidAmo.Text = "";
+              txtRemBal.Text = "0.00";
+              txtComment.Text = "";
+          }
+        #endregion
+
+          /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date :- 8 Oct 2015
+         * Pupose :- Set SupplierReciept No
+         */
+          #region------------------------------------SetSupplierRecieptNo()------------------------------
+          public void SetSupplierPaymentRecieptNo()
+          {
+              DataSet ds = objMedicalPayment.SetMedicalPaymentRecieptNo();
+              txtInvoiceNo.Text = ds.Tables[0].Rows[0]["MedicalPaymentRecieptNo"].ToString();
+          }
+          #endregion
+
+          /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date :- 8 Oct 2015
+         * Pupose :- LCear button click
+         */
+          #region-----------------------------lnkClear_Click--------------------------
+          protected void lnkClear_Click(object sender, EventArgs e)
+          {
+              try
+              {
+                  ClearFields();
+              }
+              catch (Exception ex)
+              {
+                  lblMessage.ForeColor = System.Drawing.Color.Red;
+                  lblMessage.Text = ex.Message.ToString();
+              }
+
+          }
+          #endregion
+          /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date :- 8 Oct 2015
+         * Pupose :- Close Button click
+         */
+          #region---------------------------lnkClose_Click--------------------------------
+          protected void lnkclose_Click(object sender, EventArgs e)
+          {
+              try
+              {
+                  Response.Redirect("../Default.aspx", false);
+              }
+              catch (Exception ex)
+              {
+                  lblMessage.ForeColor = System.Drawing.Color.Red;
+                  lblMessage.Text = ex.Message.ToString();
+              }
+          }
+          #endregion
     }
 }
