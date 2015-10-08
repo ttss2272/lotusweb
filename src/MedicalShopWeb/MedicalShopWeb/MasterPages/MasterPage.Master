@@ -22,218 +22,78 @@
   <div class="container-fluid">
     <form id="form1" runat="server">
     
-   <div class="navbar navbar-default navbar-fixed-top">
-   <div class="navbar-header">
-   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
+   <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">
-        <img alt="Lotus" src="">
-      </a>
+      <a class="navbar-brand" href="../Defult.aspx">Lotus</a>
     </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-     <ul class="nav navbar-nav">
-  <li class="dropdown">
-  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Master
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu "><%--nav nav-pills--%>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-   Doctor
-
-  </a></li>
-       <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-   Medical Shop
-
-  </a></li>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-   Products
-
-  </a></li>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-   Supplier
-
-  </a></li>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-   Warehouse
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-  Country           
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-   State             
-
-  </a></li>
-  
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-   City        
-
-  </a></li>
-  
-  </ul>
-     </li> <li class="dropdown">
-  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-  Transction
-     <span class="caret"></span>
-  </a>
- <ul class="dropdown-menu"> <%--nav nav-pills--%>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Sale Transction
-
-  </a></li>
-       <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    DMP Linking
-
-  </a></li>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Purchase Stock
-
-  </a></li>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Medical Stock
-
-  </a></li>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Current Stock
-
-  </a></li>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Commission
-
-  </a></li>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Return Product from Medical
-
-  </a></li>
-  </ul>
-     </li>
-     <li class="dropdown">
-  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-  Payment
-     <span class="caret"></span>
-  </a>
- <ul class="dropdown-menu">  <%--nav nav-pills--%>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Medical Payment
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Supplier Payment
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Doctor Payment
-
-  </a></li>
-     </ul>
-    </li>
-    <li class="dropdown">
-  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-  Reports
-     <span class="caret"></span>
-  </a>
- <ul class="dropdown-menu"><%--nav nav-pills--%>
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Sale Transction Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Purchase Transction Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    DMP Linking Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Product Detail Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Supplier Detail  Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Warehouse Detail Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    MedicalShop Detail Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Doctor's Detail Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Medical Stock Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Commision Deatils Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Debit And Credit Details
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Return Sales from MedicalShop Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Suppliyer Payment Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Medical Payment Report
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Doctor Payment Report
-
-  </a></li>
-  </ul>
-  </li>
-  <li class="dropdown">
-  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-  Utility
-     <span class="caret"></span>
-  </a>
- <ul class="dropdown-menu nav nav-pills">
-   <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Calculator
-
-  </a></li>
-  <li> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Notepad
-
-  </a></li></ul></li>
-  <li class="dropdown">
-  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-  Exit</a></li>
-  
-  </ul>
-   <ul class="nav navbar-nav navbar-right">
-         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
-              <asp:Label ID="lblLoginName" runat="server" Text="Login Name"></asp:Label><span class="caret"></span></a>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">ChangePassword</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Log Out</a></li>
+          <li><a href="../Admin/DoctorDetails.aspx">Doctor</a></li>
+          <li><a href="../Admin/MedicalShop.aspx">Medical Shop</a></li>
+            <li><a href="../Admin/Products.aspx">Products</a></li>
+            <li><a href="../Admin/Supplier.aspx">Supplier</a></li>
+            <li><a href="../Admin/Warehouse.aspx">Warehouse</a></li>
+            <li><a href="../Admin/Country.aspx">Country</a></li>
+            <li><a href="../Admin/State.aspx">State</a></li>
+            <li><a href="../Admin/City.aspx">City</a></li>
             
           </ul>
         </li>
-        </ul>
-  </div>
+         <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Transaction<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          <li><a href="../Admin/PurchaseProduct.aspx">Purchase</a></li>
+          <li><a href="../Admin/SaleTransaction.aspx">Sale</a></li>
+            <li><a href="../Admin/DMPLinking.aspx">DMP Linking</a></li>
+            <li><a href="../Admin/MedicalStock.aspx">Medical Stock</a></li>
+            <li><a href="../Admin/WarehouseStock.aspx">Warehouse Stock</a></li>
+            <li><a href="../Admin/SaleReturn.aspx">Return Product</a></li>
+            <li><a href="../Admin/State.aspx">Commission</a></li>
+            
+            
+          </ul>
+        </li>
+
+         <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Payment<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          <li><a href="../Admin/DoctorPayment.aspx">Doctor Payment</a></li>
+          <li><a href="../Admin/MedicalPayment.aspx">Medical Payment</a></li>
+            <li><a href="../Admin/SupplierPayment.aspx">Supplier</a></li>
+                        
+          </ul>
+        </li>
+
+         <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          <li><a href="../Admin/DoctorPayment.aspx">Doctor Payment</a></li>
+          <li><a href="../Admin/MedicalPayment.aspx">Medical Payment</a></li>
+            <li><a href="../Admin/SupplierPayment.aspx">Supplier</a></li>
+                        
+          </ul>
+        </li>
+
+        <li><a href="#">Page 3</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> <asp:Label ID="lblLoginName" runat="server" Text="Login Name"></asp:Label></a></li>
+        
+      </ul>
     </div>
+  </div>
+</nav>
+
     
 
 
