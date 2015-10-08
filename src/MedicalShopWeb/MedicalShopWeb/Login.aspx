@@ -11,23 +11,25 @@
     <script src="../Style/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
 <body>
-    <form id="form1" runat="server" class="form-horizontal">
-    <div>
+    <form id="form1" runat="server" class="form">
+    <div class="modal-dialog">
+    <div class="modal-body">
         <div class="row" align="center">
             <div class="col-md-12">
                 <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
             </div>
         </div>
-        <div class="row">
-            <div class="panel" align="center">
+        <div class="row" >
+            <div class="panel" align="center" >
                 <div class="panel-header">
-                    <img src="Images/login.jpg" height="200" width="300" alt="Login" />
+                    <%--<img src="Images/login.jpg" height="200" width="300" alt="Login" />--%>
+                    <h1><strong>Lotus Login</strong></h1>
                  </div>
 
                 <div class="panel-body">
                 <div class="row">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4">
+                    
+                    <div class="col-sm-12">
                     <div class="row form-group">
                     <div class="col-xs-12">
                     <div class="col-xs-5">
@@ -48,19 +50,20 @@
 
                         <div class="row form-group">
         <div class="col-md-12">
-            <asp:Button ID="btnLogin" runat="server" Text="Login" class=" btn btn-success" 
+            <asp:Button ID="btnLogin" runat="server" Text="Login" class=" btn btn-success btn-lg" 
                 ValidationGroup="SaveCity" onclick="btnSave_Click"/>
                 <asp:Button ID="btnClose" runat="server" Text="Close" 
-                class=" btn btn-danger"  />
+                class=" btn btn-danger btn-lg"/>
 
         </div>
      </div>
                         </div>
-                        <div class="col-sm-4"></div>
+                        
                         </div>
                 
                 </div>
             </div>
+        </div>
         </div>
     </div>
     </form>
