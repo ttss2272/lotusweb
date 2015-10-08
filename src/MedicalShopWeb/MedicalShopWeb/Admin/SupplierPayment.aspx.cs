@@ -11,21 +11,32 @@ namespace MedicalShopWeb.Admin
 {
     public partial class SupplierPayment : System.Web.UI.Page
     {
+        /*Created by Sameer Shinde
+         * Date:-29/09/2015
+         * Purpose:- Declare variables 
+         */
+        
+        #region-----------------------DeclareVariables------------------
         BLSupplierPayment objSupllierPay = new BLSupplierPayment();
         BLSupplier objSupplierName = new BLSupplier();
-        #region-----------------------DeclareVariables------------------
         int PurchaseTransactionID, UpdatedByUserID;
         double PaidAmount, BalanceAmount;
         string PaymentDate, Comment, SupplierPaymentNo;
         #endregion
+
+        /*Created by:-PriTesh Sortee
+         * Date:- 08 Oct 2015
+         * Purpose:- Page Load event
+         */
+        #region--------------------------------------Page_Load------------------------
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 if(!IsPostBack)
                 {
-                 BindSupplierName();
-                 BindPurchaseInvoiceNo();
+                    ClearFields();
+                 
                 }
             }
             catch (Exception ex)
@@ -35,6 +46,7 @@ namespace MedicalShopWeb.Admin
                 lblMessage.Text = ex.Message.ToString();
             }
         }
+        #endregion
         /*Created by Sameer Shinde
          * Date:-29/09/2015
          * Purpose:-Bind Purchase Invoice No to Dropdownlist
@@ -42,17 +54,17 @@ namespace MedicalShopWeb.Admin
         #region----------------------BindPurchaseInvoiceNo--------
         private void BindPurchaseInvoiceNo()
         {
-            DataSet dsPurchaseInvoice = objSupllierPay.BindPurchaseInvoiceNo();
+            DataSet dsPurchaseInvoice = objSupllierPay.BindPurchaseInvoiceNo(Convert.ToInt32(ddlSupplier.SelectedValue));
             if (dsPurchaseInvoice.Tables.Count > 0)
             {
                 if (dsPurchaseInvoice.Tables[0].Rows.Count > 0)
                 {
-                    ddlSupplier.DataTextField = "SupplierReciptNo";
-                    ddlSupplier.DataValueField = "PurchaseTransactionID";
-                    ddlSupplier.DataSource = dsPurchaseInvoice;
-                    ddlSupplier.DataBind();
+                    ddlPurchaseInvoiceNo.DataTextField = "SupplierReciptNo";
+                    ddlPurchaseInvoiceNo.DataValueField = "PurchaseTransactionID";
+                    ddlPurchaseInvoiceNo.DataSource = dsPurchaseInvoice;
+                    ddlPurchaseInvoiceNo.DataBind();
                 }
-                ddlSupplier.Items.Insert(0, new ListItem("Select Purchase Invoice No", "-1"));
+                ddlPurchaseInvoiceNo.Items.Insert(0, new ListItem("Select Purchase Invoice No", "-1"));
             }
         }
         #endregion
@@ -74,10 +86,17 @@ namespace MedicalShopWeb.Admin
                     ddlSupplier.DataBind();
                 }
                 ddlSupplier.Items.Insert(0, new ListItem("Select Supplier Name","-1"));
+                ddlPurchaseInvoiceNo.Items.Insert(0, new ListItem("Select Invoice No", "-1"));
+                
             }
         }
         #endregion
 
+        /*Created by Sameer Shinde
+         * Date:-29/09/2015
+         * Purpose:-Bind Total cost of invoice And Balance Amount
+         */
+        #region-----------------------------ddlPurchaseInvoiceNo_SelectedIndexChanged---------------------------------
         protected void ddlPurchaseInvoiceNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -91,6 +110,8 @@ namespace MedicalShopWeb.Admin
                 lblMessage.Text = ex.Message.ToString();
             }
         }
+        #endregion
+
         /*
         Created by Sameer   Date:-29/09/2015
         * Bind Total Amount to Text Box
@@ -113,6 +134,7 @@ namespace MedicalShopWeb.Admin
             }
         }
         #endregion
+
         /* Created by Sameer Shinde
          * Date:-29/29/2015
          * Get Remaining balance on text change event */
@@ -121,20 +143,26 @@ namespace MedicalShopWeb.Admin
         {
             if (txtPaidAmo.Text != null)
             {
-                float CurrentBalance=(float)Convert.ToDecimal(txtCurrentBal.Text.ToString());
-                float PaidAmount = (float)Convert.ToDecimal(txtPaidAmo.Text.ToString());
-                double remainningBalabce = CurrentBalance - PaidAmount;
+                decimal CurrentBalance=Convert.ToDecimal(txtCurrentBal.Text.ToString());
+                decimal PaidAmount = Convert.ToDecimal(txtPaidAmo.Text.ToString());
+                decimal remainningBalabce = CurrentBalance - PaidAmount;
                 if (remainningBalabce < 0)
                 {
                     lblMessage.ForeColor = System.Drawing.Color.Red;
                     lblMessage.Text = "Paid Amount Must Be Same or less than Remaining Balance";
                     txtRemBal.Text = "";
                     txtPaidAmo.Text = "";
+                    txtPaidAmo.Focus();
                 }
                 txtRemBal.Text = Convert.ToString(CurrentBalance - PaidAmount);
             }
         }
         #endregion
+
+        /*Created by Sameer Shinde
+         * Date:-29/09/2015
+         * Purpose:-btnSave_Click
+         */
         #region-----------------SaveClick-------------------------------
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -150,6 +178,13 @@ namespace MedicalShopWeb.Admin
                 lblMessage.Text = ex.Message.ToString();
             }
         }
+
+        #endregion
+
+        /*Created by Sameer Shinde
+         * Date:-29/09/2015
+         * Purpose:-Save Supplier Payment
+         */
         #region----------------------SaveSupplierPayment----------
         private void SaveSupplierPayment()
         {
@@ -166,6 +201,11 @@ namespace MedicalShopWeb.Admin
             }
         }
         #endregion
+
+        /*Created by Sameer Shinde
+         * Date:-29/09/2015
+         * Purpose:- Set Parameters
+         */
         #region-------------------SetParameters-----------------------
         private void SetParameters()
         {
@@ -176,10 +216,108 @@ namespace MedicalShopWeb.Admin
             //string ReceivedBy = txtReceivedBy.Text;
             //Place = "Place";
             SupplierPaymentNo = txtInvoiceNo.Text;
+            if (SupplierPaymentNo == "")
+            {
+                SupplierPaymentNo = "no1";
+            }
             BalanceAmount = Convert.ToDouble(txtRemBal.Text);
             Comment = txtComment.Text;
         }
         #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date :- 8 Oct 2015
+         * Pupose :- Bind Supplier Invoice No
+         */
+        #region--------------------------ddlSupplier_SelectedIndexChanged------------------------------------
+        protected void ddlSupplier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BindPurchaseInvoiceNo();
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
         #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date :- 8 Oct 2015
+         * Pupose :- Clear Button click
+         */
+        #region-------------------------------------btnClear_Click-----------------------------------
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ClearFields();
+                
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date :- 8 Oct 2015
+         * Pupose :- Clear all fields
+         */
+        #region------------------------------Clear()----------------------------------------
+        private void ClearFields()
+        {
+            txtPaymentDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            txtPaidAmo.Text = "0.00";
+            txtComment.Text = "";
+            txtTotalAmo.Text = "0.00";
+            txtCurrentBal.Text = "0.00";
+            txtRemBal.Text = "0.00";
+            BindSupplierName();
+            SetSupplierPaymentRecieptNo();
+            ddlSupplier.SelectedValue = "-1";
+            ddlPurchaseInvoiceNo.Text = "-1";
+        }
+        #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date :- 8 Oct 2015
+         * Pupose :- Close button click
+         */
+        #region---------------------------------lnkClose_Click------------------------------------------------------
+        protected void lnkClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("../Defult.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date :- 8 Oct 2015
+         * Pupose :- Set SupplierReciept No
+         */
+        #region------------------------------------SetSupplierRecieptNo()------------------------------
+         public void SetSupplierPaymentRecieptNo()
+        {
+            DataSet ds = objSupllierPay.SetSupplierPaymentRecieptNo();
+            txtInvoiceNo.Text = ds.Tables[0].Rows[0]["SupplierPaymentRecieptNo"].ToString();
+        }
+       #endregion
     }
 }

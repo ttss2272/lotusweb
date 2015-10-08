@@ -220,6 +220,15 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtCurrentBal;
         
         /// <summary>
+        /// UpdatePanelAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelAmount;
+        
+        /// <summary>
         /// lblPaidAmoReq control.
         /// </summary>
         /// <remarks>
@@ -319,22 +328,22 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// btnClear control.
+        /// lnkClear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClear;
+        protected global::System.Web.UI.WebControls.LinkButton lnkClear;
         
         /// <summary>
-        /// btnClose control.
+        /// lnkClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClose;
+        protected global::System.Web.UI.WebControls.LinkButton lnkClose;
         
         /// <summary>
         /// validationSummary control.

@@ -83,7 +83,8 @@
                                                 </asp:Label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <asp:DropDownList ID="ddlSupplier" runat="server" class="form-control" AutoPostBack="True">
+                                                <asp:DropDownList ID="ddlSupplier" runat="server" class="form-control" 
+                                                    AutoPostBack="True" onselectedindexchanged="ddlSupplier_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
@@ -148,6 +149,9 @@
                                     <!--End of Second Column-->
                                 </div>
                                 <!--End of Third Row-->
+
+                                 <asp:UpdatePanel ID="UpdatePanelAmount" runat="server">
+                            <ContentTemplate>
                                 <!--Start of Fourth Row-->
                                 <div class="row">
                                     <!--Start First column -->
@@ -163,14 +167,13 @@
                                             </div>
                                             <div class="col-sm-8">
                                                 <asp:TextBox ID="txtPaidAmo" runat="server" class="form-control" placeholder="Enter Paid Amount"
-                                                    required ontextchanged="txtPaidAmo_TextChanged">
-           
-                                                </asp:TextBox>
+                                                    required ontextchanged="txtPaidAmo_TextChanged" AutoPostBack="True"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
                                     <!--End first Column-->
                                     <!--Start of Second Column-->
+                                    
                                     <div class="col-sm-6">
                                         <div class="row form-group">
                                             <div class="col-sm-4">
@@ -188,6 +191,8 @@
                                     <!--End of Second Column-->
                                 </div>
                                 <!--End of Fourth Row-->
+                                </ContentTemplate>
+                                </asp:UpdatePanel>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                         <!--Start of Fifth Row-->
@@ -216,8 +221,14 @@
                             <div class="col-md-12">
                                 <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" 
                                     ValidationGroup="SaveSupplierPaymentDetails" onclick="btnSave_Click" />
-                                    <asp:Button ID="btnClear" runat="server" Text="Clear" class=" btn btn-primary btn-lg" />
-                                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" ValidationGroup="SaveSupplierPaymentDetails" />
+                                <asp:LinkButton ID="lnkClear" runat="server" class=" btn btn-primary btn-lg" onclick="btnClear_Click">Clear</asp:LinkButton>
+                                
+                                    <%--<asp:Button ID="btnClear" runat="server" Text="Clear" 
+                                    class=" btn btn-primary btn-lg" onclick="btnClear_Click" />--%>
+                                
+                                <asp:LinkButton ID="lnkClose" runat="server" class=" btn btn-danger btn-lg" 
+                                    onclick="lnkClose_Click">Close</asp:LinkButton>
+                                <%--<asp:Button ID="btnClose" runat="server" Text="Close"   />--%>
                                 <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" ID="validationSummary" />
                             </div>
                         </div>
