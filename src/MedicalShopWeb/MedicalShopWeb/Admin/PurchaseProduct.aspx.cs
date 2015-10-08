@@ -95,6 +95,7 @@ namespace MedicalShopWeb.Admin
             }
             finally
             {
+                GetTotal();
                 BindGridView();
                 AddClear();
 
@@ -113,7 +114,7 @@ namespace MedicalShopWeb.Admin
             try
             {
                 SetSaveParameters();
-                SetSaveProductDetail();
+                
             }
             catch (Exception ex)
             {
@@ -343,20 +344,7 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
-        #region----------------------------------------SetSaveProductDetail()-------------------------------------
-        private void SetSaveProductDetail()
-        {
-            int ProductID = Convert.ToInt32(ddlProduct.SelectedValue);
-            PurchaseQuantity = Convert.ToDecimal(txtQuantity.Text);
-            PurchasePrice = Convert.ToDecimal(txtPurchasePrice.Text);
-            SellingPrice = Convert.ToDecimal(txtSellingPrice.Text);
-            BatchNo = txtBatchNo.Text;
-            ExpiryDate = txtExpiryDate.Text;
-
-            double BalanceAmount = Convert.ToDouble(txtTotal.Text);
-            int UpdatedByUserID = 1;
-        }
-        #endregion
+        
 
         /*
          * Created By:- PriTesh D. Sortee
@@ -499,7 +487,30 @@ namespace MedicalShopWeb.Admin
             txtExpiryDate.Text = "";
         }
         #endregion
-       
-                        
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date 06 OCT 2015
+         * Purpose :- Get Total Price Of Product
+         */
+        #region-------------------------------------GetTotal()-------------------------------
+        private void GetTotal()
+        {
+            DataSet dsTempPurchaseTotal = objPurchaseProduct.GetTotal(Convert.ToInt32(ViewState["PPID"]));
+            if (dsTempPurchaseTotal.Tables.Count != 0)
+            {
+                if (dsTempPurchaseTotal.Tables[0].Rows.Count != 0)
+                {
+                    txtTotal.Text=dsTempPurchaseTotal.Tables[0].Rows[0]["Total"].ToString();
+                }
+                else
+                {
+                    txtTotal.Text = "0";
+                }
+            }
         }
+
+        #endregion
+
+    }
     }

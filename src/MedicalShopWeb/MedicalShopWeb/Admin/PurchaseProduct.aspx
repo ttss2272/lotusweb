@@ -431,10 +431,11 @@
        <!--Start Ninth Row-->
       <div class="row form-group" align="center">
         <div class="col-md-12">
-            <asp:Button ID="btnSave" runat="server" Text="Save" class="btn btn-lg btn-success" 
-                 ValidationGroup="SavePurchaseProduct" onclick="btnSave_Click"/>
+            <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-lg btn-success" onclick="btnSave_Click">Save</asp:LinkButton>
+            <%--<asp:Button ID="btnSave" runat="server" Text="Save" class="btn btn-lg btn-success" 
+                  onclick="btnSave_Click"/>--%>
                  <asp:Button ID="BtnCancel" runat="server" Text="Cancel" class="btn btn-lg btn-danger" 
-                 ValidationGroup="SavePurchaseProduct" onclick="BtnCancel_Click"/>
+                  onclick="BtnCancel_Click"/>
 
                  
 
