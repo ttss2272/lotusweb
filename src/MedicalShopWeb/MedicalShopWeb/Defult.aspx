@@ -2,5 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CntPlcCenter" runat="server">
-
+<div class="form-control" align="center">
+    
+</div>
 </asp:Content>
