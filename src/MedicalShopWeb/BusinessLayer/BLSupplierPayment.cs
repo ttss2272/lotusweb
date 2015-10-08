@@ -11,15 +11,16 @@ namespace BusinessLayer
         DLSupplierPayment objSupplierPay = new DLSupplierPayment();
 
 
-        public DataSet BindPurchaseInvoiceNo()
+        public DataSet BindPurchaseInvoiceNo(int SupplierID)
         {
-            DataSet dsPurchaceInvoiceNo = objSupplierPay.BindPurchaseInvoiceNo();
-            return dsPurchaceInvoiceNo;
+            
+            DataSet dsInvoiceNo = objSupplierPay.BindPurchaseInvoiceNo(SupplierID);
+            return dsInvoiceNo;
         }
 
-        public DataSet GetTotalAmount(int PurchaseInvoiceNo)
+        public DataSet GetTotalAmount(int PurchaseTransactionID)
         {
-            DataSet dsPurchaseInvoiceNo = objSupplierPay.GetTotalAmt(PurchaseInvoiceNo);
+            DataSet dsPurchaseInvoiceNo = objSupplierPay.GetTotalAmt(PurchaseTransactionID);
             return dsPurchaseInvoiceNo;
         }
 
@@ -27,6 +28,12 @@ namespace BusinessLayer
         {
             string result = objSupplierPay.SaveSupplierPayment(PurchaseTransactionID,PaidAmount,PaymentDate,UpdatedByUserID,SupplierPaymentNo,BalanceAmount,Comment);
             return result;
+        }
+
+         public DataSet SetSupplierPaymentRecieptNo()
+        {
+            DataSet ds = objSupplierPay.SetSupplierPaymentRecieptNo();
+            return ds;
         }
     }
 }
