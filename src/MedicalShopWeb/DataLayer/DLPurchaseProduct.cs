@@ -68,5 +68,24 @@ namespace DataLayer
             con.Close();
             return dsTempPurchaseDetail;
         }
+
+        public DataSet GetTotal(int PurchaseTransactionID)
+        {
+            DataSet dsTempPurchaseTotal = new DataSet();
+
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("GetTempPurchaseTotal_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@PurchaseTransactionID", PurchaseTransactionID);
+
+            con.Open();
+
+            SqlDataAdapter daGetPurchaseTotalData = new SqlDataAdapter(cmd);
+            dsTempPurchaseTotal = new DataSet();
+            daGetPurchaseTotalData.Fill(dsTempPurchaseTotal);
+            con.Close();
+            return dsTempPurchaseTotal;
+ 
+        }
     }
 }
