@@ -59,12 +59,12 @@ namespace MedicalShopWeb.Admin
             {
                 if (dsPurchaseInvoice.Tables[0].Rows.Count > 0)
                 {
-                    ddlPurchaseInvoiceNo.DataTextField = "SupplierReciptNo";
-                    ddlPurchaseInvoiceNo.DataValueField = "PurchaseTransactionID";
+                    ddlPurchaseInvoiceNo.DataTextField = "SaleTransactionNo";
+                    ddlPurchaseInvoiceNo.DataValueField = "SaleTransactionID";
                     ddlPurchaseInvoiceNo.DataSource = dsPurchaseInvoice;
                     ddlPurchaseInvoiceNo.DataBind();
                 }
-                ddlPurchaseInvoiceNo.Items.Insert(0, new ListItem("Select Purchase Invoice No", "-1"));
+                ddlPurchaseInvoiceNo.Items.Insert(0, new ListItem("Select Invoice No", "-1"));
             }
         }
         #endregion
