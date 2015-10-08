@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <!--Start First Row-->
                         <div class="row">
                             <!--Start First Column-->

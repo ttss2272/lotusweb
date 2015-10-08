@@ -31,7 +31,7 @@
         <h3><asp:Label ID="lblPageHeading" runat="server" Text="Doctor Details" class="control-label label label-info"></asp:Label></h3></div></div>
     <div class="panel-body">
    
- <div class="col-md-10">
+ <div class="col-md-12">
    <!--Start First Row-->
     <div class="row">
     <!--Start First Column-->

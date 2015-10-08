@@ -132,10 +132,7 @@
                     <div class="col-md-4">
                     </div>
                 </div>
-                <div class="panel-footer" align="left">
-                    <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
-                    <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields"></asp:Label>
-                </div>
+                
                 <div class="panel-body">
                     <!--Start Grid View-->
                     <div class="row">
@@ -170,6 +167,12 @@
                     </div>
                     <!--End Grid View-->
                 </div>
+
+                <div class="panel-footer" align="left">
+                    <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields"></asp:Label>
+                </div>
+
             </div>
         </div>
     </div>

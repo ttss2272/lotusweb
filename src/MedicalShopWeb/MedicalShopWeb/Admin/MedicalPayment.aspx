@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <!--Start First Row-->
                         <div class="row">
                             <!--Start First Column-->
@@ -220,11 +220,12 @@
                         <!--End of Seven Row-->
                     </div>
                 </div>
-            </div>
-            <div class="panel-footer" align="left">
+                <div class="panel-footer" align="left">
                 <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
                 <asp:Label ID="lblInfo" runat="server" Text="Mandatory Fields"></asp:Label>
             </div>
+            </div>
+            
         </div>
     </div>
 </asp:Content>
