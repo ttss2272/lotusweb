@@ -69,7 +69,7 @@
           <ul class="dropdown-menu">
           <li><a href="../Admin/DoctorPayment.aspx">Doctor Payment</a></li>
           <li><a href="../Admin/MedicalPayment.aspx">Medical Payment</a></li>
-            <li><a href="../Admin/SupplierPayment.aspx">Supplier</a></li>
+            <li><a href="../Admin/SupplierPayment.aspx">Supplier Payment</a></li>
                         
           </ul>
         </li>
