@@ -10,9 +10,9 @@ namespace BusinessLayer
     {
         DLMedicalPayment objMedicalPayment = new DLMedicalPayment();
 
-        public DataSet BindSaleTransctionNo()
+        public DataSet BindSaleTransctionNo(int MedicalShopID)
         {
-            DataSet dsMedicalShop = objMedicalPayment.BindSaleTransctionNo();
+            DataSet dsMedicalShop = objMedicalPayment.BindSaleTransctionNo(MedicalShopID);
             return dsMedicalShop;
         }
 
@@ -26,6 +26,12 @@ namespace BusinessLayer
         {
             string result = objMedicalPayment.SaveMedicalPayment(SaleTransactionID, PaidAmount, PaymentDate, UpdatedByUserID, MedicalPaymentNo, BalanceAmount,coment);
             return result;
+        }
+
+        public DataSet SetMedicalPaymentRecieptNo()
+        {
+            DataSet ds = objMedicalPayment.SetMedicalPaymentRecieptNo();
+            return ds;
         }
     }
 }
