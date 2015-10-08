@@ -22,6 +22,12 @@ namespace BusinessLayer
             return Result;
         }
 
+        public string SavePurchaseProductDetail(int PurchaseTransactionID)
+        {
+            string Result = objPurchaseProduct.SavePurchaseProductDetail(PurchaseTransactionID);
+            return Result;
+        }
+
         public DataSet GetTempPurchaseDetail(int PurchaseProductID)
         {
             DataSet dsTempPurchaseDetail = objPurchaseProduct.GetTempPurchaseDetail(PurchaseProductID);
