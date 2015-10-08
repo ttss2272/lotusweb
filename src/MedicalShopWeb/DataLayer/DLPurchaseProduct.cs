@@ -51,6 +51,20 @@ namespace DataLayer
             return Result;
          }
 
+
+        public string SavePurchaseProductDetail(int PurchaseTransactionID)
+        {
+            con = conn.GetConnection();
+            SqlCommand cmd = new SqlCommand("SavePurchaseProductDetails_USP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@PurchaseTransactionID", PurchaseTransactionID);
+            
+            con.Open();
+            string Result = cmd.ExecuteScalar().ToString();
+            con.Close();
+            return Result;
+        }
+
         public DataSet GetTempPurchaseDetail(int PurchaseTransactionID)
         {
             DataSet dsTempPurchaseDetail = new DataSet();
