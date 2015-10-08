@@ -11,9 +11,21 @@ namespace DataLayer
     {
         SqlConnection con = new SqlConnection();
         DBConnection conn = new DBConnection();
-       public DataSet BindSaleTransctionNo()
+       public DataSet BindSaleTransctionNo(int MedicalShopID)
        {
-           throw new NotImplementedException();
+           DataSet dsSaleTransactionNo = new DataSet();
+           con = conn.GetConnection();
+           SqlCommand cmd = new SqlCommand("GetSaleTransactionNo_USP", con);
+           cmd.CommandType = CommandType.StoredProcedure;
+           cmd.Parameters.AddWithValue("@MedicalShopID", MedicalShopID);
+
+           con.Open();
+
+           SqlDataAdapter daGetSaleTransactionNoData = new SqlDataAdapter(cmd);
+           dsSaleTransactionNo = new DataSet();
+           daGetSaleTransactionNoData.Fill(dsSaleTransactionNo);
+           con.Close();
+           return dsSaleTransactionNo;
        }
 
        public DataSet GetTotalAmount(int SaleInvoiceNo)
@@ -50,6 +62,19 @@ namespace DataLayer
            result = cmd.ExecuteScalar().ToString();
            con.Close();
            return result; 
+       }
+
+       public DataSet SetMedicalPaymentRecieptNo()
+       {
+           con = conn.GetConnection();
+           con.Open();
+           SqlCommand cmd = new SqlCommand("SetMedicalpaymentInvoiceNo_USP", con);
+           cmd.CommandType = CommandType.StoredProcedure;
+           SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+           DataSet ds = new DataSet();
+           sqlDa.Fill(ds);
+           con.Close();
+           return ds;
        }
     }
 }
