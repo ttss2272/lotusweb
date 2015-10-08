@@ -99,7 +99,7 @@
             <asp:ContentPlaceHolder ID="CntPlcCenter" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-        <div class="row" align="center">
+        <div class="row" align="center" style="background-color:Highlight;">
             <div class="nav navbar-fixed-bottom">
                 Devloped By &copy;<a href="http://www.teratech-solutions.com">Teratech-Solutions</a>
             </div>
