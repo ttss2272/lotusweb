@@ -113,13 +113,19 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
-                SetSaveParameters();
-                
+                SavePurchaseDetail();
+
+
             }
             catch (Exception ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message.ToString();
+            }
+            finally
+            {
+                ClearFields();
+ 
             }
         }
         #endregion
@@ -309,21 +315,22 @@ namespace MedicalShopWeb.Admin
         /*
          * Created By :- PriTesh D. Sortee
          * Created Date:- 28 sept 2015
-         * purpose :- SetSaveParameters()
+         * purpose :- SavePurchaseDetail()
          */
         #region------------------------------------------SetSaveParameters()-----------------------------------
-        private void SetSaveParameters()
+        private void SavePurchaseDetail()
         {
-            int PurchaseTransactionDetailID = 0;
-            int PurchaseTransactionID = rst;
-            int ProductID = Convert.ToInt32(ddlProduct.SelectedValue);
-            double Quantity = Convert.ToDouble(txtQuantity.Text);
-            double PurchaseRate = Convert.ToDouble(txtPurchasePrice.Text);
-            string BatchNo = txtBatchNo.Text;            
-            string ExpiryDate = Convert.ToString(txtExpiryDate.Text);
-            double SellingPrice = Convert.ToDouble(txtSellingPrice.Text);
-            int UpdatedByUserID = 1;
-            IsActive = 1;
+            string Result = objPurchaseProduct.SavePurchaseProductDetail(Convert.ToInt32(ViewState["PPID"]));
+            if (Result == "Purchase Transaction Saved Sucessfully...!!!")
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Green;
+                lblMessage.Text = Result;
+            }
+            else
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = Result;
+            }
         }
         #endregion
 
@@ -512,5 +519,37 @@ namespace MedicalShopWeb.Admin
 
         #endregion
 
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date 29 Sept 2015
+         * Purpose :- Clear fiels on click on Save
+         */
+        #region-------------------------------------ClearFields()---------------------------
+        private void ClearFields()
+        {
+            txtPurchaseDate.ReadOnly = false;
+            txtPurchaseDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            txtReceiptNo.ReadOnly = false;
+            txtReceiptNo.Text = "";
+            txtModeOfPayment.ReadOnly = false;
+            txtModeOfPayment.Text = "";
+            ViewState["PPID"] = null;
+
+            ddlWarehouse.Enabled = true;
+            ddlWarehouse.SelectedValue = "-1";
+            ddlSupplier.Enabled = true;
+            ddlSupplier.SelectedValue = "-1";
+            txtSupName.Text = "";
+            txtSupName.ReadOnly = false;
+            txtWareName.Text = "";
+            txtWareName.ReadOnly = false;
+
+            txtTotal.Text = "0.00";
+            ScriptManager.RegisterStartupScript(this, GetType(), "myFunction", "myFunction2();", true); 
+            AddClear();
+            grvPurhaseProduct.DataSource = null;
+            grvPurhaseProduct.DataBind();
+        }
+        #endregion
     }
     }

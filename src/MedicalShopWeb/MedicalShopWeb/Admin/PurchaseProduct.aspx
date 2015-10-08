@@ -344,8 +344,10 @@
 
     <asp:Label ID="lblReqExpirydate" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
             <asp:Label ID="lblExpiryDate" runat="server" Text="Expiry Date" class="control-label">
-                
+              <asp:CompareValidator ID="CompDate" runat="server" ErrorMessage="*" ControlToCompare="txtPurchaseDate" ControlToValidate="txtExpiryDate" CultureInvariantValues="True" Display="Dynamic" Font-Bold="True" SetFocusOnError="True" Type="Date" Operator="GreaterThan" ToolTip="Expiry Date Must be Greater Than Purchase Date" ForeColor="Red"></asp:CompareValidator>  
             </asp:Label>
+            
+          
             <%--<asp:CompareValidator ID="CompareExpriyDate" runat="server" ErrorMessage="*" SetFocusOnError="True" Operator="GreaterThan" Font-Bold="True" ToolTip="Expiry Date Must Be Greater than Current Date" Type="Date" ValidationGroup="SavePurchaseProduct" ControlToValidate="txtExpiryDate"></asp:CompareValidator>--%>
             
             </div>
