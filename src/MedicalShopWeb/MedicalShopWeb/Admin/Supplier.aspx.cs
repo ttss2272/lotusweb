@@ -14,10 +14,16 @@ namespace MedicalShopWeb
         BLState objState = new BLState();
         BLCity objCity = new BLCity();
         BLSupplier objSupplier = new BLSupplier();
-        
+
+        /*
+         * Updated By :- PriTesh D. Sortee
+         * Purpose :- Add Opening Balance
+         * Date :- 09 OCT 2015
+         */
         #region--------------SetVariables-------------
         string CompanyName, SupplierName, ContactNo, Area, Address, ModeOfTransport,PriceType;
         int SupID, IsActive, CityID, UpdatedByUserID;
+        decimal OpeningBalance; 
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,9 +31,8 @@ namespace MedicalShopWeb
             {
                 if (!IsPostBack)
                 {
-                    BindCountry();
-                    hdnSupplierID.Value = "0";
-                    hdnIsDelete.Value = "0";
+                    ClearFields();
+
                     if (Request.QueryString["SupplierID"] != null)
                     {
                         setValues(Convert.ToInt32(Request.QueryString["SupplierID"]));
@@ -48,7 +53,7 @@ namespace MedicalShopWeb
         private void BindCountry()
         {
             DataSet dsCountry = objCountry.GetCountry(0, 1);
-
+            ddlCountry.Items.Clear();
             if (dsCountry.Tables.Count > 0)
             {
                 if (dsCountry.Tables[0].Rows.Count > 0)
@@ -151,10 +156,15 @@ namespace MedicalShopWeb
             }
         }
         #endregion
+        /*
+         * Updated By :- PriTesh D. Sortee
+         * Purpose :- Add Opening Balance
+         * Date :- 09 OCT 2015
+         */
         #region----------------SaveSupplier------------------------
         private void SaveSuppliers()
         {
-            string Result = objSupplier.SaveSupplier(SupID, SupplierName, CompanyName, ContactNo, CityID, Area, Address, ModeOfTransport, PriceType, IsActive, UpdatedByUserID);
+            string Result = objSupplier.SaveSupplier(SupID, SupplierName, CompanyName, ContactNo, CityID, Area, Address, ModeOfTransport, PriceType, IsActive, UpdatedByUserID,OpeningBalance);
             if ((Result == "Supplier Details Saved Successfully...!!!") || (Result == "Supplier Details Updated  Successfully...!!!"))
             {
                 lblMessage.ForeColor = System.Drawing.Color.Green;
@@ -168,6 +178,11 @@ namespace MedicalShopWeb
             }
         }
         #endregion
+        /*
+         * Updated By :- PriTesh D. Sortee
+         * Purpose :- Add Opening Balance
+         * Date :- 09 OCT 2015
+         */
         #region------------------SetParameters-----------------
         private void SetParameters()
         {
@@ -180,6 +195,7 @@ namespace MedicalShopWeb
             Area = txtArea.Text;
             Address = txtAddress.Text;
             ModeOfTransport = ddModeOfTransport.SelectedValue.ToString();
+            OpeningBalance = Convert.ToDecimal(txtOpeningBalance.Text);
             IsActive = 1;
             UpdatedByUserID = 1;
             if (rbtnCIF.Checked == true)
@@ -192,17 +208,26 @@ namespace MedicalShopWeb
             }
         }   
         #endregion
-        
+
+        /*
+         * Updated By :- PriTesh D. Sortee
+         * Purpose :- Add Some more Fields
+         * Date :- 09 OCT 2015
+         */
         #region-----------ClearFields-----
         private void ClearFields()
         {
+            BindCountry();
             txtcompanyName.Text = "";
             txtSupplierName.Text = "";
             txtContactNo.Text = "";
             txtArea.Text = "";
+            
             txtAddress.Text = "";
             hdnSupplierID.Value = "0";
-
+            hdnIsDelete.Value = "0";
+            txtOpeningBalance.Text = "";
+            txtOpeningBalance.ReadOnly = false;
         }
         #endregion
 
@@ -255,7 +280,8 @@ namespace MedicalShopWeb
                     txtArea.Text = dsSupplierValues.Tables[0].Rows[0]["Area"].ToString();
                     txtAddress.Text = dsSupplierValues.Tables[0].Rows[0]["Address"].ToString();
                     ddModeOfTransport.SelectedValue = dsSupplierValues.Tables[0].Rows[0]["ModeOfTransport"].ToString();
-
+                    txtOpeningBalance.Text = dsSupplierValues.Tables[0].Rows[0]["OpeningBalance"].ToString();
+                    txtOpeningBalance.ReadOnly = true;
                     if (dsSupplierValues.Tables[0].Rows[0]["PriceType"].ToString() == "FOB")
                     {
                         rbtnFOB.Checked = true;
@@ -272,6 +298,45 @@ namespace MedicalShopWeb
                     lblMessage.Text = "Information Not Available";
 
                 }
+            }
+        }
+        #endregion
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date :- 28 Sept 2015
+         * Purpose :- Click on Clear Button
+         */
+        #region----------------------------------lnkbtnClear_Click---------------------------------
+        protected void lnkbtnClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #endregion
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date :- 28 Sept 2015
+         * Purpose :- Click on Close Button
+         */
+        #region------------------------------------------lnkbtnClose_Click---------------------------
+        protected void lnkbtnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("../Default.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
             }
         }
         #endregion

@@ -83,6 +83,9 @@ label label-info"></asp:Label></h3>
                 <ItemTemplate><%#Eval("PriceType")%></ItemTemplate>
             </asp:TemplateField>
 
+            <asp:TemplateField HeaderText="Opening Balance" HeaderStyle-HorizontalAlign="Center">
+                <ItemTemplate><%#Eval("OpeningBalance")%></ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
                     <ItemTemplate >
                              <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit" NavigateUrl='<%#String.Format("../Admin/Supplier.aspx?SupplierID={0}&iss=0", DataBinder.Eval(Container.DataItem,"SupplierID") )%>'>

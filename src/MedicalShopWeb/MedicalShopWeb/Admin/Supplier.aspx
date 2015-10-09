@@ -69,9 +69,9 @@
                                     <div class="col-sm-4">
                                         <asp:Label ID="Contactrequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
                                         <asp:Label ID="lblContactNo" runat="server" Text="Contact Number" class="control-label">
-                                            <asp:RequiredFieldValidator ID="ReqContact" runat="server" ErrorMessage="*" Display="Dynamic"
-                                                Font-Bold="True" ForeColor="Red" ControlToValidate="txtContactNo" InitialValue="-1"
-                                                SetFocusOnError="True" ToolTip="Please Enter Contact Number" ValidationGroup="SaveSupplierDetails"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="RegCont" runat="server" ErrorMessage="*" ValidationExpression="[0-9]*$"
+                                                ControlToValidate="txtContactNo" Display="Dynamic" Font-Bold="True" ForeColor="Red"
+                                                SetFocusOnError="True" ToolTip="Enter Only Numbers" ValidationGroup="SaveSupplierDetails"></asp:RegularExpressionValidator>
                                         </asp:Label>
                                     </div>
                                     <div class="col-sm-8">
@@ -83,6 +83,35 @@
                             <!--End first Column-->
                             <!--Start of Second Row-->
                             <div class="col-sm-6">
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <asp:Label ID="lblReqOpeningBal" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
+                                    <asp:Label ID="lblOpeningBalance" runat="server" Text="Opening Balance" class="control-label">
+                                     <asp:RegularExpressionValidator ID="RegOpeingBal" runat="server" ErrorMessage="*" ValidationExpression="[0-9.]*$"
+                                                ControlToValidate="txtOpeningBalance" Display="Dynamic" Font-Bold="True" ForeColor="Red"
+                                                SetFocusOnError="True" ToolTip="Enter Only Numbers" ValidationGroup="SaveSupplierDetails"></asp:RegularExpressionValidator>
+                                    </asp:Label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <asp:TextBox ID="txtOpeningBalance" runat="server" class="form-control" placeholder="Opening Balance"
+                                            required />
+                                </div>
+                            </div>
+                        </div>
+
+
+                            
+                            <!--End Second Column-->
+                        </div>
+                        <!--End of Second Row-->
+                        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+                        </asp:ToolkitScriptManager>
+                        <asp:UpdatePanel ID="UpdatePanelTransporter" runat="server">
+                            <ContentTemplate>
+                                <!--Start of Third Row-->
+                                <div class="row">
+                                    <!--Start First Column-->
+                                    <div class="col-sm-6">
                                 <div class="row form-group">
                                     <div class="col-sm-4">
                                         <asp:Label ID="CountryRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
@@ -99,16 +128,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--End Second Column-->
-                        </div>
-                        <!--End of Second Row-->
-                        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-                        </asp:ToolkitScriptManager>
-                        <asp:UpdatePanel ID="UpdatePanelTransporter" runat="server">
-                            <ContentTemplate>
-                                <!--Start of Third Row-->
-                                <div class="row">
-                                    <!--Start First Column-->
+                                    
+                                    <!--Start Second Column-->
                                     <div class="col-sm-6">
                                         <div class="row form-group">
                                             <div class="col-sm-4">
@@ -126,8 +147,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--Start Second Column-->
-                                    <div class="col-sm-6">
+
+                                    
+                        <!--End Second Column-->
+                    </div>
+                    <div class="row">
+                        <!--Start Forth row-->
+
+                        <div class="col-sm-6">
                                         <div class="row form-group">
                                             <div class="col-sm-4">
                                                 <asp:Label ID="CityRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
@@ -143,17 +170,15 @@
                                             </div>
                                         </div>
                                     </div>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
-                        <!--End Second Column-->
-                    </div>
-                    <div class="row">
-                        <!--Start Forth row-->
+                           
+                        
+                        <!--End First Column-->
+                        <!--Start Second Column-->
                         <div class="col-sm-6">
                             <div class="row form-group">
                                 <div class="col-sm-4">
                                     <asp:Label ID="AreaRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-                                    <asp:Label ID="lblAddress" runat="server" Text="Area" class="control-label">
+                                    <asp:Label ID="lblArea" runat="server" Text="Area" class="control-label">
                                     </asp:Label>
                                 </div>
                                 <div class="col-sm-8">
@@ -162,26 +187,39 @@
                                 </div>
                             </div>
                         </div>
-                        <!--End First Column-->
-                        <!--Start Second Column-->
-                        <div class="col-sm-6">
+                        
+
+                        
+                        <!--End Of Second Column-->
+                    </div>
+                                         </ContentTemplate>
+                        </asp:UpdatePanel>
+
+                    <!--End of Fourth Row-->
+
+                    <!--Start Fifth Row-->
+                    <div class="row">
+                        <!--Start First Column-->
+                        <div class="col-sm-12">
                             <div class="row form-group">
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <asp:Label ID="AddressReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
                                     <asp:Label ID="lblAddreq" runat="server" Text="Address" class="control-label">
                                         
                                     </asp:Label>
                                 </div>
-                                <div class="col-sm-8">
+                                <div class="col-sm-10">
                                     <asp:TextBox ID="txtAddress" runat="server" class="form-control" placeholder="Address"
                                         requied TextMode="MultiLine"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
-                        <!--End Of Second Column-->
+                        <!--End Of First Column-->
+                        
                     </div>
-                    <!--End of Fourth Row-->
-                    <!--Start of Fifth Row-->
+                    <!--End Fifth Row-->
+
+                    <!--Start of Sixth Row-->
                     <div class="row">
                         <!--Start First Column-->
                         <div class="col-sm-6">
@@ -197,7 +235,7 @@
                                     </asp:Label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <asp:DropDownList ID="ddModeOfTransport" runat="server" class="form-control" AutoPostBack="True">
+                                    <asp:DropDownList ID="ddModeOfTransport" runat="server" class="form-control">
                                         <asp:ListItem>Select Mode Of Transport</asp:ListItem>
                                         <asp:ListItem>By Air</asp:ListItem>
                                         <asp:ListItem>By Sea</asp:ListItem>
@@ -223,17 +261,20 @@
                         </div>
                         <!--End Of Second Column-->
                     </div>
-                    <!--End of Fifth Row-->
-                    <!--Start Six Row-->
+                    <!--End of Sixth Row-->
+                    
+
+                    <!--Start Seventh Row-->
                     <div class="row form-group" align="center">
                         <div class="col-md-12">
                             <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" ValidationGroup="SaveSupplierDetails"
                                 OnClick="btnSave_Click1" />
-                                <asp:Button ID="btnClear" runat="server" Text="Clear" class=" btn btn-primary btn-lg" ValidationGroup="SaveSupplierDetails" />
-                            <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" />
+                            <asp:LinkButton ID="lnkbtnClear" runat="server" class=" btn btn-primary btn-lg">Clear</asp:LinkButton>
+                                <asp:LinkButton ID="lnkbtnClose" runat="server" class=" btn btn-danger btn-lg">Close</asp:LinkButton>
+                            
                         </div>
                     </div>
-                    <!--End of Six Row-->
+                    <!--End of Seventh Row-->
                     <!--Start Grid View-->
                     <div class="row">
                         <asp:GridView ID="grvProductDetails" runat="server" AutoGenerateColumns="false" class="table"
