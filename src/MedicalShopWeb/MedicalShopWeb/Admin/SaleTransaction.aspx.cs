@@ -218,22 +218,7 @@ namespace MedicalShopWeb.Admin
         #endregion
         #endregion
 
-        #region---------------------------------btnAdd_Click---------------------------------
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = ex.Message.ToString();
-            }
-        }
-        #endregion
-
-        
+             
 
         #region---------------------------------btnCancel_Click---------------------------------
         protected void BtnCancel_Click(object sender, EventArgs e)
@@ -459,12 +444,14 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
+                decimal amountPaid =Convert.ToDecimal(txtAmountPaid.Text);
+                decimal finalTotal = Convert.ToDecimal(txtFinalTotal.Text);
                  if (txtFinalTotal.Text != "")
                 {
-                    if (Convert.ToDecimal(txtAmountPaid.Text) > Convert.ToDecimal(txtFinalTotal.Text))
+                    if (amountPaid > finalTotal)
                     {
                         lblMessage.ForeColor = System.Drawing.Color.Red;
-                        lblMessage.Text = "Paid Amount Must Be Less Than Or Equal To Final Total";
+                        lblMessage.Text ="Paid Amount Must Be Less Than Or Equal To Final Total";
                     }
                     else
                     {
@@ -486,10 +473,8 @@ namespace MedicalShopWeb.Admin
             try
             {
                 string result = null;
-
-
-
-                //SetSaveParameters();
+                date = txtSaleDate.Text;
+                 //SetSaveParameters();
                 // SetProductDetail();
 
                 if (ViewState["SPID"] != null)
