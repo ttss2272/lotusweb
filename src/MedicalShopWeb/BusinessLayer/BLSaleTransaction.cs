@@ -10,14 +10,14 @@ namespace BusinessLayer
     public class BLSaleTransaction
     {
         DLSaleTransaction objSaleTransaction = new DLSaleTransaction();
-             public string SaveSaleProduct(int SaleTransactionID, string SaleTransactionNo, int WarehouseID, int MedicalID, string SellingDate, int UpdatedByUserID,decimal DiscountAmt,decimal BalAmt)
+             public string SaveSaleProduct(int SaleTransactionID, string SaleTransactionNo, int WarehouseID, int MedicalID, string SellingDate, int UpdatedByUserID)
             {
-                string result = objSaleTransaction.SaveSaleTransation(SaleTransactionID, SaleTransactionNo, WarehouseID, MedicalID, SellingDate, UpdatedByUserID, DiscountAmt, BalAmt);
+                string result = objSaleTransaction.SaveSaleTransation(SaleTransactionID, SaleTransactionNo, WarehouseID, MedicalID, SellingDate, UpdatedByUserID);
                return result;
              }
-             public string SaveSaleTransactionDetails(int SaleTransactionDetailID, int SaleTansactionID, int ProductID, decimal Quntity, decimal SellingPrice, int IsActive)
+             public string SaveSaleTransactionDetails(int SaleTansactionID)
              {
-                 string result = objSaleTransaction.SaveSaleTransactionDetails(SaleTransactionDetailID, SaleTansactionID, ProductID, Quntity, SellingPrice, IsActive);
+                 string result = objSaleTransaction.SaveSaleTransactionDetails(SaleTansactionID);
                  return result;
              }
              public int AddMedicalStock(string DateOfStock, decimal CurrentStock, int MedicalShopID, int ProductID)
@@ -41,5 +41,11 @@ namespace BusinessLayer
                 DataSet dsProductDetails = objSaleTransaction.GetDataForSaleTransDetail(SaleTransactionID);
                 return dsProductDetails;
             }
+            public DataSet GetTotal(int SaleTransactionID)
+            {
+                DataSet dsGetTempTotal = objSaleTransaction.GetTotal(SaleTransactionID);
+                return dsGetTempTotal;
+            }
+            
     }
 }
