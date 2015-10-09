@@ -10,10 +10,10 @@ namespace BusinessLayer
    public class BLSupplier
     {
        DLSupplier objSupplier = new DLSupplier();
-        public string SaveSupplier(int SupID, string SupplierName, string CompanyName, string ContactNo, int CityID, string Area, string Address, string ModeOfTransport, string PriceType, int IsActive, int UpdatedByUserID)
+       public string SaveSupplier(int SupID, string SupplierName, string CompanyName, string ContactNo, int CityID, string Area, string Address, string ModeOfTransport, string PriceType, int IsActive, int UpdatedByUserID, decimal OpeningBalance)
         {
             string result = null;
-            result = objSupplier.SaveSupplier(SupID, SupplierName, CompanyName, ContactNo, CityID, Area, Address, ModeOfTransport, PriceType, IsActive, UpdatedByUserID);
+            result = objSupplier.SaveSupplier(SupID, SupplierName, CompanyName, ContactNo, CityID, Area, Address, ModeOfTransport, PriceType, IsActive, UpdatedByUserID, OpeningBalance);
             return result;
         }
 
