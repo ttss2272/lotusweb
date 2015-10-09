@@ -138,7 +138,8 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
-
+                ClearFields();
+                Response.Redirect("../Defult.aspx", false);
             }
             catch (Exception ex)
             {
@@ -295,9 +296,10 @@ namespace MedicalShopWeb.Admin
            #region---------------------------------ClearFields()---------------------------------
            private void ClearFields()
            {
-               ddlMedical.SelectedValue = "-1";
-               ddlDoctor.SelectedValue = "-1";
-               ddlProduct.SelectedValue = "-1";
+               BindDoctor();
+               BindMedicalShop();
+
+               hdnDMPID.Value = "";
                rdbPriceType.SelectedItem.Selected = false;
                txtPrice.Text = "";
            }
@@ -401,6 +403,26 @@ namespace MedicalShopWeb.Admin
                    else
                    { 
                    }
+               }
+           }
+           #endregion
+
+           /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date :- 09 OCT 2015
+         * Purpose :- Clear button click
+         */
+           #region-----------------------------------lnkbtnClear_Clear()-----------------------------
+           protected void lnkbtnClear_Click(object sender, EventArgs e)
+           {
+               try
+               {
+                   ClearFields();
+               }
+               catch (Exception ex)
+               {
+                   lblMessage.ForeColor = System.Drawing.Color.Red;
+                   lblMessage.Text = ex.Message.ToString();
                }
            }
            #endregion

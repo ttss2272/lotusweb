@@ -110,7 +110,9 @@
                             <div class="col-md-12">
                                 <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" ValidationGroup="SaveDMPLinking"
                                     OnClick="btnSave_Click" />
-                                <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" OnClick="btnClose_Click" />
+                                <asp:LinkButton ID="lnkbtnClear" runat="server" class=" btn btn-primary btn-lg" 
+                                    onclick="lnkbtnClear_Click">Clear</asp:LinkButton>
+                                <asp:LinkButton ID="lnkbtnClose" runat="server" class=" btn btn-danger btn-lg" OnClick="btnClose_Click">Close</asp:LinkButton>
                             </div>
                         </div>
                         <!--End of Fourth Row-->
