@@ -12,7 +12,7 @@ namespace DataLayer
         SqlConnection con = new SqlConnection();
         DBConnection conn = new DBConnection();
         
-        public string SaveSaleTransation(int SaleTransactionID,string SaleTransactionNo,int WarehouseID, int MedicalID,string SellingDate, int UpdatedByUserID,decimal DiscountAmt,decimal BalAmt)
+        public string SaveSaleTransation(int SaleTransactionID,string SaleTransactionNo,int WarehouseID, int MedicalID,string SellingDate, int UpdatedByUserID)
         {
             con = conn.GetConnection();
             SqlCommand cmd = new SqlCommand("SaveSaleTransaction_USP", con);   
@@ -23,9 +23,7 @@ namespace DataLayer
             cmd.Parameters.AddWithValue("@MedicalShopID", MedicalID);
             cmd.Parameters.AddWithValue("@SellingDate", SellingDate);
             cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
-            cmd.Parameters.AddWithValue("@DiscountAmount", DiscountAmt);
-            cmd.Parameters.AddWithValue("@BalanceAmount", BalAmt);
-
+           
             con.Open();
             string Result = cmd.ExecuteScalar().ToString();
             con.Close();
@@ -36,17 +34,16 @@ namespace DataLayer
          * Date:- 06 Oct 2015
          * Purpose:- Data Save In Sales Transactions Details Table
          */ 
-        public string SaveSaleTransactionDetails(int SaleTransactionDetailID, int SaleTansactionID, int ProductID, decimal Quntity, decimal SellingPrice, int IsActive)
+        public string SaveSaleTransactionDetails(int SaleTansactionID)
         {
             string result = null;
             con = conn.GetConnection();
             SqlCommand cmd = new SqlCommand("SaveSaleTransactionDetails_USP", con);  
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@SaleTansactionDetailID", SaleTransactionDetailID);
             cmd.Parameters.AddWithValue("@SaleTansactionID", SaleTansactionID);
-            cmd.Parameters.AddWithValue("@ProductID", ProductID);
-            cmd.Parameters.AddWithValue("@Quantity", Quntity);
-            cmd.Parameters.AddWithValue("@SellingPrice", SellingPrice);
+            //cmd.Parameters.AddWithValue("@ProductID", ProductID);
+            //cmd.Parameters.AddWithValue("@Quantity", Quntity);
+            //cmd.Parameters.AddWithValue("@SellingPrice", SellingPrice);
            
             con.Open();
             result = cmd.ExecuteScalar().ToString();
@@ -138,6 +135,24 @@ namespace DataLayer
              daGetSaleDetailData.Fill(dsGetProductData);
              con.Close();
              return dsGetProductData;
+         }
+         public DataSet GetTotal(int SaleTransactionID)
+         {
+             DataSet dsTempSalesTotal = new DataSet();
+
+             con = conn.GetConnection();
+             SqlCommand cmd = new SqlCommand("GetTempSalesTotal_USP", con);
+             cmd.CommandType = CommandType.StoredProcedure;
+             cmd.Parameters.AddWithValue("@SaleTransactionID", SaleTransactionID);
+
+             con.Open();
+
+             SqlDataAdapter daGetSalesTotalData = new SqlDataAdapter(cmd);
+             dsTempSalesTotal = new DataSet();
+             daGetSalesTotalData.Fill(dsTempSalesTotal);
+             con.Close();
+             return dsTempSalesTotal;
+
          }
     }
 }
