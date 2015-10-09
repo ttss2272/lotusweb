@@ -10,7 +10,7 @@ namespace DataLayer
     {
         SqlConnection con = new SqlConnection();
         DBConnection conn = new DBConnection();
-        public string SaveSupplier(int SupID, string SupplierName, string CompanyName, string ContactNo, int CityID, string Area, string Address, string ModeOfTransport, string PriceType, int IsActive, int UpdatedByUserID)
+        public string SaveSupplier(int SupID, string SupplierName, string CompanyName, string ContactNo, int CityID, string Area, string Address, string ModeOfTransport, string PriceType, int IsActive, int UpdatedByUserID,decimal OpeningBalance)
         {
             string result = null;
             con = conn.GetConnection();
@@ -28,6 +28,7 @@ namespace DataLayer
             cmd.Parameters.AddWithValue("@Area", Area);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
             cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@OpeningBalance", OpeningBalance);
             con.Open();
             result = cmd.ExecuteScalar().ToString();
             con.Close();
