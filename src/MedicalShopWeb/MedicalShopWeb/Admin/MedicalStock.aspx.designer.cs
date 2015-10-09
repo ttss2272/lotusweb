@@ -175,6 +175,15 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.Label lblCurrentStock;
         
         /// <summary>
+        /// RegCurrentStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegCurrentStock;
+        
+        /// <summary>
         /// txtCurrentStock control.
         /// </summary>
         /// <remarks>
@@ -200,6 +209,15 @@ namespace MedicalShopWeb.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDate;
+        
+        /// <summary>
+        /// CompDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompDate;
         
         /// <summary>
         /// txtDate control.
@@ -229,22 +247,22 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// btnClear control.
+        /// lnkbtnClear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClear;
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnClear;
         
         /// <summary>
-        /// btnClose control.
+        /// lnkbtnClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClose;
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnClose;
         
         /// <summary>
         /// grvMedicalStock control.

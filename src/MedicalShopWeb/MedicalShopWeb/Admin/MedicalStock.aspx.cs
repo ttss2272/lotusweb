@@ -37,7 +37,7 @@ namespace MedicalShopWeb.Admin
             {
                 if (!IsPostBack)
                 {
-                    BindMedicalShop();
+                    ClearFields();
                 }
             }
             catch (Exception ex)
@@ -153,7 +153,8 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
-
+                ClearFields();
+                Response.Redirect("../Defult.aspx", false);
             }
             catch (Exception ex)
             {
@@ -173,7 +174,17 @@ namespace MedicalShopWeb.Admin
         private void SaveMedicalStock()
         {
             string Result = objMedicalStock.SaveMedicalStock(MedicalShopID, DateOfStock, CurrentStock, MedicalShopID, ProductID, UpdatedByUserID);
-            lblMessage.Text = Result;
+            if (Result == "Medical Stock Inserted SucessFully...!!!" || Result == "Medical Stock Update SucessFully...!!!")
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Green;
+                lblMessage.Text = Result;
+            }
+            else
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = Result;
+                
+            }
 
         }
         #endregion
@@ -314,12 +325,17 @@ namespace MedicalShopWeb.Admin
         /*
          * Created By:- PriTesh D. Sortee
          * Created Date :- 25 Sept 2015
-         * Purpose   :-
+         * Purpose   :- Clear All fields
          */
 
         #region------------------------------ClearFields()------------------------------------
         private void ClearFields()
-        { 
+        {
+            BindMedicalShop();
+            txtCurrentStock.Text = "";
+            txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            txtLastDate.Text = "";
+            txtPrevStock.Text = "";
         }
         #endregion
 

@@ -16,13 +16,14 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="panel panel-default" >
+            <div class="panel panel-default">
                 <div class="panel-header" align="left">
                     <div class="col-xs-12">
-                       <h3> <asp:Label ID="lblPageHeading" runat="server" Text="Medical Stock" class="control-label label label-info"></asp:Label></h3>
+                        <h3>
+                            <asp:Label ID="lblPageHeading" runat="server" Text="Medical Stock" class="control-label label label-info"></asp:Label></h3>
                     </div>
                 </div>
-                <div class="panel-body" >
+                <div class="panel-body">
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-4">
@@ -38,8 +39,8 @@
                                                 ToolTip="Please Select Medical" ValidationGroup="SaveMedicalStock"></asp:RequiredFieldValidator>
                                         </asp:Label></div>
                                     <div class="col-sm-8">
-                                        <asp:DropDownList ID="ddlMedical" runat="server" class="form-control" 
-                                            AutoPostBack="True" onselectedindexchanged="ddlMedical_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlMedical" runat="server" class="form-control" AutoPostBack="True"
+                                            OnSelectedIndexChanged="ddlMedical_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -54,8 +55,8 @@
                                                 ToolTip="Please Select Product" ValidationGroup="SaveMedicalStock"></asp:RequiredFieldValidator>
                                         </asp:Label></div>
                                     <div class="col-sm-8">
-                                        <asp:DropDownList ID="ddlProduct" runat="server" class="form-control" 
-                                            AutoPostBack="True" onselectedindexchanged="ddlProduct_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlProduct" runat="server" class="form-control" AutoPostBack="True"
+                                            OnSelectedIndexChanged="ddlProduct_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -81,18 +82,23 @@
                                         </asp:Label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <asp:TextBox ID="txtLastDate" runat="server" class="form-control" ReadOnly></asp:TextBox>
+                                        <asp:TextBox ID="txtLastDate" runat="server" class="form-control" placeholder="DD/MM/YYYY" ReadOnly></asp:TextBox>
                                     </div>
                                 </div>
                                 <!--End Of Fourth Row-->
                                 <!--Start Fifth Row-->
                                 <div class="row form-group">
-                                    <div class="col-sm-4">
-                                    <asp:Label ID="lblCurrentStockReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-                                        <asp:Label ID="lblCurrentStock" runat="server" Text="Curent Stock" class="control-label">
+                                <div class="col-sm-4">
+                                            <asp:Label ID="lblCurrentStockReq" runat="server" class="control-label" 
+                                                ForeColor="Red" Text="*"></asp:Label>
+                                            <asp:Label ID="lblCurrentStock" runat="server" class="control-label" Text="Curent Stock">
+                                            <asp:RegularExpressionValidator ID="RegCurrentStock" runat="server" ErrorMessage="*"   
+             ValidationExpression="[0-9.]*$" ControlToValidate="txtCurrentStock" 
+             Display="Dynamic" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" 
+             ToolTip="Enter Only Numbers" ValidationGroup="SaveMedicalStock"></asp:RegularExpressionValidator>
             
                                         </asp:Label>
-                                    </div>
+                                        </div>
                                     <div class="col-sm-8">
                                         <asp:TextBox ID="txtCurrentStock" runat="server" class="form-control" placeholder=" Current Stock"
                                             required></asp:TextBox>
@@ -102,14 +108,16 @@
                                 <!--Start Sixth Row-->
                                 <div class="row form-group">
                                     <div class="col-sm-4">
-                                    <asp:Label ID="lblDateReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
+                                        <asp:Label ID="lblDateReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
                                         <asp:Label ID="lblDate" runat="server" Text="Stock Date" class="control-label">
-            
+                                            <asp:CompareValidator ID="CompDate" runat="server" ErrorMessage="*" ControlToCompare="txtLastDate" ControlToValidate="txtDate" CultureInvariantValues="True" Display="Dynamic" Font-Bold="True" SetFocusOnError="True" Type="Date" Operator="GreaterThan" ToolTip="Date Must be Greater Than Privious Stock Date" ForeColor="Red"></asp:CompareValidator>  
                                         </asp:Label>
+                                        
                                     </div>
                                     <div class="col-sm-8">
                                         <asp:TextBox ID="txtDate" runat="server" class="form-control" placeholder="DD/MM/YYYY"
-                                            required></asp:TextBox><asp:CalendarExtender ID="calExtDate" runat="server" Animated="true" Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyyy" TargetControlID="txtDate">
+                                            required></asp:TextBox><asp:CalendarExtender ID="calExtDate" runat="server" Animated="true"
+                                                Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyyy" TargetControlID="txtDate">
                                             </asp:CalendarExtender>
                                     </div>
                                 </div>
@@ -117,62 +125,60 @@
                                 <!--Start Seventh Row-->
                                 <div class="row form-group" align="center">
                                     <div class="col-md-12">
-                                        <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" 
-                                            onclick="btnSave_Click" />
-                                        <asp:Button ID="btnClear" runat="server" Text="Clear" class=" btn btn-primary btn-lg" 
-                                            onclick="btnClear_Click" />
-                                        <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" 
-                                            onclick="btnClose_Click" />
+                                        <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg"
+                                            OnClick="btnSave_Click" ValidationGroup="SaveMedicalStock"/>
+                                        
+                                        <asp:LinkButton ID="lnkbtnClear" runat="server" OnClick="btnClear_Click" class=" btn btn-primary btn-lg">Clear</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnClose" runat="server" OnClick="btnClose_Click" class=" btn btn-danger btn-lg">Close</asp:LinkButton>
                                     </div>
                                 </div>
                                 <!--End of Seventh Row-->
+                                <!--Start Eighth Row-->
+                                <div class="panel-body">
+                                    <!--Start Grid View-->
+                                    <div class="row">
+                                        <asp:GridView ID="grvMedicalStock" runat="server" AutoGenerateColumns="false" class="table"
+                                            HeaderStyle-BackColor="#4596f1" HeaderStyle-ForeColor="White" BorderColor="White"
+                                            HeaderStyle-BorderColor="#4596f1" AllowPaging="true" OnPageIndexChanging="grvMedicalStock_PageIndexChanging">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Sr.No" HeaderStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <%#Container.DataItemIndex+1 %></ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Product Name" HeaderStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <%#Eval("ProductName")%></ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Stock" HeaderStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <%#Eval("Stock")%></ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Date" HeaderStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <%#Eval("Date")%></ItemTemplate>
+                                                </asp:TemplateField>
+                                                <%--<asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
+                    <ItemTemplate >
+                             <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit" NavigateUrl='<%#String.Format("../Admin/Country.aspx?CountryId={0}", DataBinder.Eval(Container.DataItem,"CountryID") )%>'>
+                              </asp:HyperLink>
+                    </ItemTemplate>
+             </asp:TemplateField>--%>
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                    <!--End Grid View-->
+                                </div>
+                                <!--End Eighth Row-->
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
                     <div class="col-md-4">
                     </div>
                 </div>
-                
-                <div class="panel-body">
-                    <!--Start Grid View-->
-                    <div class="row">
-                        <asp:GridView ID="grvMedicalStock" runat="server" AutoGenerateColumns="false" class="table"
-                            HeaderStyle-BackColor="#4596f1" HeaderStyle-ForeColor="White" BorderColor="White"
-                            HeaderStyle-BorderColor="#4596f1" AllowPaging="true" OnPageIndexChanging="grvMedicalStock_PageIndexChanging">
-                            <Columns>
-                                <asp:TemplateField HeaderText="Sr.No" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <%#Container.DataItemIndex+1 %></ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Product Name" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <%#Eval("Country Name")%></ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Stock" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <%#Eval("State Name")%></ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Date" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <%#Eval("City Name")%></ItemTemplate>
-                                </asp:TemplateField>
-                                <%--<asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
-                    <ItemTemplate >
-                             <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit" NavigateUrl='<%#String.Format("../Admin/Country.aspx?CountryId={0}", DataBinder.Eval(Container.DataItem,"CountryID") )%>'>
-                              </asp:HyperLink>
-                    </ItemTemplate>
-             </asp:TemplateField>--%>
-                            </Columns>
-                        </asp:GridView>
-                    </div>
-                    <!--End Grid View-->
-                </div>
-
                 <div class="panel-footer" align="left">
                     <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
                     <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields"></asp:Label>
                 </div>
-
             </div>
         </div>
     </div>
