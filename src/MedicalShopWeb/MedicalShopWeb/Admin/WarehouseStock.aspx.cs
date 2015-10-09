@@ -56,7 +56,7 @@ namespace MedicalShopWeb.Admin
         private void BindWarehouse()
         {
             DataSet dsWarehosue = objWarehouse.BindWarehouse(0, 1);
-
+            ddlWarehouse.Items.Clear();
             if (dsWarehosue.Tables.Count != 0)
             {
                 if (dsWarehosue.Tables[0].Rows.Count != 0)
@@ -72,6 +72,7 @@ namespace MedicalShopWeb.Admin
                     ddlWarehouse.DataBind();
                 }
                 ddlWarehouse.Items.Insert(0, new ListItem("Select Warehouse", "-1"));
+                ddlProduct.Items.Insert(0, new ListItem("Select Product", "-1"));
             }
         }
         #endregion
@@ -87,6 +88,7 @@ namespace MedicalShopWeb.Admin
             try
             {
                 BindGridView();
+                BindProduct();
             }
             catch (Exception ex)
             {
@@ -113,6 +115,7 @@ namespace MedicalShopWeb.Admin
                 {
                     grvWarehouseStock.DataSource = dsWaehouseStock;
                     grvWarehouseStock.DataBind();
+                    
                 }
                 else
                 {
@@ -169,10 +172,41 @@ namespace MedicalShopWeb.Admin
 
         /*
          * Created By :- PriTesh D. Sortee
+         * Created Date:- 9 Oct 2015
+         * Purpose :- bind product to dropdown
+         */
+        #region-----------------------------------------GetWarehouseProduct()-----------------------------
+        private void BindProduct()
+        {
+            DataSet dsWarehosueproduct = objWarehouseStock.GetWarehouseProduct(Convert.ToInt32(ddlWarehouse.SelectedValue));
+            ddlProduct.Items.Clear();
+            if (dsWarehosueproduct.Tables.Count != 0)
+            {
+                if (dsWarehosueproduct.Tables[0].Rows.Count != 0)
+                {
+                    ddlProduct.DataTextField = "ProductName";
+                    ddlProduct.DataValueField = "ProductID";
+                    ddlProduct.DataSource = dsWarehosueproduct;
+                    ddlProduct.DataBind();
+                }
+                else
+                {
+                    ddlProduct.DataSource = null;
+                    ddlProduct.DataBind();
+                }
+
+                ddlProduct.Items.Insert(0, new ListItem("Select Product", "-1"));
+            }
+        }
+        #endregion
+
+
+        /*
+         * Created By :- PriTesh D. Sortee
          * Created Date:- 25 Sept 2015
          * Purpose :- Page Index Changing
          */
-        #region------------------------------grvCountry_PageIndexChanging------------------------
+        #region------------------------------grvWarehouseStock_PageIndexChanging------------------------
         protected void grvWarehouseStock_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
@@ -186,6 +220,63 @@ namespace MedicalShopWeb.Admin
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message.ToString();
             }
+        }
+        #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 09 Oct 2015
+         * Purpose :- check perticular product  Stock
+         */
+        #region--------------------------------btnCheck_Click---------------------------
+        protected void btnCheck_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ClearFields();
+                grvWarehouseStock.DataSource = null;
+                grvWarehouseStock.DataBind();
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 09 Oct 2015
+         * Purpose :- Click on Close Button
+         */
+        #region------------------------------btnClose_Click-----------------------------------------------
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("../Defult.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+
+        }
+        #endregion
+
+        /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date:- 09 Oct 2015
+         * Purpose :- Click on Close Button
+         */
+        #region------------------------------ClearFields----------------------------------------
+        private void ClearFields()
+        {
+            BindWarehouse();
+            txtStock.Text = "";
+ 
         }
         #endregion
     }

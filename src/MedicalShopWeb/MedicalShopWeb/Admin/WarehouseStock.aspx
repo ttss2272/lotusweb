@@ -23,12 +23,13 @@
                             <asp:Label ID="lblPageHeading" runat="server" Text="Warehouse Stock" class="control-label label label-info"></asp:Label></h3>
                     </div>
                 </div>
+                <asp:UpdatePanel ID="ddlUpdatePanel" runat="server">
+                            <ContentTemplate>
                 <div class="panel-body">
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-4">
-                        <asp:UpdatePanel ID="ddlUpdatePanel" runat="server">
-                            <ContentTemplate>
+                        
                                 <!--Start First Row-->
                                 <div class="row form-group">
                                     <div class="col-sm-4">
@@ -73,44 +74,42 @@
                                 <!--Start Fourth Row-->
                                 <div class="row form-group" align="center">
                                     <div class="col-md-12">
-                                        <asp:Button ID="btnCheck" runat="server" Text="Check" class=" btn btn-success btn-lg" />
-                                        <asp:Button ID="btnClose" runat="server" Text="Close" class=" btn btn-danger btn-lg" />
+                                        
+                                        <asp:LinkButton ID="lnkbtnClear" runat="server" class=" btn btn-primary btn-lg" OnClick="btnCheck_Click">Clear</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnClose" runat="server" class=" btn btn-danger btn-lg" OnClick="btnClose_Click">Close</asp:LinkButton>
                                     </div>
                                 </div>
                                 <!--End of Fourth Row-->
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
+                                <!--Start OF Fifth Row-->
+                                <div class="row">
+                    <asp:GridView ID="grvWarehouseStock" runat="server" AutoGenerateColumns="false" class="table"
+                        HeaderStyle-BackColor="#4596f1" HeaderStyle-ForeColor="White" BorderColor="White"
+                        HeaderStyle-BorderColor="#4596f1" AllowPaging="true" OnPageIndexChanging="grvWarehouseStock_PageIndexChanging">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Sr.No" HeaderStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <%#Container.DataItemIndex+1 %></ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Product Name" HeaderStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <%#Eval("ProductName")%></ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Stock" HeaderStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <%#Eval("Stock")%></ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
+                                <!--End OF Fifth Row-->
+                            
                     </div>
                 </div>
                 
-                <div class="panel-body">
-                    <div class="row">
-                        <asp:GridView ID="grvWarehouseStock" runat="server" AutoGenerateColumns="false" class="table"
-                            HeaderStyle-BackColor="#4596f1" HeaderStyle-ForeColor="White" BorderColor="White"
-                            HeaderStyle-BorderColor="#4596f1" AllowPaging="true" OnPageIndexChanging="grvWarehouseStock_PageIndexChanging">
-                            <Columns>
-                                <asp:TemplateField HeaderText="Sr.No" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <%#Container.DataItemIndex+1 %></ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Product Name" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <%#Eval("Product Name")%></ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Quantity" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <%#Eval("Quantity")%></ItemTemplate>
-                                </asp:TemplateField>
-                                <%--<asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
-                    <ItemTemplate >
-                             <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit" NavigateUrl='<%#String.Format("../Admin/Country.aspx?CountryId={0}", DataBinder.Eval(Container.DataItem,"CountryID") )%>'>
-                              </asp:HyperLink>
-                    </ItemTemplate>
-             </asp:TemplateField>--%>
-                            </Columns>
-                        </asp:GridView>
-                    </div>
-                </div>
+                
+
+                </ContentTemplate>
+                        </asp:UpdatePanel>
                 <div class="panel-footer" align="left">
                     <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
                     <asp:Label ID="lblInfo" runat="server" Text="Madnatory Fields"></asp:Label>
