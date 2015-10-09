@@ -77,6 +77,7 @@ namespace MedicalShopWeb.Admin
                 }
                 if (ViewState["PPID"] != null)
                 {
+                    AddDisable();
                     btnSave.CssClass = "btn btn-success btn-lg";
                         SetProductDetail();
                     SaveTempPurchaseProduct();
