@@ -21,5 +21,11 @@ namespace BusinessLayer
             DataSet dsWaehouseStock = objWarehouseStock.GetProductStock(WarehouseID, ProductID);
             return dsWaehouseStock;
         }
+
+        public DataSet GetWarehouseProduct(int WarehouseID)
+        {
+            DataSet dsWaehouseStock = objWarehouseStock.GetWarehouseProduct(WarehouseID);
+            return dsWaehouseStock;
+            }
     }
 }
