@@ -11,7 +11,7 @@ namespace DataLayer
     {
         SqlConnection con = new SqlConnection();
         DBConnection conn = new DBConnection();
-        /*Get Medical Product List*/
+        /*Get Medical Product List To Bind Drop down*/
         public DataSet BindMedicalProduct(int MedicalShopID)
         {
             DataSet dsMedicalProduct = new DataSet();
