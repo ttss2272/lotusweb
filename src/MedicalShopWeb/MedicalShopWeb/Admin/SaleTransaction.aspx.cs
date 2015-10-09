@@ -20,7 +20,7 @@ namespace MedicalShopWeb.Admin
         BLPurchaseProduct objPurchaseProduct = new BLPurchaseProduct();
         int WarehouseID,MedicalID, UpdatedByUSerID, IsActive, ProductID;
         string date, Product, CurrentStock, comment, SaleTransctionNo;
-        decimal SalePrice, Quantity,PaidAmt,DiscountAmt,BalAmt,Total;
+        decimal SalePrice, Quantity,PaidAmt,DiscountAmt,BalAmt,Total, FinalDiscountAmt;
         #endregion
 
         #region-------------------------------------Page_Load-----------------------------
@@ -35,7 +35,7 @@ namespace MedicalShopWeb.Admin
                     BindWarehouse();
                     BindMedicalShop();
                     BindProduct();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "myFunction", "myFunction2();", true);
+                   // ScriptManager.RegisterStartupScript(this, GetType(), "myFunction", "myFunction2();", true);
                     if (ViewState["SPID"] == null)
                     {
                         btnSave.CssClass = "btn btn-success btn-lg disabled";
@@ -64,7 +64,7 @@ namespace MedicalShopWeb.Admin
                 {
                     AddDisable();
                     SetAddParameters();
-                    ViewState["SPID"] = objSaleTransaction.SaveSaleProduct(SaleTransactionID, SaleTransctionNo, WarehouseID, MedicalID, date, UpdatedByUSerID, DiscountAmt, BalAmt);
+                    ViewState["SPID"] = objSaleTransaction.SaveSaleProduct(SaleTransactionID, SaleTransctionNo, WarehouseID, MedicalID, date, UpdatedByUSerID);
                 }
                 if (ViewState["SPID"] != null)
                 {
@@ -102,7 +102,7 @@ namespace MedicalShopWeb.Admin
 
                 }
                 Total = Total + (Quantity * SalePrice);
-                txtTotal.Text = Total.ToString();
+                 txtTotal.Text = Total.ToString();
             }
             catch (Exception ex)
             {
@@ -111,12 +111,36 @@ namespace MedicalShopWeb.Admin
             }
             finally
             {
+                GetTotal();
                 BindGridView();
                 AddClear();
 
             }
  
         }
+        /*
+         * Created By :- Sameer Shinde
+         * Created Date:- 09 Oct 2015
+         * Purpose :-  Get Temp Total
+         */
+        #region---------------------------------GetTotal-----------------------------------
+        private void GetTotal()
+        {
+            DataSet dsGetTotal = objSaleTransaction.GetTotal(Convert.ToInt32(ViewState["SPID"]));
+            if (dsGetTotal.Tables.Count != 0)
+            {
+                if (dsGetTotal.Tables[0].Rows.Count != 0)
+                {
+                    txtTotal.Text = dsGetTotal.Tables[0].Rows[0]["Total"].ToString();
+                }
+                else
+                {
+                    txtTotal.Text = "0";
+                }
+            }
+        }
+        #endregion
+    
         #region----------------------------------BindGridView-------------------------------------
         private void BindGridView()
         {
@@ -185,9 +209,10 @@ namespace MedicalShopWeb.Admin
         #region----------------------------------AddDisable----------------------------
         private void AddDisable()
         {
-            //ddlWarehouse.Enabled = false;
+            ddlWarehouse.Enabled = false;
             ddlMedical.Enabled = false;
-            //Ask to pritesh which field disable
+            //txtSaleDate.Enabled = false;
+            
             ScriptManager.RegisterStartupScript(this, GetType(), "myFunction", "myFunction();", true); 
         }
         #endregion
@@ -208,45 +233,7 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
-        #region---------------------------------btnSave_Click---------------------------------
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int SaleTransactionID = 0;
-                SetSaveParameters();
-                SetProductDetail();
-
-                if (ViewState["SPID"] != null)
-                {
-                    DataSet dsGetDataForSaveSaleTranDetail = objSaleTransaction.GetDataForSaleTransDetail(Convert.ToInt32(ViewState["SPID"]));
-                    int count = dsGetDataForSaveSaleTranDetail.Tables[0].Rows.Count;
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = ex.Message.ToString();
-            }
-        }
-        /*
-        * Created By :- Sameer Shinde
-        * Created Date:- 06 Oct 2015
-        * Purpose :-  Set Save Parameters 
-        */
-        #region----------------------SetSaveParameters------------------------------------
-        private void SetSaveParameters()
-        {
-            ProductID = Convert.ToInt32(ddlProduct.SelectedValue);
-            SalePrice =Convert.ToDecimal(txtSalePrice.Text);
-            Quantity = Convert.ToDecimal(txtQuantity.Text);
-            IsActive = 1;
-           
-        }
-        #endregion
-        #endregion
+        
 
         #region---------------------------------btnCancel_Click---------------------------------
         protected void BtnCancel_Click(object sender, EventArgs e)
@@ -339,7 +326,7 @@ namespace MedicalShopWeb.Admin
                 if (dsWaehouseStock.Tables[0].Rows.Count != 0)
                 {
                     txtCurrentStock.Text = dsWaehouseStock.Tables[0].Rows[0]["Stock"].ToString();
-                    txtSalePrice.Text = dsSellingPrice.Tables[0].Rows[0]["SellingPrice"].ToString();
+                    txtSalePrice.Text = dsSellingPrice.Tables[0].Rows[0]["SallingPrice"].ToString();
                     txtTotal.Text = "";
                 }
                 else
@@ -390,16 +377,154 @@ namespace MedicalShopWeb.Admin
         }
         #endregion
 
+       
         #region---------------------------------AddClear()-----------------------------------
         private void AddClear()
         {
-           ddlWarehouse.SelectedValue= "-1";
-           ddlMedical.SelectedValue = "-1";
+           //ddlWarehouse.SelectedValue= "-1";
+           //ddlMedical.SelectedValue = "-1";
            ddlProduct.SelectedValue = "-1";
            txtCurrentStock.Text = "";
            txtSalePrice.Text = "";
            txtQuantity.Text = "";
            
+        }
+        #endregion
+        /*
+         * Created By:- Sameer Shinde
+         * Created Date:-09/10/2015
+         * Purpose:-Calculate Discount
+         */
+        #region-----------------------DiscountTextchange---------------------------------
+        protected void txtDiscount_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Total =Convert.ToDecimal(txtTotal.Text);
+                if (txtDiscount.Text != "")
+                {
+                    DiscountAmt = (Decimal)Convert.ToDecimal(txtDiscount.Text);
+
+                }
+                else
+                {
+                    DiscountAmt = 0;
+                    txtDiscount.Text = "0";
+                }
+                if (DiscountAmt <= 40)
+                {
+                    FinalDiscountAmt = (Total * (DiscountAmt / 100));
+                    decimal temp = Math.Round(FinalDiscountAmt, 2);
+                    txtFinalTotal.Text = Convert.ToString(Total - temp);
+                    BalanceAmount();
+                }
+                else
+                {
+                    lblMessage.Text= "Discount Not More Than 40%";
+                    txtDiscount.Text = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #region-------------------------------BalanceAmount-----------------------------------
+        private void BalanceAmount()
+        {
+            decimal fin, disc, tot, amtpd, bal;
+            if (txtFinalTotal.Text == "")
+            { fin = 0; }
+            else
+            { fin = Convert.ToDecimal(txtFinalTotal.Text); }
+            if (txtDiscount.Text == "")
+            { disc = 0; }
+            else
+            { disc = Convert.ToDecimal(txtDiscount.Text); }
+            if (txtAmountPaid.Text == "")
+            { amtpd = 0; }
+            else
+            { amtpd = Convert.ToDecimal(txtAmountPaid.Text); }
+            if (txtTotal.Text != "")
+            { tot = Convert.ToDecimal(txtTotal.Text); }
+
+          txtBalanceAmount.Text = Convert.ToString(fin - amtpd);
+        }
+        #endregion
+
+        #region-----------------------------AmountPaidTextChange-----------------------
+        protected void txtAmountPaid_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                 if (txtFinalTotal.Text != "")
+                {
+                    if (Convert.ToDecimal(txtAmountPaid.Text) > Convert.ToDecimal(txtFinalTotal.Text))
+                    {
+                        lblMessage.ForeColor = System.Drawing.Color.Red;
+                        lblMessage.Text = "Paid Amount Must Be Less Than Or Equal To Final Total";
+                    }
+                    else
+                    {
+                        txtBalanceAmount.Text = Convert.ToString(Convert.ToDecimal(txtFinalTotal.Text) - Convert.ToDecimal(txtAmountPaid.Text));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
+        }
+        #endregion
+
+        protected void btnSave_Click1(object sender, EventArgs e)
+        {
+            try
+            {
+                string result = null;
+
+
+
+                //SetSaveParameters();
+                // SetProductDetail();
+
+                if (ViewState["SPID"] != null)
+                {
+                    DataSet dsGetDataForSaveSaleTranDetail = objSaleTransaction.GetDataForSaleTransDetail(Convert.ToInt32(ViewState["SPID"]));
+                    int count = dsGetDataForSaveSaleTranDetail.Tables[0].Rows.Count;
+                    for (int i = 0; i <= dsGetDataForSaveSaleTranDetail.Tables[0].Rows.Count - 1; i++)
+                    {
+
+                        ProductID = Convert.ToInt32(dsGetDataForSaveSaleTranDetail.Tables[0].Rows[i]["ProductID"]);
+                        Quantity = Convert.ToDecimal(dsGetDataForSaveSaleTranDetail.Tables[0].Rows[i]["Quantity"]);
+                        //SalePrice = Convert.ToDecimal(dsGetDataForSaveSaleTranDetail.Tables[0].Rows[i]["SalePrice"]);
+                        result = objSaleTransaction.SaveSaleTransactionDetails(Convert.ToInt32(ViewState["SPID"]));
+                        int addMedicalStockResult = objSaleTransaction.AddMedicalStock(date, Quantity, MedicalID, ProductID);
+                        if ((result == "Sales Transaction Sucessfully....!!!") && (addMedicalStockResult == 2))
+                        {
+                            lblMessage.ForeColor = System.Drawing.Color.Green;
+                            lblMessage.Text = result;
+                        }
+                        else
+                        {
+                            lblMessage.ForeColor = System.Drawing.Color.Red;
+                            lblMessage.Text = result;
+                        }
+
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message.ToString();
+            }
         }
         #endregion
 

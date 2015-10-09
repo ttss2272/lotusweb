@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CntPlcLeft" runat="server">
-<script type="text/javascript">
+<%--<script type="text/javascript">
     function myFunction() {
 
         {
@@ -20,7 +20,7 @@
         document.getElementById('Div1').style.visibility = 'hidden';
 
     }
-    </script>
+    </script>--%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CntPlcCenter" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManagerPurchaseProduct" runat="server">
@@ -156,8 +156,7 @@
                                     </div>
                                     <!--End Second Column-->
                                 </div>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
+                           
                         <!--End Third Row-->
                         <!--Start Fourth Row-->
                         <div class="row">
@@ -167,15 +166,14 @@
                                     <div class="col-sm-4">
                                         <asp:Label ID="lblReqSalePrice" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
                                         <asp:Label ID="lblSalePrice" runat="server" Text="Sale Price" class="control-label">
-                                            <asp:RegularExpressionValidator ID="RegSalePrice" runat="server" ErrorMessage="*"
+                                           <%-- <asp:RegularExpressionValidator ID="RegSalePrice" runat="server" ErrorMessage="*"
                                                 ValidationExpression="[0-9]*$" ControlToValidate="txtSalePrice" Display="Dynamic"
                                                 Font-Bold="True" ForeColor="Red" SetFocusOnError="True" ToolTip="Enter Only Numbers"
-                                                ValidationGroup="AddSaleTransaction"></asp:RegularExpressionValidator>
+                                                ValidationGroup="AddSaleTransaction"></asp:RegularExpressionValidator>--%>
                                         </asp:Label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <asp:TextBox ID="txtSalePrice" runat="server" class="form-control" placeholder="Sale Price"
-                                            required></asp:TextBox>
+                                        <asp:TextBox ID="txtSalePrice" runat="server" class="form-control" placeholder="Sale Price"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -197,6 +195,8 @@
                                             required></asp:TextBox></div>
                                 </div>
                             </div>
+                             </ContentTemplate>
+                        </asp:UpdatePanel>
                             <!--End Second Column-->
                         </div>
                         <!--End Fourth Row-->
@@ -268,6 +268,8 @@
                                 </div>
                             </div>
                         </div>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                       <ContentTemplate>
                         <div class="col-md-4 col-md-offset-2">
                             <div class="panel panel-body" style="border-color: Gray;">
                                 <div class="col-xs-12">
@@ -306,7 +308,7 @@
                                                 </div>
                                                 <div class="col-sm-7">
                                                     <asp:TextBox ID="txtDiscount" runat="server" class="form-control" placeholder="Discount"
-                                                        required></asp:TextBox>
+                                                        required ontextchanged="txtDiscount_TextChanged" AutoPostBack="True"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -348,7 +350,7 @@
                                                 </div>
                                                 <div class="col-sm-7">
                                                     <asp:TextBox ID="txtAmountPaid" runat="server" class="form-control" placeholder="Amount Paid"
-                                                        required></asp:TextBox>
+                                                        required ontextchanged="txtAmountPaid_TextChanged" AutoPostBack="True"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -377,13 +379,16 @@
                                 </div>
                             </div>
                         </div>
+                       </ContentTemplate>
+                         </asp:UpdatePanel>
                     </div>
                     <!--Eighth Row-->
                     <!--Start Ninth Row-->
                     <div class="row form-group" align="center">
                         <div class="col-md-12">
-                            <asp:Button ID="btnSave" runat="server" Text="Save" class="btn btn-lg btn-success"
-                                OnClick="btnSave_Click" />
+                            
+                            <asp:LinkButton ID="btnSave" runat="server" class="btn btn-lg btn-success" 
+                                onclick="btnSave_Click1">Save</asp:LinkButton>
                             <asp:Button ID="BtnCancel" runat="server" Text="Clear" class="btn btn-lg btn-danger"
                                 OnClick="BtnCancel_Click" />
                         </div>

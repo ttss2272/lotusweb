@@ -247,15 +247,6 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.Label lblSalePrice;
         
         /// <summary>
-        /// RegSalePrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegSalePrice;
-        
-        /// <summary>
         /// txtSalePrice control.
         /// </summary>
         /// <remarks>
@@ -344,6 +335,15 @@ namespace MedicalShopWeb.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtComment;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// lblTotal control.
@@ -478,7 +478,7 @@ namespace MedicalShopWeb.Admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.LinkButton btnSave;
         
         /// <summary>
         /// BtnCancel control.
