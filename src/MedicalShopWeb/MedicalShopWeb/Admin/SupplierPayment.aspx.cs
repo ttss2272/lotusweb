@@ -20,7 +20,7 @@ namespace MedicalShopWeb.Admin
         BLSupplierPayment objSupllierPay = new BLSupplierPayment();
         BLSupplier objSupplierName = new BLSupplier();
         int PurchaseTransactionID, UpdatedByUserID;
-        double PaidAmount, BalanceAmount;
+        decimal PaidAmount, BalanceAmount;
         string PaymentDate, Comment, SupplierPaymentNo;
         #endregion
 
@@ -55,12 +55,17 @@ namespace MedicalShopWeb.Admin
         private void BindPurchaseInvoiceNo()
         {
             DataSet dsPurchaseInvoice = objSupllierPay.BindPurchaseInvoiceNo(Convert.ToInt32(ddlSupplier.SelectedValue));
-            if (dsPurchaseInvoice.Tables.Count > 0)
+            ddlPurchaseInvoiceNo.Items.Clear();
+            txtTotalAmo.Text = "0.00";
+            txtCurrentBal.Text = "0.00";
+            txtPaidAmo.Text = "0.00";
+            txtRemBal.Text = "0.00";
+            if (dsPurchaseInvoice.Tables.Count !=0 )
             {
-                if (dsPurchaseInvoice.Tables[0].Rows.Count > 0)
+                if (dsPurchaseInvoice.Tables[0].Rows.Count != 0)
                 {
-                    ddlPurchaseInvoiceNo.DataTextField = "SaleTransactionNo";
-                    ddlPurchaseInvoiceNo.DataValueField = "SaleTransactionID";
+                    ddlPurchaseInvoiceNo.DataTextField = "SupplierReciptNo";
+                    ddlPurchaseInvoiceNo.DataValueField = "PurchaseTransactionID";
                     ddlPurchaseInvoiceNo.DataSource = dsPurchaseInvoice;
                     ddlPurchaseInvoiceNo.DataBind();
                 }
@@ -141,7 +146,7 @@ namespace MedicalShopWeb.Admin
         #region----------------------txtPaidAmountTextChange----------------------
         protected void txtPaidAmo_TextChanged(object sender, EventArgs e)
         {
-            if (txtPaidAmo.Text != null)
+            if (txtPaidAmo.Text != null||  txtPaidAmo.Text!="")
             {
                 decimal CurrentBalance=Convert.ToDecimal(txtCurrentBal.Text.ToString());
                 decimal PaidAmount = Convert.ToDecimal(txtPaidAmo.Text.ToString());
@@ -177,6 +182,10 @@ namespace MedicalShopWeb.Admin
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message.ToString();
             }
+            finally
+            {
+                Response.AppendHeader("Refresh", "2;url=SupplierPayment.aspx");
+            }
         }
 
         #endregion
@@ -189,7 +198,7 @@ namespace MedicalShopWeb.Admin
         private void SaveSupplierPayment()
         {
             string result = objSupllierPay.SaveSupplierPayment(PurchaseTransactionID, PaidAmount, PaymentDate, UpdatedByUserID, SupplierPaymentNo, BalanceAmount, Comment);
-            if (result == "Supplier Payment Details Save Sucessfully")
+            if (result == "Supplier Payment Save Sucessfully...!!!")
             {
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = result;
@@ -210,7 +219,7 @@ namespace MedicalShopWeb.Admin
         private void SetParameters()
         {
             PurchaseTransactionID = Convert.ToInt32(ddlPurchaseInvoiceNo.SelectedValue.ToString());
-            PaidAmount = Convert.ToDouble(txtPaidAmo.Text);
+            PaidAmount = Convert.ToDecimal(txtPaidAmo.Text);
             PaymentDate = txtPaymentDate.Text;
             UpdatedByUserID = 1;
             //string ReceivedBy = txtReceivedBy.Text;
@@ -220,7 +229,7 @@ namespace MedicalShopWeb.Admin
             {
                 SupplierPaymentNo = "no1";
             }
-            BalanceAmount = Convert.ToDouble(txtRemBal.Text);
+            BalanceAmount = Convert.ToDecimal(txtRemBal.Text);
             Comment = txtComment.Text;
         }
         #endregion
