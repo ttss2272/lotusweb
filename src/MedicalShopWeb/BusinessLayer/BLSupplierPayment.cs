@@ -24,7 +24,7 @@ namespace BusinessLayer
             return dsPurchaseInvoiceNo;
         }
 
-        public string SaveSupplierPayment(int PurchaseTransactionID, double PaidAmount, string PaymentDate, int UpdatedByUserID, string SupplierPaymentNo, double BalanceAmount, string Comment)
+        public string SaveSupplierPayment(int PurchaseTransactionID, decimal PaidAmount, string PaymentDate, int UpdatedByUserID, string SupplierPaymentNo, decimal BalanceAmount, string Comment)
         {
             string result = objSupplierPay.SaveSupplierPayment(PurchaseTransactionID,PaidAmount,PaymentDate,UpdatedByUserID,SupplierPaymentNo,BalanceAmount,Comment);
             return result;
