@@ -67,15 +67,6 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.Label lblPaymentDate;
         
         /// <summary>
-        /// ReqPaymentDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqPaymentDate;
-        
-        /// <summary>
         /// txtPaymentDate control.
         /// </summary>
         /// <remarks>
@@ -245,6 +236,15 @@ namespace MedicalShopWeb.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegPaidAmo;
+        
+        /// <summary>
+        /// CmpAmt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CmpAmt;
         
         /// <summary>
         /// txtPaidAmo control.

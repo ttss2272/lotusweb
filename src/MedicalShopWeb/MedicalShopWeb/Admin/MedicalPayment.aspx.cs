@@ -17,7 +17,7 @@ namespace MedicalShopWeb.Admin
           */
         #region------------------SetVariables-----------------
         int SaleTransactionID, UpdatedByUserID;
-        double PaidAmount, BalanceAmount;
+        decimal PaidAmount, BalanceAmount;
         string PaymentDate, Coment, MedicalPaymentNo;
         BLMedicalPayment objMedicalPayment = new BLMedicalPayment();
         BLMedicalShop objMedicalShop = new BLMedicalShop();
@@ -55,17 +55,17 @@ namespace MedicalShopWeb.Admin
         private void BindSaleInvoiceNo()
         {
             DataSet dsSaleInvoiceNo =objMedicalPayment.BindSaleTransctionNo(Convert.ToInt32(ddlMedicalShop.SelectedValue));
-
-            if (dsSaleInvoiceNo.Tables.Count > 0)
+            ddlSaleInvoiceNo.Items.Clear();
+            if (dsSaleInvoiceNo.Tables.Count != 0)
             {
-                if (dsSaleInvoiceNo.Tables[0].Rows.Count > 0)
+                if (dsSaleInvoiceNo.Tables[0].Rows.Count != 0)
                 {
                     ddlSaleInvoiceNo.DataTextField = "SaleTransactionNo";
                     ddlSaleInvoiceNo.DataValueField = "SaleTransactionID";
                     ddlSaleInvoiceNo.DataSource = dsSaleInvoiceNo;
                     ddlSaleInvoiceNo.DataBind();
                 }
-                ddlMedicalShop.Items.Insert(0, new ListItem("Select Sale Invoice No", "-1"));
+                ddlSaleInvoiceNo.Items.Insert(0, new ListItem("Select Sale Invoice No", "-1"));
             }
         }
         #endregion
@@ -77,7 +77,7 @@ namespace MedicalShopWeb.Admin
         private void BindMedicalShopName()
         {
             DataSet dsMedicalName = objMedicalShop.BindMedicalShop(0);
-
+            ddlMedicalShop.Items.Clear();
             if (dsMedicalName.Tables.Count > 0)
             {
                 if (dsMedicalName.Tables[0].Rows.Count > 0)
@@ -154,6 +154,11 @@ namespace MedicalShopWeb.Admin
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message.ToString();
             }
+            finally
+            {
+                Response.AppendHeader("Refresh", "2;url=SupplierPayment.aspx");
+                
+            }
         }
         #endregion
 
@@ -165,7 +170,7 @@ namespace MedicalShopWeb.Admin
         private void SaveMedicalTransction()
         {
             string result = objMedicalPayment.SaveMedicalPayment(SaleTransactionID, PaidAmount, PaymentDate, UpdatedByUserID, MedicalPaymentNo, BalanceAmount,Coment);
-            if (result == "Medical Payment Detail Save Sucessfully")
+            if (result == "Medical Payment Save Sucessfully...!!!")
             {
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = result;
@@ -188,13 +193,13 @@ namespace MedicalShopWeb.Admin
         private void SetParameters()
         {
             SaleTransactionID = Convert.ToInt32(ddlSaleInvoiceNo.SelectedValue.ToString());
-            PaidAmount = Convert.ToDouble(txtPaidAmo.Text);
+            PaidAmount = Convert.ToDecimal(txtPaidAmo.Text);
             PaymentDate = txtPaymentDate.Text;
             UpdatedByUserID = 1;
             //string ReceivedBy = txtReceivedBy.Text;
             //Place = "Place";
             MedicalPaymentNo = txtInvoiceNo.Text;
-            BalanceAmount = Convert.ToDouble(txtRemBal.Text);
+            BalanceAmount = Convert.ToDecimal(txtRemBal.Text);
             Coment = txtComment.Text;
         }
         #endregion
@@ -205,17 +210,15 @@ namespace MedicalShopWeb.Admin
         #region---------------------GetPaidAmtTextchange--------------------------
           protected void txtPaidAmo_TextChanged(object sender, EventArgs e)
         {
-            if (txtPaidAmo.Text != null)
+            if (txtPaidAmo.Text != null|| txtPaidAmo.Text!="")
             {
                 try
                 {
-                    float CurrentBal = (float)Convert.ToDecimal(txtCurrentBal.Text.ToString());
-                    float paidAmo = (float)Convert.ToDecimal(txtPaidAmo.Text.ToString());
-                    double RemainningBalance = CurrentBal - paidAmo;
+                    decimal CurrentBal = Convert.ToDecimal(txtCurrentBal.Text.ToString());
+                    decimal paidAmo = Convert.ToDecimal(txtPaidAmo.Text.ToString());
+                    decimal RemainningBalance = CurrentBal - paidAmo;
                     if (RemainningBalance < 0)
                     {
-                        lblMessage.ForeColor = System.Drawing.Color.Red;
-                        lblMessage.Text = "Paid Amount Must Be Same or less than Remaining Balance";
                         txtRemBal.Text = "";
                         txtPaidAmo.Text = "";
                     }
@@ -296,7 +299,27 @@ namespace MedicalShopWeb.Admin
           {
               try
               {
-                  Response.Redirect("../Default.aspx", false);
+                  Response.Redirect("../Defult.aspx", false);
+              }
+              catch (Exception ex)
+              {
+                  lblMessage.ForeColor = System.Drawing.Color.Red;
+                  lblMessage.Text = ex.Message.ToString();
+              }
+          }
+          #endregion
+
+          /*
+         * Created By :- PriTesh D. Sortee
+         * Created Date :- 10 Oct 2015
+         * Pupose :- ddlMedicalShop_SelectedIndexChanged
+         */
+          #region-------------------------ddlMedicalShop_SelectedIndexChanged-----------------------------
+          protected void ddlMedicalShop_SelectedIndexChanged(object sender, EventArgs e)
+          {
+              try
+              {
+                  BindSaleInvoiceNo();
               }
               catch (Exception ex)
               {

@@ -48,9 +48,7 @@
                                     <div class="col-sm-4">
                                         <asp:Label ID="PaymentDateRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
                                         <asp:Label ID="lblPaymentDate" runat="server" Text="Payment Date" class="control-label">
-                                            <asp:RequiredFieldValidator ID="ReqPaymentDate" runat="server" ErrorMessage="*" Display="Dynamic"
-                                                Font-Bold="True" ForeColor="Red" ControlToValidate="txtPaymentDate" InitialValue="-1"
-                                                SetFocusOnError="True" ToolTip="Please Select Payment Date" ValidationGroup="SaveMedicalPaymentDetails"></asp:RequiredFieldValidator>
+                                            
                                         </asp:Label>
                                     </div>
                                     <div class="col-sm-8">
@@ -83,7 +81,9 @@
                                                 </asp:Label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <asp:DropDownList ID="ddlMedicalShop" runat="server" class="form-control" AutoPostBack="True">
+                                                <asp:DropDownList ID="ddlMedicalShop" runat="server" class="form-control" 
+                                                    AutoPostBack="True" 
+                                                    onselectedindexchanged="ddlMedicalShop_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
@@ -101,9 +101,8 @@
                                                 </asp:Label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <asp:DropDownList ID="ddlSaleInvoiceNo" runat="server" class="form-control" 
-                                                    AutoPostBack="True" 
-                                                    onselectedindexchanged="ddlSaleInvoiceNo_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlSaleInvoiceNo" runat="server" class="form-control" AutoPostBack="True"
+                                                    OnSelectedIndexChanged="ddlSaleInvoiceNo_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
@@ -158,11 +157,13 @@
                                                     <asp:RegularExpressionValidator ID="RegPaidAmo" runat="server" ErrorMessage="*" ValidationExpression="[0-9.]*$"
                                                         ControlToValidate="txtPaidAmo" Display="Dynamic" Font-Bold="True" ForeColor="Red"
                                                         SetFocusOnError="True" ToolTip="Enter Only Numbers" ValidationGroup="SaveMedicalPaymentDetails"></asp:RegularExpressionValidator>
+                                                    <asp:CompareValidator ID="CmpAmt" runat="server" ForeColor="Red" ErrorMessage="*" Display="Dynamic" Font-Bold="True" Operator="LessThanEqual" SetFocusOnError="True" ToolTip="Paid Amount Must Be Less Than Current Balance" ValidationGroup="SaveMedicalPayment" Type="Double" CultureInvariantValues="True" ControlToValidate="txtPaidAmo" ControlToCompare="txtCurrentBal"></asp:CompareValidator>
+
                                                 </asp:Label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <asp:TextBox ID="txtPaidAmo" runat="server" class="form-control" placeholder="Enter Paid Amount"
-                                                    required ontextchanged="txtPaidAmo_TextChanged">
+                                                <asp:TextBox ID="txtPaidAmo" runat="server" class="form-control" placeholder="Enter Paid Amount" AutoPostBack="true"
+                                                    required OnTextChanged="txtPaidAmo_TextChanged">
            
                                                 </asp:TextBox>
                                             </div>
@@ -211,12 +212,10 @@
                         <!--Start Seven Row-->
                         <div class="row form-group" align="center">
                             <div class="col-md-12">
-                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg" 
-                                    ValidationGroup="SaveMedicalPaymentDetails" onclick="btnSave_Click" />
-                                <asp:LinkButton ID="lnkClear" runat="server" class="btn btn-lg btn-primary" 
-                                    onclick="lnkClear_Click">Clear</asp:LinkButton>
-                                <asp:LinkButton ID="lnkclose" runat="server" class="btn btn-lg btn-danger" 
-                                    onclick="lnkclose_Click">Close</asp:LinkButton>
+                                <asp:Button ID="btnSave" runat="server" Text="Save" class=" btn btn-success btn-lg"
+                                    ValidationGroup="SaveMedicalPaymentDetails" OnClick="btnSave_Click" />
+                                <asp:LinkButton ID="lnkClear" runat="server" class="btn btn-lg btn-primary" OnClick="lnkClear_Click">Clear</asp:LinkButton>
+                                <asp:LinkButton ID="lnkclose" runat="server" class="btn btn-lg btn-danger" OnClick="lnkclose_Click">Close</asp:LinkButton>
                                 <asp:ValidationSummary runat="server" ShowMessageBox="true" ShowSummary="false" ID="validationSummary" />
                             </div>
                         </div>
@@ -224,11 +223,10 @@
                     </div>
                 </div>
                 <div class="panel-footer" align="left">
-                <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
-                <asp:Label ID="lblInfo" runat="server" Text="Mandatory Fields"></asp:Label>
+                    <asp:Label ID="lblRquirdInfo" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <asp:Label ID="lblInfo" runat="server" Text="Mandatory Fields"></asp:Label>
+                </div>
             </div>
-            </div>
-            
         </div>
     </div>
 </asp:Content>
