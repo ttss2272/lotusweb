@@ -45,7 +45,7 @@ namespace DataLayer
            return dsTotalAmt;
        }
 
-       public string SaveMedicalPayment(int SaleTransactionID, double PaidAmount, string PaymentDate, int UpdatedByUserID, string MedicalPaymentNo, double BalanceAmount,string coment)
+       public string SaveMedicalPayment(int SaleTransactionID, decimal PaidAmount, string PaymentDate, int UpdatedByUserID, string MedicalPaymentNo, decimal BalanceAmount,string coment)
        {
            string result = null;
            con = conn.GetConnection();
