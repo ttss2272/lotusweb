@@ -225,7 +225,7 @@ namespace MedicalShopWeb.Admin
         {
             try
             {
-
+                ClearFields();
             }
             catch (Exception ex)
             {
@@ -474,6 +474,12 @@ namespace MedicalShopWeb.Admin
             {
                 string result = null;
                 date = txtSaleDate.Text;
+                Total = Convert.ToDecimal(txtTotal.Text);
+                DiscountAmt = (Decimal)Convert.ToDecimal(txtDiscount.Text);
+                FinalDiscountAmt = (Total * (DiscountAmt / 100));
+                decimal TempDis = Math.Round(FinalDiscountAmt, 2);
+                decimal BalanceAmount =Convert.ToDecimal(txtBalanceAmount.Text);
+                string Comment = txtComment.Text;
                  //SetSaveParameters();
                 // SetProductDetail();
 
@@ -487,7 +493,7 @@ namespace MedicalShopWeb.Admin
                         ProductID = Convert.ToInt32(dsGetDataForSaveSaleTranDetail.Tables[0].Rows[i]["ProductID"]);
                         Quantity = Convert.ToDecimal(dsGetDataForSaveSaleTranDetail.Tables[0].Rows[i]["Quantity"]);
                         //SalePrice = Convert.ToDecimal(dsGetDataForSaveSaleTranDetail.Tables[0].Rows[i]["SalePrice"]);
-                        result = objSaleTransaction.SaveSaleTransactionDetails(Convert.ToInt32(ViewState["SPID"]));
+                        result = objSaleTransaction.SaveSaleTransactionDetails(Convert.ToInt32(ViewState["SPID"]), FinalDiscountAmt, BalanceAmount,Comment);
                         int addMedicalStockResult = objSaleTransaction.AddMedicalStock(date, Quantity, MedicalID, ProductID);
                         if ((result == "Sales Transaction Sucessfully....!!!") && (addMedicalStockResult == 2))
                         {
@@ -505,12 +511,43 @@ namespace MedicalShopWeb.Admin
 
                 }
             }
-            catch (Exception ex)
+                catch (Exception ex)
+                {
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    lblMessage.Text = ex.Message.ToString();
+                }
+            finally
             {
-                lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = ex.Message.ToString();
+                ClearFields();
+
             }
+
         }
+        #region---------------------------------ClearFields-----------------------
+        private void ClearFields()
+        {
+            txtSaleDate.Text = DateTime.Now.ToString("dd/mm/yyyy");
+            ddlWarehouse.SelectedValue = "-1";
+            ddlMedical.SelectedValue = "-1";
+            ddlWarehouse.Enabled = true;
+            ddlMedical.Enabled = true;
+            txtCurrentStock.Text = "";
+            txtSalePrice.Text = "";
+            txtQuantity.Text = "";
+            ViewState["PPID"] = null;
+            txtComment.Text = "";
+            txtTotal.Text = "";
+            txtDiscount.Text = "";
+            txtFinalTotal.Text = "";
+            txtAmountPaid.Text = "";
+            txtBalanceAmount.Text = "";
+        
+            AddClear();
+           grvSaleProduct.DataSource = null;
+           grvSaleProduct.DataBind();
+        }
+        #endregion
+
         #endregion
 
     }
