@@ -511,7 +511,7 @@ namespace MedicalShopWeb.Admin
                         //SalePrice = Convert.ToDecimal(dsGetDataForSaveSaleTranDetail.Tables[0].Rows[i]["SalePrice"]);
                         result = objSaleTransaction.SaveSaleTransactionDetails(Convert.ToInt32(ViewState["SPID"]), FinalDiscountAmt, BalanceAmount,Comment);
                         int addMedicalStockResult = objSaleTransaction.AddMedicalStock(date, Quantity, MedicalID, ProductID);
-                        if ((result == "Sales Transaction Sucessfully....!!!") && (addMedicalStockResult == 2))
+                        if ((result == "Sales Transaction Save Sucessfully....!!!") && (addMedicalStockResult == 2))
                         {
                             lblMessage.ForeColor = System.Drawing.Color.Green;
                             lblMessage.Text = result;
