@@ -15,9 +15,9 @@ namespace BusinessLayer
                 string result = objSaleTransaction.SaveSaleTransation(SaleTransactionID, SaleTransactionNo, WarehouseID, MedicalID, SellingDate, UpdatedByUserID);
                return result;
              }
-             public string SaveSaleTransactionDetails(int SaleTansactionID)
+             public string SaveSaleTransactionDetails(int SaleTansactionID,decimal DiscountAmt,decimal BalanceAmount,string Comment)
              {
-                 string result = objSaleTransaction.SaveSaleTransactionDetails(SaleTansactionID);
+                 string result = objSaleTransaction.SaveSaleTransactionDetails(SaleTansactionID, DiscountAmt,BalanceAmount,Comment);
                  return result;
              }
              public int AddMedicalStock(string DateOfStock, decimal CurrentStock, int MedicalShopID, int ProductID)
