@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <asp:DropDownList ID="ddlMedical" runat="server" class="form-control" 
-                                            onselectedindexchanged="ddlMedical_SelectedIndexChanged">
+                                            onselectedindexchanged="ddlMedical_SelectedIndexChanged" AutoPostBack="true">
                                         </asp:DropDownList>
                                     </div>
                                 </div>

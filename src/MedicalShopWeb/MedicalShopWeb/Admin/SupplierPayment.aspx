@@ -163,6 +163,9 @@
                                                     <asp:RegularExpressionValidator ID="RegPaidAmo" runat="server" ErrorMessage="*" ValidationExpression="[0-9.]*$"
                                                         ControlToValidate="txtPaidAmo" Display="Dynamic" Font-Bold="True" ForeColor="Red"
                                                         SetFocusOnError="True" ToolTip="Enter Only Numbers" ValidationGroup="SaveSupplierPaymentDetails"></asp:RegularExpressionValidator>
+
+                                                        <asp:CompareValidator ID="CmpAmt" runat="server" ForeColor="Red" ErrorMessage="*" Display="Dynamic" Font-Bold="True" Operator="LessThanEqual" SetFocusOnError="True" ToolTip="Paid Amount Must Be Less Than Current Balance" ValidationGroup="SaveSupplierPaymentDetails" Type="Double" CultureInvariantValues="True" ControlToValidate="txtPaidAmo" ControlToCompare="txtCurrentBal"></asp:CompareValidator>
+
                                                 </asp:Label>
                                             </div>
                                             <div class="col-sm-8">

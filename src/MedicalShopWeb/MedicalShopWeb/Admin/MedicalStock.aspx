@@ -155,8 +155,11 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Date" HeaderStyle-HorizontalAlign="Center">
                                                     <ItemTemplate>
-                                                        <%#Eval("Date")%></ItemTemplate>
+                                                        <%#Eval("StockEntryDate")%></ItemTemplate>
                                                 </asp:TemplateField>
+
+                                                
+
                                                 <%--<asp:TemplateField HeaderText="Edit" HeaderStyle-HorizontalAlign="Center">
                     <ItemTemplate >
                              <asp:HyperLink ID="HyperLinkEdit" runat="server" Text="Edit" NavigateUrl='<%#String.Format("../Admin/Country.aspx?CountryId={0}", DataBinder.Eval(Container.DataItem,"CountryID") )%>'>
