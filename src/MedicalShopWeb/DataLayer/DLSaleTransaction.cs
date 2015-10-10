@@ -44,7 +44,7 @@ namespace DataLayer
             cmd.Parameters.AddWithValue("@DiscountAmount", DiscountAmt);
             cmd.Parameters.AddWithValue("@BalanceAmount", BalaceAmount);
             cmd.Parameters.AddWithValue("@Comment", Comment);
-           
+            //cmd.Parameters.AddWithValue("@SaleTransactionNo", SaleTransationNo);
             con.Open();
             result = cmd.ExecuteScalar().ToString();
             con.Close();
