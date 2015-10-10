@@ -52,8 +52,8 @@
                                         </asp:Label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <asp:TextBox ID="txtSaleTransactionNo" runat="server" class="form-control" placeholder="Sale Transacion No"
-                                            ReadOnly></asp:TextBox>
+                                        <asp:TextBox ID="txtSaleTransactionNo" runat="server" class="form-control" 
+                                            placeholder="Sale Transacion No"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>

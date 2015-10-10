@@ -35,6 +35,7 @@ namespace MedicalShopWeb.Admin
                     BindWarehouse();
                     BindMedicalShop();
                     BindProduct();
+                    GetSaleNumber();
                    // ScriptManager.RegisterStartupScript(this, GetType(), "myFunction", "myFunction2();", true);
                     if (ViewState["SPID"] == null)
                     {
@@ -48,6 +49,18 @@ namespace MedicalShopWeb.Admin
                 lblMessage.Text = ex.Message.ToString();
             }
         }
+        /*
+         * Created By :- Sameer Shinde
+         * Created Date:- 10 Oct 2015
+         * Purpose :-  Bind Sale Number to text box
+         */
+        #region----------------BindSaleNumberToTextBox-------------------
+        private void GetSaleNumber()
+        {
+            DataSet dsSetSalenumber = objSaleTransaction.GetSaleNo();
+            txtSaleTransactionNo.Text = dsSetSalenumber.Tables[0].Rows[0][0].ToString();
+        }
+        #endregion
         #endregion
         /*
          * Created By :- Sameer Shinde
@@ -526,7 +539,7 @@ namespace MedicalShopWeb.Admin
         #region---------------------------------ClearFields-----------------------
         private void ClearFields()
         {
-            txtSaleDate.Text = DateTime.Now.ToString("dd/mm/yyyy");
+           
             ddlWarehouse.SelectedValue = "-1";
             ddlMedical.SelectedValue = "-1";
             ddlWarehouse.Enabled = true;
