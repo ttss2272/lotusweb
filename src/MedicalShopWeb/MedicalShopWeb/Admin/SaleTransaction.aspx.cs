@@ -487,12 +487,15 @@ namespace MedicalShopWeb.Admin
             {
                 string result = null;
                 date = txtSaleDate.Text;
+                #region-----------AssignValue----------------------------
                 Total = Convert.ToDecimal(txtTotal.Text);
                 DiscountAmt = (Decimal)Convert.ToDecimal(txtDiscount.Text);
                 FinalDiscountAmt = (Total * (DiscountAmt / 100));
                 decimal TempDis = Math.Round(FinalDiscountAmt, 2);
                 decimal BalanceAmount =Convert.ToDecimal(txtBalanceAmount.Text);
+                #endregion
                 string Comment = txtComment.Text;
+                SaleTransctionNo=txtSaleTransactionNo.Text;
                  //SetSaveParameters();
                 // SetProductDetail();
 
