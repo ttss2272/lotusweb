@@ -46,6 +46,12 @@ namespace BusinessLayer
                 DataSet dsGetTempTotal = objSaleTransaction.GetTotal(SaleTransactionID);
                 return dsGetTempTotal;
             }
-            
+
+
+            public DataSet GetSaleNo()
+            {
+                DataSet dsGetSaleNo = objSaleTransaction.GetSaleNo();
+                return dsGetSaleNo;
+            }
     }
 }
