@@ -535,6 +535,7 @@ namespace MedicalShopWeb.Admin
             finally
             {
                 ClearFields();
+               // Response.AppendHeader("Refresh", "2;url=Admin/SaleTransaction.aspx");
 
             }
 
