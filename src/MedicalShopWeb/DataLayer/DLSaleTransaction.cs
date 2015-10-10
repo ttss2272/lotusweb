@@ -154,5 +154,26 @@ namespace DataLayer
              return dsTempSalesTotal;
 
          }
+         /*
+           * Creted by:-Sameer Shinde
+           * Date:- 10 Oct 2015
+           * Purpose:-Get Sale number and display on SaleTransaction text box
+           */ 
+         public DataSet GetSaleNo()
+         {
+             DataSet dsSaleNo = new DataSet();
+
+             con = conn.GetConnection();
+             SqlCommand cmd = new SqlCommand("SetSaleTransactionNumber_USP", con);
+             cmd.CommandType = CommandType.StoredProcedure;
+             con.Open();
+
+             SqlDataAdapter daSetSaleNo = new SqlDataAdapter(cmd);
+             dsSaleNo = new DataSet();
+             daSetSaleNo.Fill(dsSaleNo);
+             con.Close();
+             return dsSaleNo;
+
+         }
     }
 }
