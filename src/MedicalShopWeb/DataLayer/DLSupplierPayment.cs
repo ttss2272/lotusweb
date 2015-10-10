@@ -44,7 +44,7 @@ namespace DataLayer
 
         }
 
-        public string SaveSupplierPayment(int PurchaseTransactionID, double PaidAmount, string PaymentDate, int UpdatedByUserID, string SupplierPaymentNo, double BalanceAmount, string Comment)
+        public string SaveSupplierPayment(int PurchaseTransactionID, decimal PaidAmount, string PaymentDate, int UpdatedByUserID, string SupplierPaymentNo, decimal BalanceAmount, string Comment)
         {
              string result = null;
             con = conn.GetConnection();
@@ -57,6 +57,7 @@ namespace DataLayer
             cmd.Parameters.AddWithValue("@PaymentReceiptNo", SupplierPaymentNo);
             cmd.Parameters.AddWithValue("@BalanceAmount", BalanceAmount);
             cmd.Parameters.AddWithValue("@Comment", Comment);
+            
             con.Open();
             result = cmd.ExecuteScalar().ToString();
             con.Close();
