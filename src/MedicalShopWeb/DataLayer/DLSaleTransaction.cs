@@ -33,17 +33,17 @@ namespace DataLayer
          * Creted by:-Sameer Shinde
          * Date:- 06 Oct 2015
          * Purpose:- Data Save In Sales Transactions Details Table
-         */ 
-        public string SaveSaleTransactionDetails(int SaleTansactionID)
+         */
+        public string SaveSaleTransactionDetails(int SaleTansactionID, decimal DiscountAmt,decimal BalaceAmount,string Comment)
         {
             string result = null;
             con = conn.GetConnection();
             SqlCommand cmd = new SqlCommand("SaveSaleTransactionDetails_USP", con);  
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@SaleTansactionID", SaleTansactionID);
-            //cmd.Parameters.AddWithValue("@ProductID", ProductID);
-            //cmd.Parameters.AddWithValue("@Quantity", Quntity);
-            //cmd.Parameters.AddWithValue("@SellingPrice", SellingPrice);
+            cmd.Parameters.AddWithValue("@DiscountAmount", DiscountAmt);
+            cmd.Parameters.AddWithValue("@BalanceAmount", BalaceAmount);
+            cmd.Parameters.AddWithValue("@Comment", Comment);
            
             con.Open();
             result = cmd.ExecuteScalar().ToString();
