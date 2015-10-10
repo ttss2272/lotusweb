@@ -85,13 +85,13 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.Label lblSpecialization;
         
         /// <summary>
-        /// ReqSpllizalition control.
+        /// RegSpecilaz control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqSpllizalition;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegSpecilaz;
         
         /// <summary>
         /// txtspecialz control.
@@ -121,15 +121,6 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.Label lblDOB;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-        
-        /// <summary>
         /// txtDOB control.
         /// </summary>
         /// <remarks>
@@ -157,13 +148,13 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.Label MobileNoRequired;
         
         /// <summary>
-        /// lblArea control.
+        /// lblMobNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblArea;
+        protected global::System.Web.UI.WebControls.Label lblMobNo;
         
         /// <summary>
         /// RegOpeningBal control.
@@ -355,15 +346,6 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.Label lblAddreq;
         
         /// <summary>
-        /// ReqValidatorAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqValidatorAdd;
-        
-        /// <summary>
         /// txtAddress control.
         /// </summary>
         /// <remarks>
@@ -391,13 +373,13 @@ namespace MedicalShopWeb.Admin {
         protected global::System.Web.UI.WebControls.Label lblOpenBal;
         
         /// <summary>
-        /// ReqValiOpeningVal control.
+        /// RegOpenBal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqValiOpeningVal;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegOpenBal;
         
         /// <summary>
         /// txtOpeningBalance control.

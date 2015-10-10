@@ -58,10 +58,9 @@
                                     <div class="col-sm-4">
                                         <asp:Label ID="SpecializationRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
                                         <asp:Label ID="lblSpecialization" runat="server" Text="Specialization" class="control-label">
-                                            <asp:RequiredFieldValidator ID="ReqSpllizalition" runat="server" ErrorMessage="*"
-                                                Display="Dynamic" Font-Bold="True" ForeColor="Red" ControlToValidate="txtspecialz"
-                                                InitialValue="-1" SetFocusOnError="True" ToolTip="Please Enter Splecialization"
-                                                ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="RegSpecilaz" runat="server" ErrorMessage="*" ValidationExpression="[a-zA-Z ]*$"
+                                                ControlToValidate="txtspecialz" Display="Dynamic" Font-Bold="True" ForeColor="Red"
+                                                SetFocusOnError="True" ToolTip="Enter Only Characters" ValidationGroup="SaveDoctorDetails"></asp:RegularExpressionValidator>
                                         </asp:Label>
                                     </div>
                                     <div class="col-sm-8">
@@ -81,10 +80,7 @@
                                     <div class="col-sm-4">
                                         <asp:Label ID="DOBrequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
                                         <asp:Label ID="lblDOB" runat="server" Text="DOB" class="control-label">
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*"
-                                                Display="Dynamic" Font-Bold="True" ForeColor="Red" ControlToValidate="txtDOB"
-                                                InitialValue="-1" SetFocusOnError="True" ToolTip="Please Select Date of Birth"
-                                                ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
+                                           
                                         </asp:Label>
                                     </div>
                                     <div class="col-sm-8">
@@ -102,9 +98,9 @@
                                 <div class="row form-group">
                                     <div class="col-sm-4">
                                         <asp:Label ID="MobileNoRequired" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
-                                        <asp:Label ID="lblArea" runat="server" Text="Mobile No" class="control-label">
-                                            <asp:RegularExpressionValidator ID="RegOpeningBal" runat="server" ErrorMessage="*"
-                                                ValidationExpression="[0-9.-]*$" ControlToValidate="txtmobno" Display="Dynamic"
+                                        <asp:Label ID="lblMobNo" runat="server" Text="Mobile No" class="control-label">
+                                             <asp:RegularExpressionValidator ID="RegOpeningBal" runat="server" ErrorMessage="*"
+                                                ValidationExpression="[0-9]*$" ControlToValidate="txtmobno" Display="Dynamic"
                                                 Font-Bold="True" ForeColor="Red" SetFocusOnError="True" ToolTip="Enter Only Numbers"
                                                 ValidationGroup="SaveDoctorDetails"></asp:RegularExpressionValidator>
                                         </asp:Label>
@@ -211,9 +207,7 @@
                                     <div class="col-sm-4">
                                         <asp:Label ID="AddressReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
                                         <asp:Label ID="lblAddreq" runat="server" Text="Address" class="control-label">
-                                            <asp:RequiredFieldValidator ID="ReqValidatorAdd" runat="server" ErrorMessage="*"
-                                                Display="Dynamic" Font-Bold="True" ForeColor="Red" ControlToValidate="txtAddress"
-                                                InitialValue="-1" SetFocusOnError="True" ToolTip="Please Enter Address" ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
+                                            
                                         </asp:Label>
                                     </div>
                                     <div class="col-sm-8">
@@ -229,10 +223,9 @@
                                     <div class="col-sm-4">
                                         <asp:Label ID="OprningBalanceReq" runat="server" Text="*" ForeColor="Red" class="control-label"></asp:Label>
                                         <asp:Label ID="lblOpenBal" runat="server" Text="Opening Balance" class="control-label">
-                                            <asp:RequiredFieldValidator ID="ReqValiOpeningVal" runat="server" ErrorMessage="*"
-                                                Display="Dynamic" Font-Bold="True" ForeColor="Red" ControlToValidate="txtOpeningBalance"
-                                                InitialValue="-1" SetFocusOnError="True" CssClass="Validators" ToolTip="Please Enter Opening Balanace"
-                                                ValidationGroup="SaveDoctorDetails"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="RegOpenBal" runat="server" ErrorMessage="*" ValidationExpression="[0-9.-]*$"
+                                                ControlToValidate="txtOpeningBalance" Display="Dynamic" Font-Bold="True" ForeColor="Red"
+                                                SetFocusOnError="True" ToolTip="Enter Only Number" ValidationGroup="SaveDoctorDetails"></asp:RegularExpressionValidator>
                                         </asp:Label>
                                     </div>
                                     <div class="col-sm-8">
